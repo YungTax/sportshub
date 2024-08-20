@@ -1,9 +1,9 @@
 # WordPress files
-
+wp-config.php
 wp-content/uploads/
 wp-content/cache/
 wp-content/upgrade/
-
+.htaccess
 # Operating system files
 .DS_Store
 Thumbs.db

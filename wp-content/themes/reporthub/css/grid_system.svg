@@ -1,0 +1,16 @@
+
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="7435" viewBox="0 0 1100 7435" preserveAspectRatio="none">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #f0f0f0;
+      }
+    </style>
+  </defs>
+  <g id="line" transform="translate(-250)">
+    <rect id="line-2" data-name="line" class="cls-1" width="1" height="7435" transform="translate(250)"/>
+    <rect id="line-3" data-name="line" class="cls-1" width="1" height="7435" transform="translate(616)"/>
+    <rect id="line-4" data-name="line" class="cls-1" width="1" height="7435" transform="translate(983)"/>
+    <rect id="line-5" data-name="line" class="cls-1" width="1" height="7435" transform="translate(1349)"/>
+  </g>
+</svg>
