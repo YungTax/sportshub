@@ -1,0 +1,23 @@
+# WordPress files
+wp-config.php
+wp-content/uploads/
+wp-content/cache/
+wp-content/upgrade/
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Logs and databases
+*.log
+*.sql
+
+# IDE files
+.idea/
+.vscode/
+
+# Node.js dependencies
+node_modules/
+
+# Composer dependencies
+vendor/
