@@ -1,0 +1,39 @@
+
+---Upload files---
+Content file was not uploaded. Error: Sorry, you are not allowed to upload this file type.
+
+---Upload files---
+Redux file was not uploaded. Error: No file provided.
+
+---Upload files---
+The import files were successfully uploaded!
+Initial max execution time = 6000000
+Files info:
+Site URL = http://localhost/sportshub
+Data file = not defined!
+Widget file = /Users/touchsangrotha/Sites/localhost/sportshub/wp-content/uploads/2024/09/reporthub.wie
+Customizer file = /Users/touchsangrotha/Sites/localhost/sportshub/wp-content/uploads/2024/09/reporthub.dat
+Redux files:
+not defined!
+
+---ocdi/before_widgets_import---
+
+
+---Importing widgets---
+General Sidebar : 
+
+redoo_category_image_widget_register - Categories - Site does not support widget
+redoo_popular_widget - Popular Posts - Site does not support widget
+redoo_ads_widgets - Advertisement - Site does not support widget
+
+Instagram : 
+
+Instagram Widget by WPZOOM (Legacy) - No Title - Imported
+
+
+
+---Importing customizer settings---
+Error: The customizer import file is not in a correct format. Please make sure to use the correct customizer import file.
+
+---ocdi/after_import---
+
