@@ -9,6 +9,11 @@
       <meta property="og:description" content="<?php echo get_the_excerpt(); ?>" />
       <meta property="og:image" content="<?php echo get_the_post_thumbnail_url(); ?>" />
       <meta property="og:url" content="<?php echo get_permalink(); ?>" />
+      <meta name="twitter:card" content="summary_large_image">
+      <meta name="twitter:title" content="<?php echo get_the_title(); ?>" />
+      <meta name="twitter:description" content="<?php echo get_the_excerpt(); ?>" />
+      <meta name="twitter:image" content="<?php echo get_the_post_thumbnail_url(); ?>" />
+      <meta name="twitter:url" content="<?php echo get_permalink(); ?>" />
       <?php wp_head(); ?> <!-- Hook for WordPress to insert scripts, styles, and other elements into the head section -->
    </head>
 
