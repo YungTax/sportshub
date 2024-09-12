@@ -1,43 +1,62 @@
 <?php get_header(); // Include the header template ?>
 <div class="themelazer-blog-body">
-   <div class="container" id="wrapper_masonry"> <!-- Main container with an ID for possible JavaScript or CSS targeting -->
-      <div class="row"> <!-- Bootstrap row to create a horizontal group of columns -->
-         <div class="col-md-8 themelazer_content"> <!-- Main content area taking up 8 columns on medium and larger screens -->
-            <div class="row"> <!-- Nested row for the page title -->
-               <div class="col-md-12"> <!-- Full-width column -->
+   <div class="container" id="wrapper_masonry">
+      <div class="row">
+         <div class="col-md-12 themelazer_content">
+            <div class="row">
+               <div class="col-md-12">
                   <div class="themelazer_title_p">
-                     <h2><?php echo get_the_archive_title(); ?></h2> <!-- Display the archive title (e.g., category name, date, etc.) -->
+                     <h2>
+                        <?php
+                        // Get the archive title
+                        $archive_title = get_the_archive_title();
+                        
+                        // Get the total post count
+                        $total_posts = $wp_query->found_posts;
+                        
+                        // Display the archive title with total post count
+                        echo $archive_title . ' (' . $total_posts . ' ' . _n('post', 'posts', $total_posts, 'sportshub') . ')';
+                        ?>
+                     </h2>
                   </div>
                </div>
             </div>
-            <div class="row"> <!-- Nested row for the posts -->
+            <div class="row">
                <?php
-               $sportshub_qry = sportshub_get_qry(); // Custom query to get posts
-               if ($sportshub_qry->have_posts()) : // Check if there are posts
-                  while ($sportshub_qry->have_posts()) : // Loop through the posts
-                     $sportshub_qry->the_post(); // Set up post data
-                     $sportshub_post_id = $post->ID; // Get the current post ID
-                     get_template_part('inc/post-layout/content', 'grid'); // Include the post layout template part (content-grid.php)
+               // Set up custom query arguments
+               $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+               $args = array(
+                   'posts_per_page' => 12,
+                   'paged' => $paged
+               );
+               
+               // Merge with existing query arguments if needed
+               $sportshub_qry = new WP_Query(array_merge($args, sportshub_get_qry()->query_vars));
+
+               if ($sportshub_qry->have_posts()) :
+                  while ($sportshub_qry->have_posts()) :
+                     $sportshub_qry->the_post();
+                     $sportshub_post_id = get_the_ID();
+                     get_template_part('inc/post-layout/content-small', 'grid');
                   endwhile;
-               else : // If no posts are found
-                  echo '<div class="col-md-12">'; // Full-width column for no results message
+               else :
+                  echo '<div class="col-md-12">';
                   if (is_search()) {
-                     esc_html_e('No result found', 'sportshub'); // Display 'No result found' for search pages
+                     esc_html_e('No result found', 'sportshub');
+                  } else {
+                     esc_html_e('No posts found', 'sportshub');
                   }
                   echo '</div>';
                endif;
                ?>
             </div>
             <?php
-            sportshub_pagination($sportshub_qry); // Custom pagination function
-            wp_reset_postdata(); // Reset post data
+            // Custom pagination function
+            sportshub_pagination($sportshub_qry);
+            wp_reset_postdata();
             ?>
-         </div>
-         <div class="col-md-4 themelazer_sidebar themelazer_sticky"> <!-- Sidebar area taking up 4 columns on medium and larger screens -->
-            <?php if (is_active_sidebar('general-sidebar')) : dynamic_sidebar('general-sidebar'); endif; // Display the 'general-sidebar' if active ?>
          </div>
       </div>
    </div>
 </div>
-<!-- end content -->
 <?php get_footer(); // Include the footer template ?>

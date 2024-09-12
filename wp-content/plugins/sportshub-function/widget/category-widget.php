@@ -57,9 +57,9 @@ class sportshub_category_image_widget_register extends WP_widget{
 			$category_image_main = get_term_meta($tag->term_id, "jelly_cat_header_image_id", true);
 			
 			$category_image = '';
-			$jelly_header_id = absint( get_term_meta( $tag->term_id, 'jelly_header_id', true ) );
-			if ($jelly_header_id){
-			$category_image = wp_get_attachment_image_src( $jelly_header_id , 'sportshub_slider_grid_small' );
+			$lazer_header_id = absint( get_term_meta( $tag->term_id, 'lazer_header_id', true ) );
+			if ($lazer_header_id){
+			$category_image = wp_get_attachment_image_src( $lazer_header_id , 'sportshub_slider_grid_small' );
 			echo '<div class="category_image_bg_image" style="background-image: url('.$category_image[0].');">';
 			}else{
 			echo '<div class="category_image_bg_image">';

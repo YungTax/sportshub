@@ -11,28 +11,20 @@
                      </div>
                   </div>
                </div>
-               <div class="row">
-                  <?php 
-                     $sportshub_qry = sportshub_get_qry();
-                     if ( $sportshub_qry->have_posts() ) {
-                        while ( $sportshub_qry->have_posts() ) { 
-                           $sportshub_qry->the_post();
-                           $sportshub_post_id = $post->ID;          
-                           get_template_part( 'inc/post-layout/content','grid');          
-                        }
-                     }else{       
-                        echo '<div class="col-md-12">'; 
-                                 if (is_search()) { 
-                                       esc_html_e('No result found', 'sportshub');
-                                 }
-                        echo '</div>';              
-                     }
-                  ?>
-               </div>
+               <div id="post-wrapper"> <!-- This is where posts will be loaded -->
                <?php
-                  sportshub_pagination( $sportshub_qry );
-                  wp_reset_postdata();
+               $sportshub_qry = sportshub_get_qry(); // Custom query to get posts
+               if ($sportshub_qry->have_posts()) :
+                  while ($sportshub_qry->have_posts()) : $sportshub_qry->the_post();
+                        get_template_part('inc/post-layout/content', 'list'); // Include the post layout template part
+                  endwhile;
+               else :
+                  echo '<div>No results found.</div>';
+               endif;
                ?>
+            </div>
+            <button id="load-more" data-page="1" data-url="<?php echo admin_url('admin-ajax.php'); ?>" 
+        data-tag="<?php echo get_queried_object_id(); ?>"><?php echo esc_html_e('Load More ', 'sportshub');?></button>
             </div>
             <div class="col-md-4 themelazer_sidebar themelazer_sticky">
                <?php if (is_active_sidebar('general-sidebar')) : dynamic_sidebar('general-sidebar');endif; ?>

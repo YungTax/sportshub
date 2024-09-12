@@ -51,9 +51,9 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 				<a class="telegram-bg" rel="nofollow noopener" href="https://telegram.me/share/url?url=<?php echo esc_url(get_permalink());?>"target="_blank"><i class="fa-brands fa-telegram"></i>
 					<!-- <?php esc_html_e('telegram', 'sportshub') ?> -->
 				</a>
-				<a class="instagram-bg" href="https://www.instagram.com/?url=<?php echo esc_url(get_permalink()); ?>" target="_blank">
+				<!-- <a class="instagram-bg" href="https://www.instagram.com/?url=<?php echo esc_url(get_permalink()); ?>" target="_blank">
 					<i class="fab fa-instagram"></i>
-				</a>
+				</a> -->
 				<a class="linkedin-bg" href="http://www.linkedin.com/shareArticle?mini=true&url=<?php echo esc_url(get_permalink());?>&title=<?php echo esc_url(get_permalink());?>" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
 				<a class="pinterest-bg" rel="nofollow noopener"  href="https://pinterest.com/pin/create/link/?url=<?php echo esc_url(get_permalink());?>" target="_blank"><i class="fab fa-pinterest"></i></a>
 				
