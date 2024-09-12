@@ -14,7 +14,8 @@
     
     <meta name="description" content="<?php echo esc_attr(get_the_excerpt()); ?>">
     <link rel="canonical" href="<?php echo esc_url(get_permalink()); ?>">
-
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="Googlebot" content="noindex"/>
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="<?php echo is_single() ? 'article' : 'website'; ?>">
     <meta property="og:site_name" content="<?php bloginfo('name'); ?>">
