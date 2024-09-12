@@ -17,7 +17,7 @@
                               <?php echo esc_html_e('Posts made: ', 'sportshub') . count_user_posts(get_the_author_meta('ID')); // Display count of posts made by the author ?>
                            </p>
                         </div>
-                        <div class="themelazer-author-social-links"> <!-- Author social links section -->
+                        <div class="themelazer-author-social-links"> <!-- Author social links section -->   
                            <div class="themelazer-social-links-items">
                               <div class="themelazer-social-links-item">
                                  <?php 
@@ -35,28 +35,21 @@
             <h3 class="themlazer_author_post_title">
                <?php echo esc_html_e('Latest articles by ', 'sportshub') . the_author_meta('display_name'); // Display 'Latest articles by' followed by the author's display name ?>
             </h3>
-            <div class="row"> <!-- Nested row for the posts -->
+            <div id="post-wrapper"> <!-- This is where posts will be loaded -->
                <?php
                $sportshub_qry = sportshub_get_qry(); // Custom query to get posts
-               if ($sportshub_qry->have_posts()) : // Check if there are posts
-                  while ($sportshub_qry->have_posts()) : // Loop through the posts
-                     $sportshub_qry->the_post(); // Set up post data
-                     $sportshub_post_id = $post->ID; // Get the current post ID
-                     get_template_part('inc/post-layout/content', 'grid'); // Include the post layout template part (content-grid.php)
+               if ($sportshub_qry->have_posts()) :
+                  while ($sportshub_qry->have_posts()) : $sportshub_qry->the_post();
+                        get_template_part('inc/post-layout/content', 'list'); // Include the post layout template part
                   endwhile;
-               else : // If no posts are found
-                  echo '<div class="col-md-12">'; // Full-width column for no results message
-                  if (is_search()) {
-                     esc_html_e('No result found', 'sportshub'); // Display 'No result found' for search pages
-                  }
-                  echo '</div>';
+               else :
+                  echo '<div>No results found.</div>';
                endif;
                ?>
             </div>
-            <?php
-            sportshub_pagination($sportshub_qry); // Custom pagination function
-            wp_reset_postdata(); // Reset post data
-            ?>
+
+            <button id="load-more" data-page="1" data-url="<?php echo admin_url('admin-ajax.php'); ?>" 
+            data-author="<?php echo get_the_author_meta('ID'); ?>"> <?php echo esc_html_e('Load More ', 'sportshub');?></button>
          </div>
          <div class="col-md-4 themelazer_sidebar themelazer_sticky"> <!-- Sidebar area taking up 4 out of 12 columns on medium and larger screens -->
             <?php 

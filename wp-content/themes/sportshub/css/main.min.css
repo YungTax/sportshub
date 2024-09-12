@@ -551,7 +551,6 @@ h1 {
 }
 
 iframe {
-	border: 1px solid #fbfbfb;
 	border-collapse: separate;
 	border-spacing: 0;
 	width: 100%;
@@ -761,6 +760,38 @@ pre {
 
 .top-header-menu-class li {
     margin-left: 20px; /* Space between menu items */
+}
+/*==============================================
+        Load More Button
+===============================================*/
+.card_post_out {
+	background-color: var(--card-bg-color, transparent);
+}
+#load-more {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #fff;
+    background-color: var(--main-color); /* Button background color */
+    border: none;
+    cursor: pointer;
+    text-align: center;
+	margin-bottom: 40px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#load-more:hover {
+    background-color: var(--main-color); /* Darker blue on hover */
+}
+
+#load-more:active {
+    background-color: var(--main-color); /* Even darker when pressed */
+}
+
+#load-more:disabled {
+    background-color: #cccccc; /* Gray color when disabled */
+    cursor: not-allowed;
 }
 /*==============================================
         Author listing
@@ -16580,7 +16611,6 @@ body:not(.themelazer-has-sidebar) .themelazer_sidebar {
 	background: var(--main-color);
 	color: var(--lazer-white) !important;
 	font-size: 13px;
-	border-radius: 12px;
 	-webkit-transition: opacity .5s ease-in-out;
 	-moz-transition: opacity .5s ease-in-out;
 	-ms-transition: opacity .5s ease-in-out;
@@ -21008,12 +21038,14 @@ body:not(.themelazer-has-sidebar) .themelazer_sidebar {
 	border-bottom: 1px solid #e9ecef;
 	padding-bottom: 15px;
 	margin-bottom: 50px;
+	color: var(--lazer-black);
 }
 
 .themelazer_title_p h2 {
 	line-height: 1.2;
 	margin-bottom: 10px;
 	margin-top: -10px;
+	color: var(--lazer-black);
 }
 
 .themelazer_title_p p {
@@ -40769,6 +40801,22 @@ body.themelazer-dark-mode-activate .top-header-menu{
 body.themelazer-dark-mode-activate .themelazer_header_social_icons .themelazer_social_wrapper li a{
 	color: var(--lazer-white);
 }
+body.themelazer-dark-mode-activate .themelazer_title_p h2{
+	color: var(--lazer-white);
+}
+body.themelazer-dark-mode-activate .themelazer_title_p span{
+	color: var(--lazer-white);
+}
+body.themelazer-dark-mode-activate
+body.themelazer-dark-mode-activate
+body.themelazer-dark-mode-activate
+body.themelazer-dark-mode-activate
+body.themelazer-dark-mode-activate
+body.themelazer-dark-mode-activate
+body.themelazer-dark-mode-activate
+body.themelazer-dark-mode-activate
+body.themelazer-dark-mode-activate
+body.themelazer-dark-mode-activate
 body.themelazer-dark-mode-activate
 body.themelazer-dark-mode-activate
 

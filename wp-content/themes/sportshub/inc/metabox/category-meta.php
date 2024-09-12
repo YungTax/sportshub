@@ -3,7 +3,7 @@
  * Edit category header field.
  */
 function sportshub_add_category_settings() {
-	$jelly_header_id ='';
+	$lazer_header_id ='';
 ?>
 
 	<tr class="form-field">
@@ -22,7 +22,7 @@ function sportshub_add_category_settings() {
 		<td>
 			
 			<div style="line-height:60px;">
-				<input type="hidden" id="jelly_cat_header_image_id" name="jelly_cat_header_image_id" value="<?php echo esc_attr($jelly_header_id); ?>" />
+				<input type="hidden" id="jelly_cat_header_image_id" name="jelly_cat_header_image_id" value="<?php echo esc_attr($lazer_header_id); ?>" />
 				<button type="submit" class="jelly_upload_header button"><?php esc_html_e( 'Add Category Background Image', 'sportshub' ); ?></button>
 				<button type="submit" class="jelly_remove_header button"><?php esc_html_e( 'Remove Image', 'sportshub' ); ?></button>
 			</div>
@@ -60,10 +60,10 @@ function sportshub_edit_category_settings( $term, $taxonomy ) {
 
 
 	$category_image = '';
-	$jelly_header_id ='';
-	$jelly_header_id = absint( get_term_meta( $term->term_id, 'jelly_header_id', true ) );
-	if ($jelly_header_id) {
-		$category_image = wp_get_attachment_url( $jelly_header_id );
+	$lazer_header_id ='';
+	$lazer_header_id = absint( get_term_meta( $term->term_id, 'lazer_header_id', true ) );
+	if ($lazer_header_id) {
+		$category_image = wp_get_attachment_url( $lazer_header_id );
 	}else {}
 	?>
 
@@ -83,7 +83,7 @@ function sportshub_edit_category_settings( $term, $taxonomy ) {
 		<td>
 			
 			<div style="line-height:60px;">
-				<input type="hidden" id="jelly_cat_header_image_id" name="jelly_cat_header_image_id" value="<?php echo esc_attr($jelly_header_id); ?>" />
+				<input type="hidden" id="jelly_cat_header_image_id" name="jelly_cat_header_image_id" value="<?php echo esc_attr($lazer_header_id); ?>" />
 				<button type="submit" class="jelly_upload_header button"><?php esc_html_e( 'Add Category background Image', 'sportshub' ); ?></button>
 				<button type="submit" class="jelly_remove_header button"><?php esc_html_e( 'Remove Image', 'sportshub' ); ?></button>
 			</div>
@@ -117,7 +117,7 @@ add_action( 'category_edit_form_fields', 'sportshub_edit_category_settings', 10,
 function sportshub_category_setting_save( $term_id='', $tt_id='', $taxonomy='' ) {	
 
 	if ( isset( $_POST['jelly_cat_header_image_id'] ) ) {
-		update_term_meta( $term_id, 'jelly_header_id', absint( $_POST['jelly_cat_header_image_id'] ) );
+		update_term_meta( $term_id, 'lazer_header_id', absint( $_POST['jelly_cat_header_image_id'] ) );
 	}
 
 	if ( isset( $_POST['category_color_options'] ) ) {

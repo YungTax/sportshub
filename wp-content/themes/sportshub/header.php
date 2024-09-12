@@ -1,22 +1,49 @@
 <!DOCTYPE html>
 <html class="ie ie9" <?php language_attributes(); ?>> <!-- Declares the document type and sets IE-specific classes and language attributes -->
 <html <?php language_attributes(); ?>> <!-- Sets the language attributes for the HTML tag -->
-   <head>
-      <meta charset="<?php bloginfo( 'charset' ); ?>"> <!-- Specifies the character encoding for the document -->
-      <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Ensures compatibility with IE rendering engine -->
-      <meta name="viewport" content="width=device-width, initial-scale=1" /> <!-- Sets the viewport to ensure proper scaling on mobile devices -->
-      <meta property="og:title" content="<?php echo get_the_title(); ?>" />
-      <meta property="og:description" content="<?php echo get_the_excerpt(); ?>" />
-      <meta property="og:image" content="<?php echo get_the_post_thumbnail_url(); ?>" />
-      <meta property="og:url" content="<?php echo get_permalink(); ?>" />
-      <meta name="twitter:card" content="summary_large_image">
-      <meta name="twitter:title" content="<?php echo get_the_title(); ?>" />
-      <meta name="twitter:description" content="<?php echo get_the_excerpt(); ?>" />
-      <meta name="twitter:image" content="<?php echo get_the_post_thumbnail_url(); ?>" />
-      <meta name="twitter:url" content="<?php echo get_permalink(); ?>" />
-      <?php wp_head(); ?> <!-- Hook for WordPress to insert scripts, styles, and other elements into the head section -->
-   </head>
+<head>
+    <meta charset="<?php bloginfo( 'charset' ); ?>">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="profile" href="https://gmpg.org/xfn/11">
+    
+    <?php if (is_singular() && pings_open(get_queried_object())) : ?>
+    <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
+    <?php endif; ?>
 
+    <title><?php wp_title('|', true, 'right'); ?></title>
+    
+    <meta name="description" content="<?php echo esc_attr(get_the_excerpt()); ?>">
+    <link rel="canonical" href="<?php echo esc_url(get_permalink()); ?>">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="<?php echo is_single() ? 'article' : 'website'; ?>">
+    <meta property="og:site_name" content="<?php bloginfo('name'); ?>">
+    <meta property="og:title" content="<?php echo esc_attr(get_the_title()); ?>">
+    <meta property="og:description" content="<?php echo esc_attr(get_the_excerpt()); ?>">
+    <meta property="og:url" content="<?php echo esc_url(get_permalink()); ?>">
+    <?php if (has_post_thumbnail()) : ?>
+    <meta property="og:image" content="<?php echo esc_url(get_the_post_thumbnail_url(null, 'large')); ?>">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <?php endif; ?>
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="<?php echo esc_attr(get_the_title()); ?>">
+    <meta name="twitter:description" content="<?php echo esc_attr(get_the_excerpt()); ?>">
+    <?php if (has_post_thumbnail()) : ?>
+    <meta name="twitter:image" content="<?php echo esc_url(get_the_post_thumbnail_url(null, 'large')); ?>">
+    <?php endif; ?>
+
+    <!-- Schema.org markup for Google+ -->
+    <meta itemprop="name" content="<?php echo esc_attr(get_the_title()); ?>">
+    <meta itemprop="description" content="<?php echo esc_attr(get_the_excerpt()); ?>">
+    <?php if (has_post_thumbnail()) : ?>
+    <meta itemprop="image" content="<?php echo esc_url(get_the_post_thumbnail_url(null, 'large')); ?>">
+    <?php endif; ?>
+
+    <?php wp_head(); ?>
+</head>
    <!-- Progress bar wrapper (commented out) -->
    <!--
    <div class="themelazer_progress_bar_wrapper">

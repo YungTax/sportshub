@@ -503,7 +503,7 @@
                      <div class="post-outer">
                         <div class="post-inner">
                               <div class="post-thumbnail">
-                                 <?php if ( has_post_thumbnail()) {the_post_thumbnail();} ?> 
+                                 <?php if ( has_post_thumbnail()) {the_post_thumbnail('sportshub_small_breaking_news');} ?> 
                                  <a href="<?php the_permalink(); ?>"></a>
                               </div>
                         </div>

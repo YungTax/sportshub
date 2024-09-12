@@ -11,8 +11,9 @@ if ( ! isset( $content_width ) ){ $content_width = 1190; }
 if (!function_exists('sportshub_image_size')) {
     function sportshub_image_size() {
         $image_sizes = array(
-            'sportshub_justify_feature' => array(1000, 0, false),
+            'sportshub_justify_feature' => array(1000, 400, false),
             'sportshub_small_feature' => array(150, 150, true),
+            'sportshub_small_breaking_news' => array(90, 60, true),
             'sportshub_small_recent_feature' => array(150, 100, true),
             'sportshub_feature_link_list' => array(230, 115, true),
             'sportshub_feature_gird' => array(344, 344, true),
@@ -847,7 +848,60 @@ function enqueue_lazyload_blur_script() {
 }
 add_action( 'wp_enqueue_scripts', 'enqueue_lazyload_blur_script' );
 
+function sportshub_enqueue_scripts() {
+    wp_enqueue_script('jquery'); // Ensure jQuery is loaded
+    wp_enqueue_script('ajax-load-more', get_template_directory_uri() . '/js/ajax-load-more.js', array('jquery'), null, true);
+    wp_localize_script('ajax-load-more', 'ajaxloadmore', array(
+        'ajaxurl' => admin_url('admin-ajax.php'), // Passes the Ajax URL
+        'posts_per_page' => get_option('posts_per_page'), // Passes the number of posts to load per page
+        'max_page' => $GLOBALS['wp_query']->max_num_pages // Passes the max number of pages
+    ));
+}
+add_action('wp_enqueue_scripts', 'sportshub_enqueue_scripts');
+function sportshub_load_more_posts() {
+    $paged = $_POST['page'] + 1; // Get the next page number
 
+    $args = array(
+        'post_type' => 'post',
+        'paged' => $paged,
+        'posts_per_page' => 10,
+    );
+
+    // Check for category filter
+    if (!empty($_POST['category_id'])) {
+        $args['cat'] = $_POST['category_id']; // Set the category ID
+    }
+
+    // Check for author filter
+    if (!empty($_POST['author_id'])) {
+        $args['author'] = $_POST['author_id']; // Set the author ID
+    }
+
+    // Check for tag filter
+    if (!empty($_POST['tag_id'])) {
+        $args['tag_id'] = $_POST['tag_id']; // Set the tag ID
+    }
+
+    // Check for archive filter (e.g., year, month)
+    if (!empty($_POST['archive_id'])) {
+        // You may need to adjust this depending on how archives are structured
+        // You can add specific arguments for year, month, etc.
+        $args['year'] = date('Y', strtotime($_POST['archive_id']));
+    }
+
+    $sportshub_qry = new WP_Query($args);
+
+    if ($sportshub_qry->have_posts()) :
+        while ($sportshub_qry->have_posts()) : $sportshub_qry->the_post();
+            get_template_part('inc/post-layout/content', 'list'); // Adjust as per your layout
+        endwhile;
+    endif;
+
+    wp_reset_postdata();
+    die(); // End the Ajax request
+}
+add_action('wp_ajax_nopriv_sportshub_load_more_posts', 'sportshub_load_more_posts');
+add_action('wp_ajax_sportshub_load_more_posts', 'sportshub_load_more_posts');
 // Customizer Fucntion
 include get_template_directory() . '/inc/customizer/customizer.php';
 // Plugin Activation
