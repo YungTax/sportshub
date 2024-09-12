@@ -13,7 +13,7 @@
     <meta name="description" content="<?php echo esc_attr(get_the_excerpt() ? get_the_excerpt() : 'Default site description here.'); ?>">
     <link rel="canonical" href="<?php echo esc_url(get_permalink()); ?>">
     <meta name="robots" content="index, follow">
-    <meta name="Googlebot" content="noindex"/>
+    <meta name="Googlebot" content="index"/>
     <!-- Open Graph / Facebook -->
       
     <meta property="og:type" content="<?php echo is_single() ? 'article' : 'website'; ?>">
