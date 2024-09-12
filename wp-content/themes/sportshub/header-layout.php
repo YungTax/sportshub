@@ -424,20 +424,20 @@
          <div class="container clearfix">
             <div class="themelazer_promomenu_wrapper">
                <div class="themelazer_logo_header3">
-                  <a href="<?php echo esc_url(home_url('/')); ?>">
-                     <?php $logo = get_theme_mod('sportshub_logo'); ?>
-                     <?php if (!empty($logo)): ?>
-                     <img src="<?php echo esc_url($logo); ?>" alt="<?php bloginfo('description'); ?>" />
-                     <?php else: ?>
-                     <img src="<?php echo esc_url(get_template_directory_uri().'/img/sportshub-black.png'); ?>" alt="<?php bloginfo('description'); ?>" />
-                     <?php endif; ?>
-                  </a>
+               <a href="<?php echo esc_url(home_url('/')); ?>" aria-label="<?php bloginfo('name'); ?>">
+                  <?php $logo = get_theme_mod('sportshub_logo'); ?>
+                  <?php if (!empty($logo)): ?>
+                     <img src="<?php echo esc_url($logo); ?>" alt="<?php bloginfo('name'); ?>" />
+                  <?php else: ?>
+                     <img src="<?php echo esc_url(get_template_directory_uri().'/img/sportshub-black.png'); ?>" alt="<?php bloginfo('name'); ?>" />
+                  <?php endif; ?>
+               </a>
                </div>
                <div class="themelazer_logo_header3 darkmode">
                   <a href="<?php echo esc_url(home_url('/')); ?>">
                      <?php $logo = get_theme_mod('sportshub_logo_white'); ?>
                      <?php if (!empty($logo)): ?>
-                     <img src="<?php echo esc_url($logo); ?>" alt="<?php bloginfo('description'); ?>" />
+                     <img src="<?php echo esc_url($logo); ?>" aria-label="<?php bloginfo('description'); ?>" />
                      <?php else: ?>
                      <img src="<?php echo esc_url(get_template_directory_uri().'/img/sportshub-whtie.png'); ?>" alt="<?php bloginfo('description'); ?>" />
                      <?php endif; ?>
