@@ -1,25 +1,26 @@
 <!DOCTYPE html>
-<html lang="en-US"> <!-- Declares the document type and sets IE-specific classes and language attributes -->
 <html <?php language_attributes(); ?>> <!-- Sets the language attributes for the HTML tag -->
 <head>
     <meta charset="<?php bloginfo( 'charset' ); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="profile" href="https://gmpg.org/xfn/11">
-    
     <?php if (is_singular() && pings_open(get_queried_object())) : ?>
     <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
     <?php endif; ?>
 
-    <title><?php wp_title('|', true, 'right'); ?></title>
+    <title><?php echo wp_get_document_title(); ?></title>
     
-    <meta name="description" content="<?php echo esc_attr(get_the_excerpt()); ?>">
+    <meta name="description" content="<?php echo esc_attr(get_the_excerpt() ? get_the_excerpt() : 'Default site description here.'); ?>">
     <link rel="canonical" href="<?php echo esc_url(get_permalink()); ?>">
-    <meta name="robots" content="noindex, nofollow" />
+    <meta name="robots" content="index, follow">
     <meta name="Googlebot" content="noindex"/>
     <!-- Open Graph / Facebook -->
+      
     <meta property="og:type" content="<?php echo is_single() ? 'article' : 'website'; ?>">
     <meta property="og:site_name" content="<?php bloginfo('name'); ?>">
     <meta property="og:title" content="<?php echo esc_attr(get_the_title()); ?>">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:updated_time" content="<?php echo get_the_modified_time('c'); ?>">
     <meta property="og:description" content="<?php echo esc_attr(get_the_excerpt()); ?>">
     <meta property="og:url" content="<?php echo esc_url(get_permalink()); ?>">
     <?php if (has_post_thumbnail()) : ?>
