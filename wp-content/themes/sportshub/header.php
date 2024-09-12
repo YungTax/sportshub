@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="ie ie9" <?php language_attributes(); ?>> <!-- Declares the document type and sets IE-specific classes and language attributes -->
+<html lang="en-US"> <!-- Declares the document type and sets IE-specific classes and language attributes -->
 <html <?php language_attributes(); ?>> <!-- Sets the language attributes for the HTML tag -->
 <head>
     <meta charset="<?php bloginfo( 'charset' ); ?>">
