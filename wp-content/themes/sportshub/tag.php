@@ -3,6 +3,7 @@
       <div class="container" id="wrapper_masonry">
          <div class="row">
             <div class="col-md-8 themelazer_content">
+               <?php echo sportshub_breadcrumb();?>
                <div class="row">
                   <div class="col-md-12">
                      <div class="themelazer_title_p">

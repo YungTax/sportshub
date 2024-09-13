@@ -3,6 +3,7 @@
    <div class="container" id="wrapper_masonry"> <!-- Main container with an ID for potential JavaScript or CSS targeting -->
       <div class="row"> <!-- Bootstrap row to create a grid layout -->
          <div class="col-md-8 themelazer_content"> <!-- Main content area taking up 8 out of 12 columns on medium and larger screens -->
+            <?php echo sportshub_breadcrumb();?>
             <div class="row"> <!-- Nested row for author info -->
                <div class="col-md-12"> <!-- Full-width column -->
                   <div class="author_info author_info_page"> <!-- Author info section -->

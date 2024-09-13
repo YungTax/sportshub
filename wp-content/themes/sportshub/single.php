@@ -33,9 +33,7 @@
                 <!-- start post -->
                     <div <?php post_class(); ?> id="post-<?php the_ID();?>">
                         <div class="single_section_content box blog_large_post_style">
-                        <?php 
-                  echo custom_breadcrumb();
-               ?>
+                        <?php echo sportshub_breadcrumb();?>
                             <?php            
                                 if($single_post_layout_options == "single_post_full"){
 
@@ -134,7 +132,7 @@
                                                 <div class="post-wrapper">
                                                     <div class="image">
                                                         <a href="<?php echo esc_url(get_permalink($sportshub_next_post->ID)); ?>">
-                                                        <?php echo get_the_post_thumbnail($sportshub_next_post->ID, 'thumbnail', array( 'title' => get_the_title() )); ?>
+                                                        <?php echo get_the_post_thumbnail($sportshub_next_post->ID, 'sportshub_list_post_large', array( 'title' => get_the_title() )); ?>
                                                         </a>
                                                     </div>
                                                     <div class="content">
@@ -179,7 +177,7 @@
                                                                 </div>
                                                                 <div class="image">
                                                                     <a href="<?php echo esc_url(get_permalink($sportshub_prev_post->ID)); ?>">
-                                                                        <?php echo get_the_post_thumbnail($sportshub_prev_post->ID, 'thumbnail', array( 'title' => get_the_title() )); ?>
+                                                                        <?php echo get_the_post_thumbnail($sportshub_prev_post->ID, 'sportshub_list_post_large', array( 'title' => get_the_title() )); ?>
                                                                     </a>
                                                                 </div>
                                                             </div>

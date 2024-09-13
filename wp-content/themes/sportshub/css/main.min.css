@@ -1773,25 +1773,29 @@ pre {
     width: 100%;
     height: 30vh;
     background: var(--lazer-black);
-    margin: 0 0 100px 0;
+    margin: 0 0 140px 0;
 }
 
 .themelazer_page_category_wrapper .themelazer_category_div_wrapper {
-	text-align: center;
-	justify-content: center;
-	display: block;
-	position: absolute;
-	top: 100%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	padding: 30px;
-	background: var(--lazer-black);
+	display: flex;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    width: 100%;
+    transform: translate(-50%, -50%);
+    padding: 30px;
+    background: var(--lazer-black);
+    flex-wrap: wrap;
+    align-content: stretch;
+    row-gap: 10px;
 }
 .themelazer_page_category_wrapper .themelazer_category_div_wrapper h2{
 	color: var(--lazer-white);
+	margin: 0;
 }
 .themelazer_page_category_wrapper .themelazer_category_div_wrapper p{
-	color: #dedede;
+	color: var(--lazer-white);
+	margin: 0;
 }
 /*==============================================
   Animation on list post
@@ -21015,7 +21019,7 @@ body:not(.themelazer-has-sidebar) .themelazer_sidebar {
 .themelazer-blog-body {
 	float: left;
 	width: 100%;
-	margin-top: 70px;
+	margin-top: 30px;
 }
 
 .themelazer_title_p.themelazer_title_search {
@@ -21057,7 +21061,7 @@ body:not(.themelazer-has-sidebar) .themelazer_sidebar {
 }
 
 .themelazer-content-area {
-	padding: 40px 0;
+	padding: 30px 0;
 	margin: 0;
 }
 
@@ -26501,6 +26505,7 @@ section.page-header-section:before {
 	font-size: 14px;
 	font-weight: 500;
 	padding: 0;
+	text-transform: capitalize;
 }
 
 .breadcrumb li.active {
@@ -38949,7 +38954,7 @@ Form
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
-	background-position: 50%;
+	/* background-position: 50%; */
 	-webkit-backface-visibility: hidden;
 	backface-visibility: hidden;
 	float: left;
@@ -38968,7 +38973,6 @@ Form
 .main_title_wrapper.category_title_section .themelazer_cat_title_wrapper {
 	float: left;
 	width: 100%;
-	overflow: hidden;
 }
 
 .main_title_wrapper .row {
@@ -40257,7 +40261,7 @@ Form
 	position: absolute;
 	top: 0;
 	height: 100%;
-	width: 380px;
+	width: 450px;
 	-webkit-backdrop-filter: saturate(180%) blur(20px);
 	backdrop-filter: saturate(180%) blur(20px);
 	background-color: rgba(255, 255, 255, 0.72);
@@ -40269,13 +40273,13 @@ Form
 	transition: 0.3s;
 }
 .themelazer_next_prev_post_wrapper .next-post .post-wrapper {
-	right: -400px;
+	right: -470px;
 	padding-right: 60px;
 	text-align: left;
 }
 
 .themelazer_next_prev_post_wrapper .prev-post .post-wrapper {
-	left: -400px;
+	left: -470px;
 	padding-left: 60px;
 	text-align: right;
 }
@@ -40312,9 +40316,9 @@ Form
 }
 
 .themelazer_next_prev_post_wrapper .title {
-	font-size: 15px;
+	font-size: 17px;
 	line-height: 1.6;
-	margin: 0;
+	margin-bottom: 10px;
 }
 
 .themelazer_next_prev_post_wrapper .title a {
@@ -40807,7 +40811,9 @@ body.themelazer-dark-mode-activate .themelazer_title_p h2{
 body.themelazer-dark-mode-activate .themelazer_title_p span{
 	color: var(--lazer-white);
 }
-body.themelazer-dark-mode-activate
+body.themelazer-dark-mode-activate .themelazer_site_count{
+	background: var(--lazer-black);
+}
 body.themelazer-dark-mode-activate
 body.themelazer-dark-mode-activate
 body.themelazer-dark-mode-activate
@@ -41274,9 +41280,6 @@ body.themelazer-dark-mode-activate .themelazer_full_post .single_header_wrapper 
 	}
 	.copyright-area{
 		padding: 0 30px;
-	}
-	.themelazer_page_category_wrapper .themelazer_category_div_wrapper{
-		width: 70%;
 	}
 }
 
@@ -41948,9 +41951,6 @@ body.themelazer-dark-mode-activate .themelazer_full_post .single_header_wrapper 
 	}
 	.copyright-area{
 		padding: 0 30px;
-	}
-	.themelazer_page_category_wrapper .themelazer_category_div_wrapper{
-		width: 70%;
 	}
 
 }

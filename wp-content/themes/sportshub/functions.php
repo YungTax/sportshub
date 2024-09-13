@@ -396,6 +396,12 @@ function sportshub_post_meta_s($post_id) {
 function sportshub_post_meta_next_post($post_id) {
     echo'<div class="meta-info"> <ul>';   
     if(get_theme_mod('disable_post_date') !=1){ echo '<li class="post-date">'.get_the_date().'</li>';}
+    if(get_theme_mod('disable_post_view') !=1){
+    echo '<li class="post-view">';                
+    echo sportshub_get_PostViews(get_the_ID()).' ';
+    esc_html_e('Views', 'sportshub');                
+    echo '</li>';
+    }
     echo'</ul></div>'; 
 }
 
@@ -752,14 +758,13 @@ if ( version_compare( get_bloginfo( 'version' ), '5.4', '>=' ) ) {
 }
 
 // Breadcrumb
-
-function custom_breadcrumb() {
+function sportshub_breadcrumb() {
     global $post, $wp_query;
 
     if (!is_front_page()) {
         $breadcrumb = '<nav aria-label="breadcrumb"><ul class="breadcrumb">';
         $home_link = home_url();
-        $before = '<li class="breadcrumb-item active">';
+        $before = '<li class="breadcrumb-item active" aria-current="page">';
         $after = '</li>';
 
         // Home Link
@@ -789,28 +794,77 @@ function custom_breadcrumb() {
             }
         }
 
-        // Regular Pages
+        // Handle Custom Post Types
+        elseif (is_singular() && get_post_type() != 'post') {
+            $post_type = get_post_type_object(get_post_type());
+            if ($post_type) {
+                $breadcrumb .= '<li class="breadcrumb-item"><a href="' . get_post_type_archive_link($post_type->name) . '">' . $post_type->labels->singular_name . '</a></li>';
+            }
+            $breadcrumb .= $before . get_the_title() . $after;
+        }
+
+        // Handle Category Pages
+        elseif (is_category()) {
+            $breadcrumb .= $before . single_cat_title('', false) . $after;
+        }
+
+        // Handle Tag Pages
         elseif (is_tag()) {
-            $breadcrumb .= $before . '<a href="' . get_term_link($wp_query->queried_object) . '">' . single_tag_title('', false) . '</a>' . $after;
+            $breadcrumb .= $before . single_tag_title('', false) . $after;
         }
-        elseif (is_day()) {
-            $breadcrumb .= $before . '<a href="#">' . esc_html__('Archive for ', 'sportshub') . get_the_time('F jS, Y') . '</a>' . $after;
-        }
-        elseif (is_month()) {
-            $breadcrumb .= $before . '<a href="' . get_month_link(get_the_time('Y'), get_the_time('m')) . '">' . __('Archive for ', 'sportshub') . get_the_time('F, Y') . '</a>' . $after;
-        }
-        elseif (is_year()) {
-            $breadcrumb .= $before . '<a href="' . get_year_link(get_the_time('Y')) . '">' . __('Archive for ', 'sportshub') . get_the_time('Y') . '</a>' . $after;
-        }
+
+        // Handle Author Pages
         elseif (is_author()) {
-            $breadcrumb .= $before . '<a href="' . esc_url(get_author_posts_url(get_the_author_meta("ID"))) . '">' . __('Archive for ', 'sportshub') . get_the_author() . '</a>' . $after;
+            $breadcrumb .= $before . __('Author: ', 'sportshub') . get_the_author() . $after;
         }
+
+        // Handle Archive Pages
+        elseif (is_day()) {
+            $breadcrumb .= '<li class="breadcrumb-item"><a href="' . get_year_link(get_the_time('Y')) . '">' . get_the_time('Y') . '</a></li>';
+            $breadcrumb .= '<li class="breadcrumb-item"><a href="' . get_month_link(get_the_time('Y'), get_the_time('m')) . '">' . get_the_time('F') . '</a></li>';
+            $breadcrumb .= $before . get_the_time('d') . $after;
+        } elseif (is_month()) {
+            $breadcrumb .= '<li class="breadcrumb-item"><a href="' . get_year_link(get_the_time('Y')) . '">' . get_the_time('Y') . '</a></li>';
+            $breadcrumb .= $before . get_the_time('F') . $after;
+        } elseif (is_year()) {
+            $breadcrumb .= $before . get_the_time('Y') . $after;
+        }
+
+        // Handle Search Pages
         elseif (is_search()) {
-            $breadcrumb .= $before . esc_html__('Search Results for ', 'sportshub') . get_search_query() . $after;
+            $breadcrumb .= $before . __('Search results for: ', 'sportshub') . get_search_query() . $after;
         }
+
+        // Handle 404 Pages
         elseif (is_404()) {
-            $breadcrumb .= $before . esc_html__('404 - Not Found', 'sportshub') . $after;
-        } else {
+            $breadcrumb .= $before . __('404 - Page Not Found', 'sportshub') . $after;
+        }
+
+        // Handle Single Posts
+        elseif (is_single() && get_post_type() == 'post') {
+            $categories = get_the_category();
+            if ($categories) {
+                $category = $categories[0];
+                $breadcrumb .= '<li class="breadcrumb-item"><a href="' . get_category_link($category->term_id) . '">' . $category->name . '</a></li>';
+            }
+            $breadcrumb .= $before . get_the_title() . $after;
+        }
+
+        // Handle Pages
+        elseif (is_page()) {
+            if ($post->post_parent) {
+                $parent_id = $post->post_parent;
+                $breadcrumbs = [];
+                while ($parent_id) {
+                    $page = get_page($parent_id);
+                    $breadcrumbs[] = '<li class="breadcrumb-item"><a href="' . get_permalink($page->ID) . '">' . get_the_title($page->ID) . '</a></li>';
+                    $parent_id = $page->post_parent;
+                }
+                $breadcrumbs = array_reverse($breadcrumbs);
+                foreach ($breadcrumbs as $crumb) {
+                    $breadcrumb .= $crumb;
+                }
+            }
             $breadcrumb .= $before . get_the_title() . $after;
         }
 
