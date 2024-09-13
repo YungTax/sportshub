@@ -3,7 +3,7 @@
     add_action( 'wp_enqueue_scripts', 'sportshub_load_css' );
     function sportshub_load_css() {
         wp_enqueue_style( 'bootstrap', get_template_directory_uri().'/css/bootstrap.min.css', true, '5.0.2' ); 
-        wp_enqueue_style( 'bootstrap-map', get_template_directory_uri(). '/css/bootstrap.css.map', true, '5.0.2');
+        // wp_enqueue_style( 'bootstrap-map', get_template_directory_uri(). '/css/bootstrap.css.map', true, '5.0.2');
         wp_enqueue_style( 'all_style', get_template_directory_uri().'/css/fonts.css', false, '1.0' );
         wp_enqueue_style( 'sportshub_style', get_template_directory_uri().'/style.css', false, '1.0' );
         wp_enqueue_style( 'sportshub_style_min', get_template_directory_uri().'/css/main.min.css',true,'1.0');
