@@ -472,12 +472,7 @@
                      <?php }?>
                      </li>
                      <li class="themelazer_mb_themelazern sidemenuoption-open is-active">
-                        <!-- <svg viewBox="0 0 100 80" width="20&quot;" height="20">
-                           <rect height="6" width="100"></rect>
-                           <rect y="30" width="70" height="6"></rect>
-                           <rect y="60" width="100" height="6"></rect>
-                        </svg> -->
-                        <svg viewBox="0 0 100 80" width="20&quot;" height="20">
+                        <svg viewBox="0 0 100 80" width="20" height="20">
                            <rect y="20" width="100" height="5"></rect>
                            <rect y="60" width="100" height="5"></rect>
                         </svg>

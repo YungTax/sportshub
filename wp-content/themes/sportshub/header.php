@@ -46,13 +46,6 @@
 
     <?php wp_head(); ?>
 </head>
-   <!-- Progress bar wrapper (commented out) -->
-   <!--
-   <div class="themelazer_progress_bar_wrapper">
-      <div class="themelazer_progress_bar" id="progress_bar_active"></div>
-   </div>
-   -->
-
    <body <?php body_class(); ?>> <!-- Adds classes to the body element for easier styling based on the current page, post, or other conditions -->
       <!-- Scroll indicator element -->
       <div class="themelazer_scroll">
@@ -61,7 +54,6 @@
             <span class="themelazer_scroll_line"></span> <!-- Line element for the scroll indicator -->
          </p>
       </div>
-
       <!-- Main wrapper with conditional classes based on theme settings -->
       <div class="themelazer_main_wrapper 
             <?php 

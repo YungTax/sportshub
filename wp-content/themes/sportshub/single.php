@@ -114,7 +114,12 @@
                                     <div class="themelazer_next_prev_post_wrapper">
                                         <?php
                                         $sportshub_next_post = get_next_post();
-                                        $categories = get_the_category($sportshub_next_post->ID);  
+                                        if ( !empty( $sportshub_next_post ) ) { // Check if there's a previous post
+                                            $categories = get_the_category( $sportshub_next_post->ID );
+        
+                                        } else {
+                                            echo null;
+                                        }
                                         if ($categories) {
                                             foreach( $categories as $tag) {
                                                 $tag_link = get_category_link($tag->term_id);

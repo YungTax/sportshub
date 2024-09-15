@@ -40542,12 +40542,40 @@ Form
 	justify-content: center;
 
 }
-.comment-form-author input, .comment-form-email input, .comment-form-url input, #content input[type="text"], #content input[type="password"], #content input[type="email"], #content textarea, .comment-form-comment textarea, #content select{
+/* .comment-form-author input, .comment-form-email input, .comment-form-url input, #content input[type="text"], #content input[type="password"], #content input[type="email"], #content textarea, .comment-form-comment textarea, #content select{
 	    border: solid 1px #c6c6c6;
-}
+} */
 .theme_lazerfooter_widget_area.theme_lazerfooter_active{
 	background: var(--lazer-white);
 	padding: 40px 0 0 0 ;
+}
+.theme_lazerfooter_widget_area.theme_lazerfooter_active h1.wp-block-heading{
+	text-transform: uppercase;
+	margin: 0 0 20px 0;
+}
+.theme_lazerfooter_widget_area.theme_lazerfooter_active h2.wp-block-heading{
+	text-transform: uppercase;	
+	margin: 0 0 20px 0;
+}
+.theme_lazerfooter_widget_area.theme_lazerfooter_active h3.wp-block-heading{
+	font-size: 20px;
+	text-transform: uppercase;
+	margin: 0 0 20px 0;
+}
+.theme_lazerfooter_widget_area.theme_lazerfooter_active h4.wp-block-heading{
+	text-transform: uppercase;
+	margin: 0 0 20px 0;
+}
+.theme_lazerfooter_widget_area.theme_lazerfooter_active h5.wp-block-heading{
+	text-transform: uppercase;
+	margin: 0 0 20px 0;
+}
+.theme_lazerfooter_widget_area.theme_lazerfooter_active h6.wp-block-heading{
+	text-transform: uppercase;
+	margin: 0 0 20px 0;
+}
+.theme_lazerfooter_widget_area.theme_lazerfooter_active p{
+
 }
 
 /* Footer Layout two */
@@ -40745,9 +40773,9 @@ body.themelazer-dark-mode-activate .themelazer_next_prev_post_wrapper .title a{
 body.themelazer-dark-mode-activate .themelazer_popular_post_wrapper .themelazer_article_list:before{
 	background: rgb(46 46 46 / 50%);
 }
-body.themelazer-dark-mode-activate .comment-form-author input, .comment-form-email input, .comment-form-url input, #content input[type="text"], #content input[type="password"], #content input[type="email"], #content textarea, .comment-form-comment textarea, #content select{
+/* body.themelazer-dark-mode-activate .comment-form-author input, .comment-form-email input, .comment-form-url input, #content input[type="text"], #content input[type="password"], #content input[type="email"], #content textarea, .comment-form-comment textarea, #content select{
 	border: solid 1px var(--lazer-dark-light);
-}
+} */
 body.themelazer-dark-mode-activate .author_info .author_description{
 	border: solid 1px var(--lazer-dark-light);
 	background: var(--lazer-bg-dark);
