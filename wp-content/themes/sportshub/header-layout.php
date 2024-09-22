@@ -91,9 +91,16 @@
                      <div class="themelazer-nav">
                         <!-- Main Menu -->
                         <div class="themelazer-navigation">
-                           <?php if ( has_nav_menu( 'Main_Menu' ) ){ ?>
-                           <?php $main_menu = array( 'theme_location' => 'Main_Menu', 'container' => '', 'menu_class' => 'menu', 'menu_id' => 'themelazer_m_menu', 'fallback_cb' => false, 'link_after'=>'<span class="border-menu"></span>'); wp_nav_menu($main_menu);?>
-                           <?php }else{ ?>
+                        <?php if ( has_nav_menu( 'Main_Menu' ) ){
+                        wp_nav_menu(array(
+                           'theme_location' => 'Main_Menu', 
+                           'container' => '',
+                           'menu_class' => 'menu',
+                           'menu_id' => 'themelazer_m_menu',
+                           'fallback_cb' => false,
+                           'link_after' => ''
+                        ));
+                     }else{ ?>
                            <?php if ( current_user_can( 'manage_options' ) ){ ?>
                            <ul class="menu">
                               <li><a href="<?php echo esc_url(admin_url( 'nav-menus.php' )); ?>">
@@ -122,7 +129,7 @@
          </div>
          <div id="themelazer_search_wrapper">
             <i class="ti-close"></i>
-            <form role="search" class="form-search" method="get" id="s" action="<?php echo esc_url( home_url( '/' ) ); ?>" >
+            <form class="form-search" method="get" id="s" action="<?php echo esc_url( home_url( '/' ) ); ?>" >
                <input spellcheck="false" autocomplete="off" type="text" value="" name="s" placeholder="<?php esc_attr_e('Search...', 'sportshub'); ?>" />
             </form>
             <p>Type above and press Enter to search. Press Esc to cancel.</p> 
@@ -286,9 +293,16 @@
                   <div class="themelazer-nav clearfix">
                      <!-- Main Menu -->
                      <div class="themelazer-navigation">
-                        <?php if ( has_nav_menu( 'Main_Menu' ) ){ ?>
-                        <?php $main_menu = array( 'theme_location' => 'Main_Menu', 'container' => '', 'menu_class' => 'menu', 'menu_id' => 'themelazer_m_menu', 'fallback_cb' => false, 'link_after'=>'<span class="border-menu"></span>'); wp_nav_menu($main_menu);?>
-                        <?php }else{ ?>
+                         <?php if ( has_nav_menu( 'Main_Menu' ) ){
+                        wp_nav_menu(array(
+                           'theme_location' => 'Main_Menu', 
+                           'container' => '',
+                           'menu_class' => 'menu',
+                           'menu_id' => 'themelazer_m_menu',
+                           'fallback_cb' => false,
+                           'link_after' => ''
+                        ));
+                     }else{ ?>
                         <?php if ( current_user_can( 'manage_options' ) ){ ?>
                         <ul class="menu">
                            <li><a href="<?php echo esc_url(admin_url( 'nav-menus.php' )); ?>">
@@ -306,7 +320,7 @@
       </div>
       <div id="themelazer_search_wrapper">
          <i class="ti-close"></i>
-         <form role="search" class="form-search" method="get" id="s" action="<?php echo esc_url( home_url( '/' ) ); ?>" >
+         <form class="form-search" method="get" id="s" action="<?php echo esc_url( home_url( '/' ) ); ?>" >
             <input spellcheck="false" autocomplete="off" type="text" value="" name="s" placeholder="<?php esc_attr_e('Search...', 'sportshub'); ?>" />
          </form>
          <p>Type above and press Enter to search. Press Esc to cancel.</p> 
@@ -402,6 +416,7 @@
                </ul>
                <?php }?>
             </div>
+            
             <?php
             if ( has_nav_menu( 'top-header-menu' ) ) {
                wp_nav_menu( array(
@@ -447,9 +462,16 @@
                <div class="themelazer-nav clearfix">
                   <!-- Main Menu -->
                   <div class="themelazer-navigation header_layout_3">
-                     <?php if ( has_nav_menu( 'Main_Menu' ) ){ ?>
-                     <?php $main_menu = array( 'theme_location' => 'Main_Menu', 'container' => '', 'menu_class' => 'menu', 'menu_id' => 'themelazer_m_menu', 'fallback_cb' => false, 'link_after'=>'<span class="border-menu"></span>'); wp_nav_menu($main_menu);?>
-                     <?php }else{ ?>
+                     <?php if ( has_nav_menu( 'Main_Menu' ) ){
+                        wp_nav_menu(array(
+                           'theme_location' => 'Main_Menu', 
+                           'container' => '',
+                           'menu_class' => 'menu',
+                           'menu_id' => 'themelazer_m_menu',
+                           'fallback_cb' => false,
+                           'link_after' => ''
+                        ));
+                     }else{ ?>
                      <?php if ( current_user_can( 'manage_options' ) ){ ?>
                      <ul class="menu">
                         <li><a href="<?php echo esc_url(admin_url( 'nav-menus.php' )); ?>">
@@ -520,7 +542,7 @@
                            
    <div id="themelazer_search_wrapper">
             <i class="ti-close"></i>
-            <form role="search" class="form-search" method="get" id="s" action="<?php echo esc_url( home_url( '/' ) ); ?>" >
+            <form  class="form-search" method="get" id="s" action="<?php echo esc_url( home_url( '/' ) ); ?>" >
                <input spellcheck="false" autocomplete="off" type="text" value="" name="s" placeholder="<?php esc_attr_e('Search...', 'sportshub'); ?>" />
             </form>
             <p>Type above and press Enter to search. Press Esc to cancel.</p> 
@@ -572,9 +594,16 @@
                      <div class="themelazer-nav clearfix">
                         <!-- Main Menu -->
                         <div class="themelazer-navigation header_layout_3">
-                           <?php if ( has_nav_menu( 'Main_Menu' ) ){ ?>
-                           <?php $main_menu = array( 'theme_location' => 'Main_Menu', 'container' => '', 'menu_class' => 'menu', 'menu_id' => 'themelazer_m_menu', 'fallback_cb' => false, 'link_after'=>'<span class="border-menu"></span>'); wp_nav_menu($main_menu);?>
-                           <?php }else{ ?>
+                        <?php if ( has_nav_menu( 'Main_Menu' ) ){
+                        wp_nav_menu(array(
+                           'theme_location' => 'Main_Menu', 
+                           'container' => '',
+                           'menu_class' => 'menu',
+                           'menu_id' => 'themelazer_m_menu',
+                           'fallback_cb' => false,
+                           'link_after' => ''
+                        ));
+                     }else{ ?>
                            <?php if ( current_user_can( 'manage_options' ) ){ ?>
                            <ul class="menu">
                               <li><a href="<?php echo esc_url(admin_url( 'nav-menus.php' )); ?>">
@@ -601,7 +630,7 @@
          </div>
          <div id="themelazer_search_wrapper">
             <i class="ti-close"></i>
-            <form role="search" class="form-search" method="get" id="s" action="<?php echo esc_url( home_url( '/' ) ); ?>" >
+            <form class="form-search" method="get" id="s" action="<?php echo esc_url( home_url( '/' ) ); ?>" >
                <input spellcheck="false" autocomplete="off" type="text" value="" name="s" placeholder="<?php esc_attr_e('Search...', 'sportshub'); ?>" />
             </form>
             <p>Type above and press Enter to search. Press Esc to cancel.</p> 
@@ -717,9 +746,16 @@
                      <div class="themelazer-nav clearfix">
                         <!-- Main Menu -->
                         <div class="themelazer-navigation">
-                           <?php if ( has_nav_menu( 'Main_Menu' ) ){ ?>
-                           <?php $main_menu = array( 'theme_location' => 'Main_Menu', 'container' => '', 'menu_class' => 'menu', 'menu_id' => 'themelazer_m_menu', 'fallback_cb' => false, 'link_after'=>'<span class="border-menu"></span>'); wp_nav_menu($main_menu);?>
-                           <?php }else{ ?>
+                        <?php if ( has_nav_menu( 'Main_Menu' ) ){
+                        wp_nav_menu(array(
+                           'theme_location' => 'Main_Menu', 
+                           'container' => '',
+                           'menu_class' => 'menu',
+                           'menu_id' => 'themelazer_m_menu',
+                           'fallback_cb' => false,
+                           'link_after' => ''
+                        ));
+                     }else{ ?>
                            <?php if ( current_user_can( 'manage_options' ) ){ ?>
                            <ul class="menu">
                               <li><a href="<?php echo esc_url(admin_url( 'nav-menus.php' )); ?>">
@@ -747,7 +783,7 @@
          </div>
          <div id="themelazer_search_wrapper">
             <i class="ti-close"></i>
-            <form role="search" class="form-search" method="get" id="s" action="<?php echo esc_url( home_url( '/' ) ); ?>" >
+            <form class="form-search" method="get" id="s" action="<?php echo esc_url( home_url( '/' ) ); ?>" >
                <input spellcheck="false" autocomplete="off" type="text" value="" name="s" placeholder="<?php esc_attr_e('Search...', 'sportshub'); ?>" />
             </form>
             <p>Type above and press Enter to search. Press Esc to cancel.</p> 

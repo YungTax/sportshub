@@ -1,4 +1,5 @@
 <div class="themelazer_full_post">
+  
     <?php
     // Get the ID of the featured image for the post
     $feature_img_main = get_post_thumbnail_id();

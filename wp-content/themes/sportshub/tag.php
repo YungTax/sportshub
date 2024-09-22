@@ -12,9 +12,9 @@
                      </div>
                   </div>
                </div>
-               <div id="post-wrapper"> <!-- This is where posts will be loaded -->
+               <div id="post-wrapper"> 
                <?php
-               $sportshub_qry = sportshub_get_qry(); // Custom query to get posts
+               $sportshub_qry = sportshub_get_qry(); 
                if ($sportshub_qry->have_posts()) :
                   while ($sportshub_qry->have_posts()) : $sportshub_qry->the_post();
                         get_template_part('inc/post-layout/content', 'list'); // Include the post layout template part

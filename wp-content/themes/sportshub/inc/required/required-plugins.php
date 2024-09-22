@@ -1,119 +1,108 @@
 <?php
-/**
- * This file represents an example of the code that themes would use to register
- * the required plugins.
- *
- * It is expected that theme authors would copy and paste this code into their
- * functions.php file, and amend to suit.
- *
- * @see http://tgmpluginactivation.com/configuration/ for detailed documentation.
- *
- * @package    TGM-Plugin-Activation
- * @subpackage Example
- * @version    2.6.1 for parent theme Nanomag for publication on ThemeForest
- * @author     Thomas Griffin, Gary Jones, Juliette Reinders Folmer
- * @copyright  Copyright (c) 2011, Thomas Griffin
- * @license    http://opensource.org/licenses/gpl-2.0.php GPL v2 or later
- * @link       https://github.com/TGMPA/TGM-Plugin-Activation
- */
 
-/**
- * Include the TGM_Plugin_Activation class.
- *
- * Depending on your implementation, you may want to change the include call:
- *
- * Parent Theme:
- * require_once get_template_directory() . '/path/to/class-tgm-plugin-activation.php';
- *
- * Child Theme:
- * require_once get_stylesheet_directory() . '/path/to/class-tgm-plugin-activation.php';
- *
- * Plugin:
- * require_once dirname( __FILE__ ) . '/path/to/class-tgm-plugin-activation.php';
- */
-add_action( 'tgmpa_register', 'sportshub_news_register_required_plugins' );
 
-/**
- * Register the required plugins for this theme.
- *
- * In this example, we register five plugins:
- * - one included with the TGMPA library
- * - two from an external source, one from an arbitrary source, one from a GitHub repository
- * - two from the .org repo, where one demonstrates the use of the `is_callable` argument
- *
- * The variables passed to the `tgmpa()` function should be:
- * - an array of plugin arrays;
- * - optionally a configuration array.
- * If you are not changing anything in the configuration array, you can remove the array and remove the
- * variable from the function call: `tgmpa( $plugins );`.
- * In that case, the TGMPA default settings will be used.
- *
- * This function is hooked into `tgmpa_register`, which is fired on the WP `init` action on priority 10.
- */
-function sportshub_news_register_required_plugins() {
-	/*
-	 * Array of plugin arrays. Required keys are name and slug.
-	 * If the source is NOT from the .org repo, then source is also required.
-	 */
-	$plugins = array(
-		array(
-			'name'               => esc_html__( 'sportshub Function', 'sportshub' ), // The plugin name.
-			'slug'               => 'sportshub-function', // The plugin slug (typically the folder name).
-			'source'             => get_stylesheet_directory() . '/inc/plugins/sportshub-function.zip',
-			'required'           => true, // If false, the plugin is only 'recommended' instead of required.
-			'version'            => '1.0', // E.g. 1.0.0. If set, the active plugin must be this version or higher. If the plugin version is higher than the plugin version installed, the user will be notified to update the plugin.
-			'force_activation'   => false, // If true, plugin is activated upon theme activation and cannot be deactivated until theme switch.
-			'force_deactivation' => false, // If true, plugin is deactivated upon theme switch, useful for theme-specific plugins.
-			'external_url'       => '', // If set, overrides default API URL and points to an external URL.
-			'is_callable'        => '', // If set, this callable will be be checked for availability to determine if a plugin is active.
-		),        
-        array(
-            'name'      => esc_html__( 'Elementor', 'sportshub' ),
-            'slug'      => 'elementor',
-            'required'  => true,
-        ),
-        array(
-            'name'      => esc_html__( 'Contact Form 7', 'sportshub' ),
-            'slug'      => 'contact-form-7',
-            'required'  => true,
-        ),
-        array(
-            'name'      => esc_html__( 'MC4WP: Mailchimp for WordPress', 'sportshub' ),
-            'slug'      => 'mailchimp-for-wp',
-            'required'  => true,
-        ),
-        array(
-			'name'      => esc_html__('Instagram Widget For WP','sportshub'),
-			'slug'      => 'instagram-widget-by-wpzoom',
-			'required'  => true, 
-		),
-	    array(
-	        'name'      => esc_html__('One Click Demo Import','sportshub'),
-	        'slug'      => 'one-click-demo-import',
-			'required' 	=> true,
-	    )  
+require_once get_template_directory() . '/inc/required/class-tgm-plugin-activation.php';
 
-    );
+add_action('tgmpa_register', 'sportshub_register_required_plugins');
+if (!function_exists('sportshub_register_required_plugins')) {
+    function sportshub_register_required_plugins() {
 
-	/*
-	 * Array of configuration settings. Amend each line as needed.
-	 *
-	 * TGMPA will start providing localized text strings soon. If you already have translations of our standard
-	 * strings available, please help us make TGMPA even better by giving us access to these translations or by
-	 * sending in a pull-request with .po file(s) with the translations.
-	 *
-	 * Only uncomment the strings in the config array if you want to customize the strings.
-	 */
-	$config = array(
-		'id'           => 'sportshub',                 // Unique ID for hashing notices for multiple instances of TGMPA.
-		'default_path' => '',                      // Default absolute path to bundled plugins.
-		'menu'         => 'tgmpa-install-plugins', // Menu slug.
-		'has_notices'  => true,                    // Show admin notices or not.
-		'dismissable'  => true,                    // If false, a user cannot dismiss the nag message.
-		'dismiss_msg'  => '',                      // If 'dismissable' is false, this message will be output at top of nag.
-		'is_automatic' => false,                   // Automatically activate plugins after installation or not.
-		'message'      => '',                      // Message to output right before the plugins table.		
-	);
+        /**
+         * Array of plugin arrays. Required keys are name and slug.
+         * If the source is NOT from the .org repo, then source is also required.
+         */
 
-	tgmpa( $plugins, $config );
+        $plugins = array(
+            array(
+                'name'                  => esc_html__('sportshub Function', 'sportshub'),
+                'slug'                  => 'sportshub-function',
+                'source'                => get_template_directory() . '/inc/plugins/sportshub-function.zip',
+                'required'              => true,
+                'version'               => '1.1.0',
+                'force_activation'      => false,
+                'force_deactivation'    => false
+            ),
+            array(
+                'name'                  => esc_html__('Elementor Page Builder', 'sportshub'),
+                'slug'                  => 'elementor',
+                'required'              => true,
+                'force_activation'      => false,
+                'force-deactivation'    => false
+            ),
+            array(
+                'name'                  => esc_html__('Contact Form 7', 'sportshub'),
+                'slug'                  => 'contact-form-7',
+                'required'              => false,
+                'force_activation'      => false,
+                'force_deactivation'    => false
+            ),
+            array(
+                'name'                  => esc_html__('One Click Demo Import', 'sportshub'),
+                'slug'                  => 'one-click-demo-import',
+                'required'              => false,
+                'force_activation'      => false,
+                'force_deactivation'    => false
+            ),
+            array(
+                'name'                  => esc_html__('MailChimp for WordPress', 'sportshub'),
+                'slug'                  => 'mailchimp-for-wp',
+                'required'              => false,
+                'force_activation'      => false,
+                'force-deactivation'    => false
+			),
+			array(
+                'name'                  => esc_html__('Instagram Widget For WP', 'sportshub'),
+                'slug'                  => 'instagram-widget-by-wpzoom',
+                'required'              => false,
+                'force_activation'      => false,
+                'force-deactivation'    => false
+            ),
+            array(
+                'name'                  => esc_html__('WooCommerce', 'sportshub'), 
+                'slug'                  => 'woocommerce', 
+                'required'              => true, 
+                'force_activation'      => false, 
+                'force_deactivation'    => false,
+            ),
+
+
+        );
+
+        /**
+         * Array of configuration settings. Amend each line as needed.
+         * If you want the default strings to be available under your own theme domain,
+         * leave the strings uncommented.
+         * Some of the strings are added into a sprintf, so see the comments at the
+         * end of each line for what each argument will be.
+         */
+        $config = array(
+            'default_path'  => '',                                              // Default absolute path to pre-packaged plugins.
+            'menu'          => 'tgmpa-install-plugins',                         // Menu slug.
+            'has_notices'   => true,                                            // Show admin notices or not.
+            'dismissable'   => true,                                            // If false, a user cannot dismiss the nag message.
+            'is_automatic'  => true,                                            // Automatically activate plugins after installation or not.
+            'message'       => '',                                              // Message to output right before the plugins table.
+            'strings'       => array(
+                'page_title'                        => esc_html__('Install Required Plugins', 'sportshub'),
+                'menu_title'                        => esc_html__('Install Plugins', 'sportshub'),
+                'installing'                        => esc_html__('Installing Plugin: %s', 'sportshub'), // %s = plugin name.
+                'oops'                              => esc_html__('Something went wrong with the plugin API.', 'sportshub'),
+                'notice_can_install_required'       => esc_html__('This theme requires the following plugins: %1$s.', 'sportshub'), // %1$s = plugin name(s).
+                'notice_can_install_recommended'    => esc_html__('This theme recommends the following plugins: %1$s.', 'sportshub'), // %1$s = plugin name(s).
+                'notice_cannot_install'             => esc_html__('Sorry, but you do not have the correct permissions to install the %s plugins. Contact the administrator of this site for help on getting the plugins installed.', 'sportshub'), // %1$s = plugin name(s).
+                'notice_can_activate_required'      => esc_html__('The following required plugins are currently inactive: %1$s.', 'sportshub'), // %1$s = plugin name(s).
+                'notice_can_activate_recommended'   => esc_html__('The following recommended plugins are currently inactive: %1$s.', 'sportshub'), // %1$s = plugin name(s).
+                'notice_cannot_activate'            => esc_html__('Sorry, but you do not have the correct permissions to activate the %s plugins. Contact the administrator of this site for help on getting the plugins activated.', 'sportshub'), // %1$s = plugin name(s).
+                'notice_ask_to_update'              => esc_html__('The following plugins need to be updated to their latest version to ensure maximum compatibility with this theme: %1$s.', 'sportshub'), // %1$s = plugin name(s).
+                'notice_cannot_update'              => esc_html__('Sorry, but you do not have the correct permissions to update the %s plugins. Contact the administrator of this site for help on getting the plugins updated.', 'sportshub'), // %1$s = plugin name(s).
+                'install_link'                      => esc_html__('Begin installing plugins', 'sportshub'),
+                'activate_link'                     => esc_html__('Begin activating plugins', 'sportshub'),
+                'return'                            => esc_html__('Return to Required Plugins Installer', 'sportshub'),
+                'plugin_activated'                  => esc_html__('Plugin activated successfully.', 'sportshub'),
+                'complete'                          => esc_html__('All plugins installed and activated successfully. %s', 'sportshub'), // %s = dashboard link.
+                'nag_type'                          => 'updated' // Determines admin notice type - can only be 'updated', 'update-nag' or 'error'.
+            )
+        );
+        tgmpa($plugins, $config);
+    }
 }

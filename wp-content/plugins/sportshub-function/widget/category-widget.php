@@ -54,7 +54,7 @@ class sportshub_category_image_widget_register extends WP_widget{
 			$tag_link = get_category_link($tag->term_id);
 			$tag_dec =  category_description($tag->term_id);
 			$title_bg_Color = get_term_meta($tag->term_id, "category_color_options", true);
-			$category_image_main = get_term_meta($tag->term_id, "jelly_cat_header_image_id", true);
+			$category_image_main = get_term_meta($tag->term_id, "sportshub_cat_header_image_id", true);
 			
 			$category_image = '';
 			$lazer_header_id = absint( get_term_meta( $tag->term_id, 'lazer_header_id', true ) );

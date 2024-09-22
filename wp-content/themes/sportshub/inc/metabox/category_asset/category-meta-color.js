@@ -111,20 +111,20 @@ jQuery(document).ready(function($){
 
 
 
-if (jQuery('#jelly_cat_header_image_id').val() == 0)
-         jQuery('.jelly_remove_header').hide();
+if (jQuery('#sportshub_cat_header_image_id').val() == 0)
+         jQuery('.sportshub_remove_header').hide();
 
-        var jelly_header_file_frame;
-        jQuery(document).on( 'click', '.jelly_upload_header', function( event ){
+        var sportshub_header_file_frame;
+        jQuery(document).on( 'click', '.sportshub_upload_header', function( event ){
 
           event.preventDefault();
 
-          if ( jelly_header_file_frame ) {
-            jelly_header_file_frame.open();
+          if ( sportshub_header_file_frame ) {
+            sportshub_header_file_frame.open();
             return;
           }
 
-          jelly_header_file_frame = wp.media.frames.downloadable_file = wp.media({
+          sportshub_header_file_frame = wp.media.frames.downloadable_file = wp.media({
             title: 'Choose an image',
             button: {
               text: 'Use image',
@@ -132,19 +132,19 @@ if (jQuery('#jelly_cat_header_image_id').val() == 0)
             multiple: false
           });
 
-          jelly_header_file_frame.on( 'select', function() {
-            attachment = jelly_header_file_frame.state().get('selection').first().toJSON();
-            jQuery('#jelly_cat_header_image_id').val( attachment.id );
-            jQuery('#jelly_cat_header img').attr('src', attachment.url );
-            jQuery('.jelly_remove_header').show();
+          sportshub_header_file_frame.on( 'select', function() {
+            attachment = sportshub_header_file_frame.state().get('selection').first().toJSON();
+            jQuery('#sportshub_cat_header_image_id').val( attachment.id );
+            jQuery('#sportshub_cat_header img').attr('src', attachment.url );
+            jQuery('.sportshub_remove_header').show();
           });
 
-          jelly_header_file_frame.open();
+          sportshub_header_file_frame.open();
         });
 
-        jQuery(document).on( 'click', '.jelly_remove_header', function( event ){
-          jQuery('#jelly_cat_header img').attr('src', '');
-          jQuery('#jelly_cat_header_image_id').val('');
-          jQuery('.jelly_remove_header').hide();
+        jQuery(document).on( 'click', '.sportshub_remove_header', function( event ){
+          jQuery('#sportshub_cat_header img').attr('src', '');
+          jQuery('#sportshub_cat_header_image_id').val('');
+          jQuery('.sportshub_remove_header').hide();
           return false;
 });

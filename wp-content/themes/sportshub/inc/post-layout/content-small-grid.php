@@ -49,7 +49,7 @@
                <h3>
                   <a href="<?php the_permalink(); ?>" tabindex="-1"><?php the_title()?></a>
                </h3>
-            <?php sportshub_singlepost_large(get_the_ID());?>
+            <?php sportshub_post_meta_sx(get_the_ID());?>
             <!-- <p><?php echo wp_trim_words( get_the_content(), 14, '...' );?> </p> -->
          </div>
       </div>

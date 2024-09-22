@@ -8,7 +8,7 @@
  * or theme author for support.
  *
  * @package   TGM-Plugin-Activation
- * @version   2.6.1 for parent theme Nanomag for publication on ThemeForest
+ * @version   2.6.1 for parent theme sportshub for publication on ThemeForest
  * @link      http://tgmpluginactivation.com/
  * @author    Thomas Griffin, Gary Jones, Juliette Reinders Folmer
  * @copyright Copyright (c) 2011, Thomas Griffin
@@ -338,61 +338,46 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 				/* translators: %s: plugin name. */
 				'updating'                        => esc_html__( 'Updating Plugin: %s', 'sportshub' ),
 				'oops'                            => esc_html__( 'Something went wrong with the plugin API.', 'sportshub' ),
-				'notice_can_install_required'     => _n_noop(
-					/* translators: 1: plugin name(s). */
-					'This theme requires the following plugin: %1$s.',
+				'notice_can_install_required'     => esc_html__(
 					'This theme requires the following plugins: %1$s.',
 					'sportshub'
 				),
-				'notice_can_install_recommended'  => _n_noop(
-					/* translators: 1: plugin name(s). */
-					'This theme recommends the following plugin: %1$s.',
+				'notice_can_install_recommended'  => esc_html__(
 					'This theme recommends the following plugins: %1$s.',
 					'sportshub'
 				),
-				'notice_ask_to_update'            => _n_noop(
-					/* translators: 1: plugin name(s). */
-					'The following plugin needs to be updated to its latest version to ensure maximum compatibility with this theme: %1$s.',
+				'notice_ask_to_update'            => esc_html__(
 					'The following plugins need to be updated to their latest version to ensure maximum compatibility with this theme: %1$s.',
 					'sportshub'
 				),
-				'notice_ask_to_update_maybe'      => _n_noop(
-					/* translators: 1: plugin name(s). */
-					'There is an update available for: %1$s.',
+				'notice_ask_to_update_maybe'      => esc_html__(
 					'There are updates available for the following plugins: %1$s.',
 					'sportshub'
 				),
-				'notice_can_activate_required'    => _n_noop(
-					/* translators: 1: plugin name(s). */
-					'The following required plugin is currently inactive: %1$s.',
+				'notice_can_activate_required'    => esc_html__(
 					'The following required plugins are currently inactive: %1$s.',
 					'sportshub'
 				),
-				'notice_can_activate_recommended' => _n_noop(
-					/* translators: 1: plugin name(s). */
-					'The following recommended plugin is currently inactive: %1$s.',
+				'notice_can_activate_recommended' => esc_html__(
 					'The following recommended plugins are currently inactive: %1$s.',
 					'sportshub'
 				),
-				'install_link'                    => _n_noop(
-					'Begin installing plugin',
+				'install_link'                    => esc_html__(
 					'Begin installing plugins',
 					'sportshub'
 				),
-				'update_link'                     => _n_noop(
-					'Begin updating plugin',
+				'update_link'                     => esc_html__(
 					'Begin updating plugins',
 					'sportshub'
 				),
-				'activate_link'                   => _n_noop(
-					'Begin activating plugin',
+				'activate_link'                   => esc_html__(
 					'Begin activating plugins',
 					'sportshub'
 				),
 				'return'                          => esc_html__( 'Return to Required Plugins Installer', 'sportshub' ),
 				'dashboard'                       => esc_html__( 'Return to the Dashboard', 'sportshub' ),
 				'plugin_activated'                => esc_html__( 'Plugin activated successfully.', 'sportshub' ),
-				'activated_successfully'          => esc_html__( 'The following plugin was activated successfully:', 'sportshub' ),
+				'activated_successfully'          => esc_html_x( 'The following plugin was activated successfully:', 'init_strings', 'sportshub' ),
 				/* translators: 1: plugin name. */
 				'plugin_already_active'           => esc_html__( 'No action taken. Plugin %1$s was already active.', 'sportshub' ),
 				/* translators: 1: plugin name. */
@@ -466,17 +451,17 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 		 * generator on the website.}}
 		 */
 		public function load_textdomain() {
-			if ( is_textdomain_loaded( 'tgmpa' ) ) {
+			if ( is_textdomain_loaded( 'sportshub' ) ) {
 				return;
 			}
 
 			if ( false !== strpos( __FILE__, WP_PLUGIN_DIR ) || false !== strpos( __FILE__, WPMU_PLUGIN_DIR ) ) {
 				// Plugin, we'll need to adjust the file name.
 				add_action( 'load_textdomain_mofile', array( $this, 'correct_plugin_mofile' ), 10, 2 );
-				load_theme_textdomain( 'tgmpa', dirname( __FILE__ ) . '/languages' );
+				load_theme_textdomain( 'sportshub', dirname( __FILE__ ) . '/languages' );
 				remove_action( 'load_textdomain_mofile', array( $this, 'correct_plugin_mofile' ), 10 );
 			} else {
-				load_theme_textdomain( 'tgmpa', dirname( __FILE__ ) . '/languages' );
+				load_theme_textdomain( 'sportshub', dirname( __FILE__ ) . '/languages' );
 			}
 		}
 
@@ -496,7 +481,7 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 		 */
 		public function correct_plugin_mofile( $mofile, $domain ) {
 			// Exit early if not our domain (just in case).
-			if ( 'tgmpa' !== $domain ) {
+			if ( 'sportshub' !== $domain ) {
 				return $mofile;
 			}
 			return preg_replace( '`/([a-z]{2}_[A-Z]{2}.mo)$`', '/tgmpa-$1', $mofile );
@@ -523,7 +508,7 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 		 */
 		public function overload_textdomain_mofile( $mofile, $domain ) {
 			// Exit early if not our domain, not a WP_LANG_DIR load or if the file exists and is readable.
-			if ( 'tgmpa' !== $domain || false === strpos( $mofile, WP_LANG_DIR ) || @is_readable( $mofile ) ) {
+			if ( 'sportshub' !== $domain || false === strpos( $mofile, WP_LANG_DIR ) || @is_readable( $mofile ) ) {
 				return $mofile;
 			}
 
@@ -749,7 +734,7 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 
 			?>
 			<div class="tgmpa wrap">
-				<h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
+				<h1><?php esc_html_e( get_admin_page_title() ); ?></h1>
 				<?php $plugin_table->prepare_items(); ?>
 
 				<?php
@@ -1043,7 +1028,7 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 
 				if ( is_wp_error( $activate ) ) {
 					echo '<div id="message" class="error"><p>', wp_kses_post( $activate->get_error_message() ), '</p></div>',
-						'<p><a href="', esc_url( $this->get_tgmpa_url() ), '" target="_parent">', esc_html( $this->strings['return'] ), '</a></p>';
+					'<p><a href="', esc_url( $this->get_tgmpa_url() ), '" target="_parent">', esc_html( $this->strings['return'] ), '</a></p>';
 
 					return false; // End it here if there is an error with activation.
 				} else {
@@ -1062,22 +1047,22 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 				// No simpler message format provided as this message should never be encountered
 				// on the plugin install page.
 				echo '<div id="message" class="error"><p>',
-					sprintf(
-						esc_html( $this->strings['plugin_already_active'] ),
-						'<strong>' . esc_html( $this->plugins[ $slug ]['name'] ) . '</strong>'
-					),
-					'</p></div>';
+				sprintf(
+					esc_html( $this->strings['plugin_already_active'] ),
+					'<strong>' . esc_html( $this->plugins[ $slug ]['name'] ) . '</strong>'
+				),
+				'</p></div>';
 			} elseif ( $this->does_plugin_require_update( $slug ) ) {
 				if ( ! $automatic ) {
 					// Make sure message doesn't display again if bulk activation is performed
 					// immediately after a single activation.
 					if ( ! isset( $_POST['action'] ) ) { // WPCS: CSRF OK.
 						echo '<div id="message" class="error"><p>',
-							sprintf(
-								esc_html( $this->strings['plugin_needs_higher_version'] ),
-								'<strong>' . esc_html( $this->plugins[ $slug ]['name'] ) . '</strong>'
-							),
-							'</p></div>';
+						sprintf(
+							esc_html( $this->strings['plugin_needs_higher_version'] ),
+							'<strong>' . esc_html( $this->plugins[ $slug ]['name'] ) . '</strong>'
+						),
+						'</p></div>';
 					}
 				} else {
 					// Simpler message layout for use on the plugin install page.
@@ -1208,7 +1193,7 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 						$rendered .= sprintf(
 							$line_template,
 							sprintf(
-								translate_nooped_plural( $this->strings[ $type ], $count, 'tgmpa' ),
+								$this->strings[ $type ],
 								$imploded,
 								$count
 							)
@@ -1256,14 +1241,14 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 				if ( $install_count > 0 ) {
 					$action_links['install'] = sprintf(
 						$link_template,
-						translate_nooped_plural( $this->strings['install_link'], $install_count, 'tgmpa' ),
+						$this->strings['install_link'],
 						esc_url( $this->get_tgmpa_status_url( 'install' ) )
 					);
 				}
 				if ( $update_count > 0 ) {
 					$action_links['update'] = sprintf(
 						$link_template,
-						translate_nooped_plural( $this->strings['update_link'], $update_count, 'tgmpa' ),
+						$this->strings['update_link'],
 						esc_url( $this->get_tgmpa_status_url( 'update' ) )
 					);
 				}
@@ -1272,7 +1257,7 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 			if ( current_user_can( 'activate_plugins' ) && $activate_count > 0 ) {
 				$action_links['activate'] = sprintf(
 					$link_template,
-					translate_nooped_plural( $this->strings['activate_link'], $activate_count, 'tgmpa' ),
+					$this->strings['activate_link'],
 					esc_url( $this->get_tgmpa_status_url( 'activate' ) )
 				);
 			}
@@ -1303,9 +1288,9 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 			if ( ! empty( $this->strings['nag_type'] ) ) {
 				return sanitize_html_class( strtolower( $this->strings['nag_type'] ) );
 			} else {
-				if ( version_compare( $this->wp_version, '4.2', '>=' ) ) {
+				if ( version_compare( $this->wp_version, '5.6', '>=' ) ) {
 					return 'notice-warning';
-				} elseif ( version_compare( $this->wp_version, '4.1', '>=' ) ) {
+				} elseif ( version_compare( $this->wp_version, '5.1', '>=' ) ) {
 					return 'notice';
 				} else {
 					return 'updated';
@@ -2061,14 +2046,12 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 		 */
 		public function show_tgmpa_version() {
 			echo '<p style="float: right; padding: 0em 1.5em 0.5em 0;"><strong><small>',
-				esc_html(
-					sprintf(
-						/* translators: %s: version number */
-						esc_html__( 'TGMPA v%s', 'sportshub' ),
-						self::TGMPA_VERSION
-					)
+				sprintf(
+				/* translators: %s: version number */
+					esc_html__( 'TGMPA v%s', 'sportshub' ),
+					self::TGMPA_VERSION
 				),
-				'</small></strong></p>';
+			'</small></strong></p>';
 		}
 
 		/**
@@ -2423,7 +2406,7 @@ if ( ! class_exists( 'TGMPA_List_Table' ) ) {
 			}
 
 			return sprintf(
-				/* translators: 1: install status, 2: update status */
+			/* translators: 1: install status, 2: update status */
 				_x( '%1$s, %2$s', 'Install/Update Status', 'sportshub' ),
 				$install_status,
 				$update_status
@@ -2766,8 +2749,8 @@ if ( ! class_exists( 'TGMPA_List_Table' ) ) {
 				<tr class="plugin-update-tr">
 					<td colspan="', absint( $this->get_column_count() ), '" class="plugin-update colspanchange">
 						<div class="update-message">',
-							esc_html__( 'Upgrade message from the plugin author:', 'sportshub' ),
-							' <strong>', wp_kses_data( $item['upgrade_notice'] ), '</strong>
+			esc_html__( 'Upgrade message from the plugin author:', 'sportshub' ),
+			' <strong>', wp_kses_data( $item['upgrade_notice'] ), '</strong>
 						</div>
 					</td>
 				</tr>';
@@ -2962,7 +2945,7 @@ if ( ! class_exists( 'TGMPA_List_Table' ) ) {
 
 				// Wrap the install process with the appropriate HTML.
 				echo '<div class="tgmpa">',
-					'<h2 style="font-size: 23px; font-weight: 400; line-height: 29px; margin: 0; padding: 9px 15px 4px 0;">', esc_html( get_admin_page_title() ), '</h2>
+				'<h2 style="font-size: 23px; font-weight: 400; line-height: 29px; margin: 0; padding: 9px 15px 4px 0;">', esc_html( get_admin_page_title() ), '</h2>
 					<div class="update-php" style="width: 100%; height: 98%; min-height: 850px; padding-top: 1px;">';
 
 				// Process the bulk installation submissions.
@@ -3034,7 +3017,7 @@ if ( ! class_exists( 'TGMPA_List_Table' ) ) {
 
 					printf( // WPCS: xss ok.
 						'<div id="message" class="updated"><p>%1$s %2$s.</p></div>',
-						esc_html( _n( 'The following plugin was activated successfully:', 'The following plugins were activated successfully:', $count, 'sportshub' ) ),
+						esc_html( _nx( 'The following plugin was activated successfully:', 'The following plugins were activated successfully:', $count, 'message_activated', 'sportshub' ) ),
 						$imploded
 					);
 
@@ -3583,7 +3566,7 @@ if ( ! function_exists( 'tgmpa_load_bulk_installer' ) ) {
 							$this->upgrader->strings['skin_before_update_header'] = esc_html__( 'Updating Plugin %1$s (%2$d/%3$d)', 'sportshub' );
 						} else {
 							/* translators: 1: plugin name, 2: error message. */
-							$this->upgrader->strings['skin_update_failed_error'] = esc_html__( 'An error occurred while installing %1$s: <strong>%2$s</strong>.', 'sportshub' );
+							$this->upgrader->strings['skin_update_failed_error'] = esc_html__( 'An error occurred while installing %1$s: %2$s.', 'sportshub' );
 							/* translators: 1: plugin name. */
 							$this->upgrader->strings['skin_update_failed'] = esc_html__( 'The installation of %1$s failed.', 'sportshub' );
 
@@ -3591,7 +3574,7 @@ if ( ! function_exists( 'tgmpa_load_bulk_installer' ) ) {
 								// Automatic activation strings.
 								$this->upgrader->strings['skin_upgrade_start'] = esc_html__( 'The installation and activation process is starting. This process may take a while on some hosts, so please be patient.', 'sportshub' );
 								/* translators: 1: plugin name. */
-								$this->upgrader->strings['skin_update_successful'] = esc_html__( '%1$s installed and activated successfully.', 'sportshub' ) . ' <a href="#" class="hide-if-no-js" onclick="%2$s"><span>' . esc_html__( 'Show Details', 'sportshub' ) . '</span><span class="hidden">' . esc_html__( 'Hide Details', 'sportshub' ) . '</span>.</a>';
+								$this->upgrader->strings['skin_update_successful'] = esc_html__( '%s installed and activated successfully.', 'sportshub' );
 								$this->upgrader->strings['skin_upgrade_end']       = esc_html__( 'All installations and activations have been completed.', 'sportshub' );
 								/* translators: 1: plugin name, 2: action number 3: total number of actions. */
 								$this->upgrader->strings['skin_before_update_header'] = esc_html__( 'Installing and Activating Plugin %1$s (%2$d/%3$d)', 'sportshub' );
@@ -3599,7 +3582,7 @@ if ( ! function_exists( 'tgmpa_load_bulk_installer' ) ) {
 								// Default installation strings.
 								$this->upgrader->strings['skin_upgrade_start'] = esc_html__( 'The installation process is starting. This process may take a while on some hosts, so please be patient.', 'sportshub' );
 								/* translators: 1: plugin name. */
-								$this->upgrader->strings['skin_update_successful'] = esc_html__( '%1$s installed successfully.', 'sportshub' ) . ' <a href="#" class="hide-if-no-js" onclick="%2$s"><span>' . esc_html__( 'Show Details', 'sportshub' ) . '</span><span class="hidden">' . esc_html__( 'Hide Details', 'sportshub' ) . '</span>.</a>';
+								$this->upgrader->strings['skin_update_successful'] = esc_html__( '%s installed successfully.', 'sportshub' );
 								$this->upgrader->strings['skin_upgrade_end']       = esc_html__( 'All installations have been completed.', 'sportshub' );
 								/* translators: 1: plugin name, 2: action number 3: total number of actions. */
 								$this->upgrader->strings['skin_before_update_header'] = esc_html__( 'Installing Plugin %1$s (%2$d/%3$d)', 'sportshub' );

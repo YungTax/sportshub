@@ -109,7 +109,7 @@ body, p {
 
 /* Meta Info Styles */
 .meta-info ul li {
-    font-family: <?php echo esc_attr($sportshub_category_font_family); ?> !important;
+    font-family: <?php echo esc_attr($sportshub_p_font_family); ?> !important;
     <?php if($sportshub_title_transform) { echo 'text-transform:'.$sportshub_title_transform.' !important;'; } ?>
 }
 

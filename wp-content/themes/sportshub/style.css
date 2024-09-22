@@ -1,13 +1,17 @@
 /*
-Theme Name: sportshub
+Theme Name: Sportshub
 Theme URI: https://themelazer.com
 Description: WordPress Blog & Magazine Theme
 Author: Themelazer
 Author URI: https://themeforest.net/user/themelazer
+Description: A sports theme for WordPress.
 Version: 1.0
-License: GNU General Public License
-License URI: license.txt
-Tags: three-columns
+Requires PHP: 8.2
+Requires at least: 5
+Tested up to: 6.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Tags: blog, news
 Text Domain: sportshub
 */
 

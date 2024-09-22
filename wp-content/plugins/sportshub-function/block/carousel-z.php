@@ -642,29 +642,6 @@ class sportshub_carousel_z extends Widget_Base {
                 ]
             ]
         );                
-     
-        // $this->add_group_control(
-        //     Group_Control_Typography::get_type(),
-        //         [
-        //             'name' => 'title_typography',
-        //             'label' => esc_html__( 'Title Main Typography', 'sportshub' ),
-                    
-                        
-        //                 'selector' => '{{WRAPPER}} .themelazer-feature-content .slide_text_box h3 a',
-        //         ]
-        // );
-
-        // $this->add_group_control(
-        //     Group_Control_Typography::get_type(),
-        //         [
-        //         'name' => 'title_typography_sm',
-        //         'label' => esc_html__( 'Title Small Typography', 'sportshub' ),
-                
-                    
-        //                 'selector' => '{{WRAPPER}} .themelazer-feature-content.themelazer-feature-small .slide_text_box h3 a',
-        //         ]
-        // );
-             
         $this->end_controls_section();
     }
 

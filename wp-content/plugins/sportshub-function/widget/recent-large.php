@@ -39,15 +39,15 @@ class sportshub_recent_large_widgets extends WP_Widget {
         
         // array to call recent posts.
 
-        $jellywp_args = array(
+        $sportshubwp_args = array(
             'showposts' => $number,
             'category__in' => $cats,
             'ignore_sticky_posts' => 1,
             'offset' => $number_offset
         );
 
-        $jellywp_widget = null;
-        $jellywp_widget = new WP_Query($jellywp_args);
+        $sportshubwp_widget = null;
+        $sportshubwp_widget = new WP_Query($sportshubwp_args);
 
         echo '<span class="themelazer_none_space"></span>'.$before_widget;
 
@@ -62,8 +62,8 @@ class sportshub_recent_large_widgets extends WP_Widget {
        ?>
 <div class="themelazer_recent_large">
     <?php
-            while ($jellywp_widget->have_posts()) {
-            $jellywp_widget->the_post();
+            while ($sportshubwp_widget->have_posts()) {
+            $sportshubwp_widget->the_post();
             $post_id = get_the_ID();
             $categories = get_the_category(get_the_ID());
             $title_bg_Color = get_term_meta($tag->term_id, "category_color_options", true);       

@@ -32,6 +32,8 @@ if ( ! defined( 'ABSPATH' ) ) exit;
           );
       }
       public function sportshub_shortcode_elements($widgets_manager){ 
+            require_once 'sportshub-header.php';
+            $widgets_manager->register(new Elementor\sportshub_header());
             require_once 'slider.php';
             $widgets_manager->register(new Elementor\sportshub_slider());
             require_once 'slider-center.php';
@@ -68,6 +70,8 @@ if ( ! defined( 'ABSPATH' ) ) exit;
             $widgets_manager->register(new Elementor\sportshub_feature_list_z());
             require_once 'feature-card-post.php';
             $widgets_manager->register(new Elementor\sportshub_feature_card_post());
+            
+            
       }
     	public static function sportshub_get_instance() {
             if (!isset(self::$_instance)) {

@@ -226,6 +226,16 @@ class sportshub_list_post extends Widget_Base {
             ]
         );
         $this->add_control(
+            'show_thumbnail',
+            [
+                'label' => esc_html__('Show Thumbnail', 'sportshub'),
+                'type' =>Controls_Manager::SWITCHER,
+                'label_on' => esc_html__('yes', 'sportshub'),
+                'label_off' => esc_html__('no', 'sportshub'),
+                'default' => 'yes',
+            ]
+        );
+        $this->add_control(
             'show_cat',
             [
                 'label' => esc_html__('Show Category', 'sportshub'),
@@ -798,52 +808,6 @@ class sportshub_list_post extends Widget_Base {
                 ]
             ]
         );                
-
-        // $this->add_control(
-        //     'title_color', [
-
-        //         'label'    => esc_html__( 'Title color', 'sportshub' ),
-        //         'type'     => Controls_Manager::COLOR,
-        //         'selectors'  => [
-
-        //             '{{WRAPPER}} .themelazer-feature-content .slide_text_box h3 a' => 'color: {{VALUE}};',
-        //         ],
-        //     ]
-        // );
-
-        // $this->add_control(
-        //     'title_color_h', [
-
-        //         'label'    => esc_html__( 'Title color hover', 'sportshub' ),
-        //         'type'     => Controls_Manager::COLOR,
-        //         'selectors'  => [
-
-        //             '{{WRAPPER}} .themelazer-feature-content .slide_text_box h3 a:hover' => 'color: {{VALUE}};',
-        //         ],
-        //     ]
-        // );
- 
-        // $this->add_group_control(
-        //     Group_Control_Typography::get_type(),
-        //     [
-        //         'name' => 'title_typography',
-        //         'label' => esc_html__( 'Title Main Typography', 'sportshub' ),
-                
-                    
-        //             'selector' => '{{WRAPPER}} .themelazer-feature-content .slide_text_box h3 a',
-        //     ]
-        // );
-
-        // $this->add_group_control(
-        //     Group_Control_Typography::get_type(),
-        //     [
-        //         'name' => 'title_typography_sm',
-        //         'label' => esc_html__( 'Title Small Typography', 'sportshub' ),
-                
-                    
-        //             'selector' => '{{WRAPPER}} .themelazer-feature-content.themelazer-feature-small .slide_text_box h3 a',
-        //     ]
-        // );
         $this->end_controls_section();
     }
 
@@ -853,6 +817,7 @@ class sportshub_list_post extends Widget_Base {
         $post_title_html_tag = $settings['post_title_html_tag'];  
         $section_title_html_tag = $settings['section_title_html_tag'];
         $post_list_layout = $settings['post_list_layout'];
+        $show_thumbnail =$settings['show_thumbnail'];
         $thumbnail_size = $settings['thumbnail_size'];
         $show_cat = $settings['show_cat'];
         $show_meta = $settings['show_meta'];
@@ -1035,11 +1000,13 @@ class sportshub_list_post extends Widget_Base {
                 <?php if($post_list_layout == 'list_layout1'){?>
                     <div class="themelazer_article_list themelazer_article_list_l">
                         <div class="post-outer">
-                            <div class="post-inner">
-                                <div class="post-thumbnail">
-                                    <a href="<?php the_permalink(); ?>"></a><?php if( has_post_thumbnail()) {the_post_thumbnail($thumbnail_size);} ?>
-                                </div>
-                            </div>
+                            <?php if ($show_thumbnail == 'yes') : ?>
+                                <div class="post-inner">
+                                    <div class="post-thumbnail">
+                                        <a href="<?php the_permalink(); ?>"></a><?php if( has_post_thumbnail()) {the_post_thumbnail($thumbnail_size);} ?>
+                                    </div>
+                                </div>    
+                            <?php endif; ?>
                             <div class="post-inner">
                                 <div class="entry-header"<?php echo 'style="text-align:'.$blog_text_align.';'.'">'?>
                                     <!-- <?php if(get_theme_mod('disable_post_category') !=1 && $show_cat=='yes'){
@@ -1054,7 +1021,7 @@ class sportshub_list_post extends Widget_Base {
                                             }
                                         }
                                     ?> -->
-                                    <?php if(get_theme_mod('disable_post_category') !=1){
+                                    <?php if(get_theme_mod('disable_post_category') !=1 && $show_cat=='yes'){
                                             $categories = get_the_category(get_the_ID());          
                                             if ($categories) {
                                                 echo '<div class="themelazer_post_categories">';

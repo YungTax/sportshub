@@ -1103,7 +1103,35 @@ class sportshub_grid_post extends Widget_Base {
                                         <div class="img-box <?php if ( has_post_thumbnail()){echo 'ghave_img';}else{echo 'gnone_img';}?>">
                                             <a href="<?php the_permalink(); ?>">
                                                 <?php  if($show_thumbnail=='yes'){ 
-                                                    if( has_post_thumbnail()) {the_post_thumbnail($thumbnail_size);}
+                                                    // if( has_post_thumbnail()) {the_post_thumbnail($thumbnail_size);}
+                                                    // Check for the video_url custom field
+                                                    $video_post_link = get_post_meta(get_the_ID(), 'video_post_link', true);
+                                                    if ($video_post_link) :
+                                                        // Extract the YouTube video ID
+                                                        preg_match('/[\\?\\&]v=([^\\?\\&]+)/', $video_post_link, $matches);
+                                                        if ($matches) :
+                                                            $video_id = $matches[1];
+                                                    ?>
+                                                        <!-- Embed the YouTube video with autoplay -->
+                                                        <div class="featured-video">
+                                                        <iframe width="560" height="315" src="https://www.youtube.com/embed/<?php echo esc_attr($video_id); ?>?autoplay=1&mute=1&modestbranding=1&rel=0&controls=0&showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                                                    </div>
+                                                    <?php else : ?>
+                                                        <!-- Display the regular featured image if no video URL is found -->
+                                                        <?php if ( has_post_thumbnail() ) : ?>
+                                                           
+                                                                <?php the_post_thumbnail($thumbnail_size); ?>
+                                                          
+                                                        <?php endif; ?>
+                                                    <?php endif; ?>
+                                                    <?php else : ?>
+                                                        <!-- Display the regular featured image if no video URL is found -->
+                                                        <?php if ( has_post_thumbnail() ) : ?>
+                                                           
+                                                                <?php the_post_thumbnail($thumbnail_size); ?>
+                                                         
+                                                        <?php endif; ?>
+                                                    <?php endif; 
                                                 } ?>  
                                             </a>
                                         </div>                        
@@ -1240,89 +1268,97 @@ class sportshub_grid_post extends Widget_Base {
                             </div>
                         </div>   
                     <!-- Grid Layout 3 -->
-                    <?php }elseif($post_grid_layout == 'grid_layout3'){?>
-                        <div class="<?php echo esc_html($post_col); ?>">
-                            <div class="themelazer_grid_blog_wrapper">
-                                <div class="themelazer_thumbnail_wrapper">
-                                    <div class="themelazer_thumbnail_box 
-                                        <?php   if ( has_post_thumbnail()){
-                                                    echo 'ghave_img';}
-                                                else{
-                                                    echo 'gnone_img';
+                    <?php } elseif ($post_grid_layout == 'grid_layout3') { ?>
+                        <?php if ($i == 1) { ?>
+                            <div class="grid-2"> <!-- 2-column grid layout starts here -->
+                                <div class="blog-style-one blog-small-grid">
+                                    <div class="single-blog-style-one">
+                                        <div class="img-box <?php if (has_post_thumbnail()) { echo 'ghave_img'; } else { echo 'gnone_img'; } ?>">
+                                            <a href="<?php the_permalink(); ?>">
+                                                <?php if ($show_thumbnail == 'yes') { 
+                                                    if (has_post_thumbnail()) { the_post_thumbnail($thumbnail_size); }
+                                                } ?>  
+                                            </a>
+                                        </div>                        
+                                        <div class="text-box" <?php echo 'style="text-align:'.$blog_text_align.';">'; ?>
+                                            <?php if (get_theme_mod('disable_post_category') != 1) { 
+                                                if ($show_cat == 'yes') { 
+                                                    $categories = get_the_category(get_the_ID());          
+                                                    if ($categories) {
+                                                        echo '<div class="themelazer_post_categories">';
+                                                        foreach ($categories as $tag) {
+                                                            $tag_link = get_category_link($tag->term_id);
+                                                            $title_bg_Color = get_term_meta($tag->term_id, "category_color_options", true);
+                                                            echo '<a class="post-category-color-text" itemprop="articleSection" style="background:'.$title_bg_Color.'" href="'.esc_url($tag_link).'">'.$tag->name.'</a>';
+                                                        }
+                                                        echo "</div>";
+                                                    }
                                                 }
-                                        ?>
-                                    ">
-                                        <a href="<?php the_permalink(); ?>">
-                                                <?php if($show_thumbnail=='yes'){ 
-                                                            if( has_post_thumbnail()){
-                                                                    the_post_thumbnail($thumbnail_size);
-                                                            }
-                                                }?>
-                                        </a>
-                                    </div>                        
-                                    
-                                    <div class="themelazer_text_box_wrapper" <?php echo 'style="text-align:'.$blog_text_align.';'.'">'?>
-                                        <?php  
-                                          if(get_theme_mod('disable_post_category') !=1){
-                                            if( $show_cat =='yes'){
-                                                $categories = get_the_category(get_the_ID());          
-                                                if ($categories) {
-                                                  echo '<div class="themelazer_post_categories">';
-                                                  foreach( $categories as $tag) {
-                                                      $tag_link = get_category_link($tag->term_id);
-                                                      $title_bg_Color = get_term_meta($tag->term_id, "category_color_options", true);
-                                                        echo '<a class="post-category-color-text" itemprop="articleSection" style="background:'.$title_bg_Color.'" href="'.esc_url($tag_link).'">'.$tag->name.'</a>';
-                                                  }
-                                                  echo "</div>";
-                                                }
-                                            }    
-                                        }?>
-
-                                        <?php echo '<'.$post_title_html_tag.'>'.'<a href="'.esc_url(get_the_permalink()).'" tabindex="-1">'.esc_attr(get_the_title()).'</a>'.'</'.$post_title_html_tag.'>' ?>
-                                        <?php 
-                                           if($show_meta =='yes'){
-                                                echo'<div class="meta-info"> <ul>';
+                                            } ?>
+                                            <?php echo '<'.$post_title_html_tag.'><a href="'.esc_url(get_the_permalink()).'" title="'.esc_attr(get_the_title()).'" tabindex="-1">'.esc_attr(get_the_title()).'</a></'.$post_title_html_tag.'>'; ?>
+                                            
+                                            <?php if ($show_meta == 'yes') {
+                                                echo '<div class="meta-info"><ul>';
                                                     echo '<li class="post-author">';
-                                                        if( get_theme_mod('disable_post_author') !=1 && $show_author =='yes'){ 
+                                                        if (get_theme_mod('disable_post_author') != 1 && $show_author == 'yes') {
                                                             echo get_avatar(get_the_author_meta('ID'), 30);
-                                                        } 
-                                                        if( $show_author_name == 'yes' ){
+                                                        }
+                                                        if ($show_author_name == 'yes') {
                                                             echo the_author_posts_link();
-                                                        }    
+                                                        }
                                                     echo '</li>';
-                                                    if(get_theme_mod('disable_post_date') !=1 && $show_date =='yes'){ 
+                                                    if (get_theme_mod('disable_post_date') != 1 && $show_date == 'yes') { 
                                                         echo '<li class="post-date">'.get_the_date().'</li>';
                                                     }
-                                                    if(get_theme_mod('disable_post_view') !=1 && $show_postview =='yes'){
-                                                        echo '<li class="post-view">';                
-                                                        echo sportshub_get_PostViews(get_the_ID()).' ';
-                                                        esc_html_e('Views', 'sportshub');                
-                                                        echo '</li>';
+                                                    if (get_theme_mod('disable_post_view') != 1 && $show_postview == 'yes') {
+                                                        echo '<li class="post-view">'.sportshub_get_PostViews(get_the_ID()).' '.esc_html_e('Views', 'sportshub').'</li>';
                                                     }
-                                                    if( get_theme_mod('disable_time_read') !=1 && $show_timeread == 'yes'){
-                                                        echo '<li class="post-read">'.sportshub_reading_time_calculation('content').' minutes read'.'</li>';
+                                                    if (get_theme_mod('disable_time_read') != 1 && $show_timeread == 'yes') {
+                                                        echo '<li class="post-read">'.sportshub_reading_time_calculation('content').' minutes read</li>';
                                                     }
-                                                echo'</ul></div>'; 
-                                            }
-                                        ?>
-
-                                        <p>
-                                            <?php if($show_contents=='yes'){ 
-                                                echo wp_trim_words( get_the_content(), $count_words, '...' );
-                                            }?>
-                                        </p>
-                                        <span class="footer-meta-info">                            
-                                            <a class="themelazer_more_themelazern" href="<?php the_permalink(); ?>">
-                                                <?php  if($show_readmore=='yes'){
-                                                  echo $settings['read_more_text_input'];
-                                                }?>      
-                                            </a>                          
-                                        </span>
+                                                echo '</ul></div>';
+                                            } ?>
+                                            
+                                            <p>
+                                                <?php if ($show_contents == 'yes') { 
+                                                    echo wp_trim_words(get_the_content(), $count_words, '...');
+                                                } ?>
+                                            </p>
+                                            <div class="footer-meta-info">
+                                                <a class="themelazer_more_themelazern" href="<?php the_permalink(); ?>">
+                                                    <?php if ($show_readmore == 'yes') {
+                                                        echo $settings['read_more_text_input'];
+                                                    } ?>      
+                                                </a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>   
-                    <!-- Grid Layout 4  -->
+                        <?php } else { ?>
+                           
+                                <div class="themelazer_article_list">
+                                    <div class="post-outer">
+                                        <?php if (has_post_thumbnail()) { ?>
+                                            <div class="post-inner">
+                                                <div class="post-thumbnail sidebar">
+                                                    <?php the_post_thumbnail('sportshub_small_recent_feature'); ?> 
+                                                    <a href="<?php the_permalink(); ?>"></a>
+                                                </div>
+                                            </div>
+                                        <?php } ?>
+                                        <div class="post-inner">
+                                            <div class="entry-header">
+                                                <h2 class="entry-title"> 
+                                                    <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a>
+                                                </h2>
+                                                <?php sportshub_post_meta_s(get_the_ID()); ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                           
+                        <?php } ?>   
                     <?php }elseif($post_grid_layout == 'grid_layout4'){?>
                         <div class="<?php echo esc_html($post_col); ?>">
                             <div class="themelazer_grid_blog_layout4_wrapper">
