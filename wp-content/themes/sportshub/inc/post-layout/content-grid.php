@@ -12,15 +12,20 @@
                     if ($matches) :
                         $video_id = $matches[1];
                 ?>
-                    <!-- Embed the YouTube video with autoplay -->
+                    <!-- Embed the YouTube video with autoplay and mute -->
                     <div class="featured-video">
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/<?php echo esc_attr($video_id); ?>?autoplay=1&mute=1&modestbranding=1&rel=0&controls=0&showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                </div>
+                        <iframe width="560" height="315" 
+                                src="https://www.youtube.com/embed/<?php echo esc_attr($video_id); ?>?autoplay=1&mute=1&modestbranding=1&rel=0&controls=1&showinfo=0" 
+                                frameborder="0" 
+                                allow="autoplay; encrypted-media" 
+                                allowfullscreen>
+                        </iframe>
+                    </div>
                 <?php else : ?>
                     <!-- Display the regular featured image if no video URL is found -->
                     <?php if ( has_post_thumbnail() ) : ?>
                         <div class="featured-image">
-                            <?php the_post_thumbnail(); ?>
+                            <?php the_post_thumbnail('sportshub_list'); ?>
                         </div>
                     <?php endif; ?>
                 <?php endif; ?>
@@ -28,7 +33,7 @@
                     <!-- Display the regular featured image if no video URL is found -->
                     <?php if ( has_post_thumbnail() ) : ?>
                         <div class="featured-image">
-                            <?php the_post_thumbnail(); ?>
+                            <?php the_post_thumbnail('sportshub_list'); ?>
                         </div>
                     <?php endif; ?>
                 <?php endif; ?>

@@ -151,24 +151,25 @@ $('.justified-gallery-post').magnificPopup({
 //////////////////////////////////////////////////////////////////////////
 //        Sticky Sidebar
 ////////////////////////////////////////////////////////////////////////// 
-  var $stickySidebars = jQuery('.themelazer_sticky');
+if (jQuery('.themelazer_sticky').length) {
+  jQuery('body').addClass('sticky-sidebar_init');
+  jQuery('.themelazer_sticky').each(function(){
 
-  if ($stickySidebars.length) {
-    var $body = jQuery('body').addClass('sticky-sidebar_init');
-
-    $stickySidebars.each(function () {
-      var $this = jQuery(this);
-      var isElementorElement = $this.hasClass('elementor-element');
-      var $container = isElementorElement ? $this.find('.elementor-widget-wrap').parent() : $this.parent();
-
-      $this.theiaStickySidebar({
-        containerSelector: $container,
+    if(jQuery(this).hasClass('elementor-element')){
+      jQuery(this).find('.elementor-widget-wrap').theiaStickySidebar({
+        containerSelector: jQuery(this).parent(),
         additionalMarginTop: 30,
         additionalMarginBottom: 30
       });
-    });
-  }
-
+    }else{
+      jQuery(this).theiaStickySidebar({
+        additionalMarginTop: 30,
+        additionalMarginBottom: 30
+      });
+    }
+    
+  });
+}
 //////////////////////////////////////////////////////////////////////////
 //        Scroll To Top
 //////////////////////////////////////////////////////////////////////////  

@@ -6,6 +6,27 @@ if ( ! isset( $content_width ) ){ $content_width = 1190; }
     add_theme_support( "title-tag" );
     add_theme_support( 'post-thumbnails');
     add_theme_support( 'align-wide' );
+    add_theme_support( 'title-tag' );
+    add_theme_support( 'wp-block-styles' );
+    add_theme_support( 'responsive-embeds' );
+    add_theme_support( 'html5', array( 'search-form', 'comment-form', 'comment-list', 'gallery', 'caption', 'style', 'script' ) );
+    add_theme_support( 'custom-logo', array(
+        'height'      => 100,
+        'width'       => 400,
+        'flex-height' => true,
+        'flex-width'  => true,
+    ));
+    add_theme_support( 'custom-header', array(
+        'width'         => 1000,
+        'height'        => 250,
+        'flex-height'   => true,
+        'flex-width'    => true,
+        'header-text'   => false,
+    ));
+    add_theme_support( 'custom-background', array(
+        'default-color' => 'ffffff',
+        'default-image' => '',
+    ));
 // Post thumbnail support
 
 if (!function_exists('sportshub_image_size')) {
@@ -38,7 +59,30 @@ if (!function_exists('sportshub_image_size')) {
 
     add_action('init', 'sportshub_image_size');
 }
+function sportshub_register_block_styles() {
+    // Register custom block styles.
+    register_block_style(
+        'core/paragraph',
+        array(
+            'name'  => 'fancy-paragraph',
+            'label' => __( 'Fancy Paragraph', 'sportshub' ),
+        )
+    );
+}
+add_action( 'init', 'sportshub_register_block_styles' );
 
+function sportshub_register_block_patterns() {
+    // Register block patterns.
+    register_block_pattern(
+        'theme/text-and-image',
+        array(
+            'title'       => __( 'Text and Image', 'sportshub' ),
+            'description' => _x( 'A section with a text and an image', 'Block pattern description', 'sportshub' ),
+            'content'     => "<!-- wp:paragraph --><p>Lorem ipsum...</p><!-- /wp:paragraph --><!-- wp:image --><figure class=\"wp-block-image\"><img src=\"https://example.com/image.jpg\" alt=\"\"/></figure><!-- /wp:image -->",
+        )
+    );
+}
+add_action( 'init', 'sportshub_register_block_patterns' );
 //body class
 add_filter( 'body_class','sportshub_body_classes' );
 function sportshub_body_classes( $classes ) {
@@ -93,6 +137,10 @@ function sportshub_sidebar_register() {
         array(
             'name' => esc_html__('General Sidebar', 'sportshub'),
             'id' => 'general-sidebar',
+        ),
+        array(
+            'name' => esc_html__('Authors Sidebar', 'sportshub'),
+            'id' => 'authors-sidebar',
         ),
         array(
             'name' => esc_html__('Instagram', 'sportshub'),
@@ -404,6 +452,18 @@ function sportshub_post_meta_next_post($post_id) {
     }
     echo'</ul></div>'; 
 }
+function sportshub_author_large($post_id){
+    echo'<div class="meta-info"> <ul>';   
+    if(get_theme_mod('disable_post_date') !=1){ echo '<li class="post-date">'.get_the_date().'</li>';}
+    if(get_theme_mod('disable_post_view') !=1){
+    echo '<li class="post-view">';                
+    echo sportshub_get_PostViews(get_the_ID()).' ';
+    esc_html_e('Views', 'sportshub');                
+    echo '</li>';
+    echo '<li class="post-read">'.sportshub_reading_time_calculation('content').esc_html__('minutes read','sportshub').'</li>';
+    }
+    echo'</ul></div>'; 
+}
 
 if ( ! function_exists( 'sportshub_get_qry' ) ) {
     function sportshub_get_qry() {
@@ -548,63 +608,6 @@ add_action('wp_default_scripts', function ($scripts) {
     }
 });
 
-
-// Video Thumbnail
-
-// function embed_youtube_autoplay($atts) {
-//     $atts = shortcode_atts(
-//         array(
-//             'id' => '',
-//             'width' => '560',
-//             'height' => '315',
-//         ),
-//         $atts,
-//         'youtube'
-//     );
-//     return '<iframe width="' . esc_attr($atts['width']) . '" height="' . esc_attr($atts['height']) . '" src="https://www.youtube.com/embed/' . esc_attr($atts['id']) . '?autoplay=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
-// }
-// add_shortcode('youtube_autoplay', 'embed_youtube_autoplay');
-
-// function set_youtube_thumbnail($post_id) {
-//     if (has_post_thumbnail($post_id)) return;
-
-//     $video_url = get_post_meta($post_id, 'video_url', true);
-//     if (!$video_url) return;
-
-//     preg_match('/[\\?\\&]v=([^\\?\\&]+)/', $video_url, $matches);
-//     if (!$matches) return;
-
-//     $video_id = $matches[1];
-//     $thumbnail_url = "https://img.youtube.com/vi/$video_id/maxresdefault.jpg";
-
-//     $upload_dir = wp_upload_dir();
-//     $image_data = file_get_contents($thumbnail_url);
-//     $filename = basename($thumbnail_url);
-
-//     if (wp_mkdir_p($upload_dir['path'])) {
-//         $file = $upload_dir['path'] . '/' . $filename;
-//     } else {
-//         $file = $upload_dir['basedir'] . '/' . $filename;
-//     }
-
-//     file_put_contents($file, $image_data);
-
-//     $wp_filetype = wp_check_filetype($filename, null);
-//     $attachment = array(
-//         'post_mime_type' => $wp_filetype['type'],
-//         'post_title' => sanitize_file_name($filename),
-//         'post_content' => '',
-//         'post_status' => 'inherit'
-//     );
-
-//     $attach_id = wp_insert_attachment($attachment, $file, $post_id);
-//     require_once(ABSPATH . 'wp-admin/includes/image.php');
-//     $attach_data = wp_generate_attachment_metadata($attach_id, $file);
-//     wp_update_attachment_metadata($attach_id, $attach_data);
-//     set_post_thumbnail($post_id, $attach_id);
-// }
-// add_action('save_post', 'set_youtube_thumbnail');
-
 function set_youtube_thumbnail_as_featured_image($post_id) {
     // Check if the post already has a featured image
     if (has_post_thumbnail($post_id)) {
@@ -627,21 +630,28 @@ function set_youtube_thumbnail_as_featured_image($post_id) {
     $thumbnail_url = "https://img.youtube.com/vi/$video_id/maxresdefault.jpg";
 
     // Fetch the image
-    $upload_dir = wp_upload_dir();
-    $image_data = file_get_contents($thumbnail_url);
-    $filename = basename($thumbnail_url);
-
-    if (wp_mkdir_p($upload_dir['path'])) {
-        $file = $upload_dir['path'] . '/' . $filename;
-    } else {
-        $file = $upload_dir['basedir'] . '/' . $filename;
+    $response = wp_remote_get($thumbnail_url);
+    if (is_wp_error($response)) {
+        return;
     }
 
-    // Save the image file
-    file_put_contents($file, $image_data);
+    // Get the image body
+    $image_data = wp_remote_retrieve_body($response);
+    if (empty($image_data)) {
+        return;
+    }
 
-    // Check the type of file and prepare an array of post data for the attachment
-    $wp_filetype = wp_check_filetype($filename, null);
+    // Save the image to the uploads directory
+    $upload_dir = wp_upload_dir();
+    $filename = basename($thumbnail_url);
+    $file = wp_upload_bits($filename, null, $image_data);
+
+    if (!empty($file['error'])) {
+        return;
+    }
+
+    // Prepare an array of post data for the attachment
+    $wp_filetype = wp_check_filetype($file['file'], null);
     $attachment = array(
         'post_mime_type' => $wp_filetype['type'],
         'post_title' => sanitize_file_name($filename),
@@ -650,19 +660,29 @@ function set_youtube_thumbnail_as_featured_image($post_id) {
     );
 
     // Insert the attachment
-    $attach_id = wp_insert_attachment($attachment, $file, $post_id);
+    $attach_id = wp_insert_attachment($attachment, $file['file'], $post_id);
 
     // Include image.php
     require_once(ABSPATH . 'wp-admin/includes/image.php');
 
     // Generate the metadata for the attachment, and update the database record
-    $attach_data = wp_generate_attachment_metadata($attach_id, $file);
+    $attach_data = wp_generate_attachment_metadata($attach_id, $file['file']);
     wp_update_attachment_metadata($attach_id, $attach_data);
 
     // Set the image as the featured image for the post
     set_post_thumbnail($post_id, $attach_id);
 }
 add_action('save_post', 'set_youtube_thumbnail_as_featured_image');
+
+function sportshub_enqueue_color_picker( $hook_suffix ) {
+    // Load color picker on nav menu pages
+    if ( 'nav-menus.php' != $hook_suffix ) {
+        return;
+    }
+    wp_enqueue_style( 'wp-color-picker' );
+    wp_enqueue_script( 'sportshub-color-picker', get_template_directory_uri() . '/js/sportshub-color-picker.js', array( 'wp-color-picker' ), false, true );
+}
+add_action( 'admin_enqueue_scripts', 'sportshub_enqueue_color_picker' );
 
 if ( ! function_exists( 'sportshub_primary_menu_item_args' ) ) {
     function sportshub_primary_menu_item_args( $args, $item, $depth ) {
@@ -681,31 +701,21 @@ if ( ! function_exists( 'sportshub_primary_menu_item_args' ) ) {
 if ( version_compare( get_bloginfo( 'version' ), '5.4', '>=' ) ) {
     function sportshub_menu_item_badge_fields( $id ) {
         wp_nonce_field( 'sportshub_menu_meta_nonce', 'sportshub_menu_meta_nonce_name' );
-
         $badge_color = get_post_meta( $id, '_sportshub_menu_badge_color', true );
         $badge_text  = get_post_meta( $id, '_sportshub_menu_badge_text', true );
         $menu_icon   = get_post_meta( $id, '_sportshub_menu_icon', true );
-
         ?>
-        <p class="description description-thin">
-            <label for="<?php echo esc_attr( $id ); ?>"><?php esc_html_e( 'Badge Style', 'textdomain' ); ?></label>
-            <select class="widefat" name="sportshub_menu_badge_color[<?php echo esc_attr( $id ); ?>]">
-                <option value="" <?php selected( $badge_color, '' ); ?>><?php esc_html_e( 'Primary', 'textdomain' ); ?></option>
-                <option value="secondary" <?php selected( $badge_color, 'secondary' ); ?>><?php esc_html_e( 'Secondary', 'textdomain' ); ?></option>
-                <option value="dark" <?php selected( $badge_color, 'dark' ); ?>><?php esc_html_e( 'Dark', 'textdomain' ); ?></option>
-                <option value="success" <?php selected( $badge_color, 'success' ); ?>><?php esc_html_e( 'Success', 'textdomain' ); ?></option>
-                <option value="info" <?php selected( $badge_color, 'info' ); ?>><?php esc_html_e( 'Info', 'textdomain' ); ?></option>
-                <option value="warning" <?php selected( $badge_color, 'warning' ); ?>><?php esc_html_e( 'Warning', 'textdomain' ); ?></option>
-                <option value="danger" <?php selected( $badge_color, 'danger' ); ?>><?php esc_html_e( 'Danger', 'textdomain' ); ?></option>
-            </select>
-        </p>
-        <p class="description description-thin">
-            <label><?php esc_html_e( 'Badge Text', 'textdomain' ); ?><br>
+        <p class="description description-wide">
+            <label><?php esc_html_e( 'Badge Text', 'sportshub' ); ?><br>
                 <input type="text" class="widefat" name="sportshub_menu_badge_text[<?php echo esc_attr( $id ); ?>]" value="<?php echo esc_attr( $badge_text ); ?>">
             </label>
         </p>
-        <p class="description description-thin">
-            <label><?php esc_html_e( 'Menu Icon (FontAwesome class or sportshub)', 'textdomain' ); ?><br>
+        <p class="description description-wide">
+            <label for="<?php echo esc_attr( $id ); ?>"><?php esc_html_e( 'Badge Color', 'sportshub' ); ?></label>
+            <input type="text" class="widefat color-picker" name="sportshub_menu_badge_color[<?php echo esc_attr( $id ); ?>]" value="<?php echo esc_attr( $badge_color ); ?>" data-default-color="#ff0000" />
+        </p>
+        <p class="description description-wide">
+            <label><?php esc_html_e( 'Menu Icon (FontAwesome Class)', 'sportshub' ); ?><br>
                 <input type="text" class="widefat" name="sportshub_menu_icon[<?php echo esc_attr( $id ); ?>]" value="<?php echo esc_attr( $menu_icon ); ?>" placeholder="e.g., fa fa-home">
             </label>
         </p>
@@ -716,9 +726,8 @@ if ( version_compare( get_bloginfo( 'version' ), '5.4', '>=' ) ) {
     function sportshub_menu_item_badge_fields_update( $menu_id, $menu_item_db_id ) {
         if ( ! defined( 'DOING_AJAX' ) || ! DOING_AJAX ) {
             check_admin_referer( 'sportshub_menu_meta_nonce', 'sportshub_menu_meta_nonce_name' );
-
             if ( isset( $_POST['sportshub_menu_badge_color'][ $menu_item_db_id ] ) ) {
-                update_post_meta( $menu_item_db_id, '_sportshub_menu_badge_color', sanitize_text_field( $_POST['sportshub_menu_badge_color'][ $menu_item_db_id ] ) );
+                update_post_meta( $menu_item_db_id, '_sportshub_menu_badge_color', sanitize_hex_color( $_POST['sportshub_menu_badge_color'][ $menu_item_db_id ] ) );
             } else {
                 delete_post_meta( $menu_item_db_id, '_sportshub_menu_badge_color' );
             }
@@ -746,12 +755,10 @@ if ( version_compare( get_bloginfo( 'version' ), '5.4', '>=' ) ) {
         if ( ! empty( $menu_icon ) ) {
             $title = '<i class="' . esc_attr( $menu_icon ) . '"></i> ' . $title;
         }
-
         if ( ! empty( $badge_text ) ) {
-            $badge_class = $badge_color ? $badge_color : 'primary';
-            $title      .= ' <span class="sportshub-badge sportshub-badge-' . esc_attr( $badge_class ) . '">' . esc_html( $badge_text ) . '</span>';
+            $badge_style = 'style="background-color: ' . esc_attr( $badge_color ) . ';"';
+            $title      .= ' <span class="sportshub-badge" ' . $badge_style . '>' . esc_html( $badge_text ) . '</span>';
         }
-
         return $title;
     }
     add_filter( 'nav_menu_item_title', 'sportshub_badge_menu_item', 8, 2 );
@@ -869,88 +876,48 @@ function sportshub_breadcrumb() {
         }
 
         $breadcrumb .= '</ul></nav>';
-        echo $breadcrumb;
+        echo wp_kses_post($breadcrumb);
     }
 }
-
-// Add lazyload and blur effect to post thumbnails
-function add_lazyload_and_blur_to_thumbnail( $html, $post_id, $post_thumbnail_id, $size, $attr ) {
-    // Check if the HTML contains an image
-    if ( strpos( $html, '<img' ) !== false ) {
-        // Add lazyload class, and use data-src instead of src for lazy loading
-        $html = str_replace( 'src=', 'data-src=', $html );
-        $html = str_replace( '<img', '<img class="lazyload blur-load"', $html );
-    }
-    return $html;
-}
-add_filter( 'post_thumbnail_html', 'add_lazyload_and_blur_to_thumbnail', 10, 5 );
-
-// Enqueue the lazyload script and custom CSS
-function enqueue_lazyload_blur_script() {
-    // Lazysizes script for lazy loading
-    wp_enqueue_script( 'lazyload', 'https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.2.0/lazysizes.min.js', array(), null, true );
-    // Custom CSS for blur effect
-    wp_add_inline_style( 'wp-block-library', '
-        .blur-load {
-            filter: blur(20px);
-            transition: filter 0.5s ease-out;
-        }
-        .blur-load.lazyloaded {
-            filter: blur(0);
-        }
-    ' );
-}
-add_action( 'wp_enqueue_scripts', 'enqueue_lazyload_blur_script' );
-
 function sportshub_enqueue_scripts() {
     wp_enqueue_script('jquery'); // Ensure jQuery is loaded
     wp_enqueue_script('ajax-load-more', get_template_directory_uri() . '/js/ajax-load-more.js', array('jquery'), null, true);
     wp_localize_script('ajax-load-more', 'ajaxloadmore', array(
-        'ajaxurl' => admin_url('admin-ajax.php'), // Passes the Ajax URL
-        'posts_per_page' => get_option('posts_per_page'), // Passes the number of posts to load per page
-        'max_page' => $GLOBALS['wp_query']->max_num_pages // Passes the max number of pages
+        'ajaxurl' => admin_url('admin-ajax.php'), 
+        'posts_per_page' => get_option('posts_per_page'), 
+        'max_page' => $GLOBALS['wp_query']->max_num_pages 
     ));
 }
 add_action('wp_enqueue_scripts', 'sportshub_enqueue_scripts');
 function sportshub_load_more_posts() {
-    $paged = $_POST['page'] + 1; // Get the next page number
-
+    $paged = $_POST['page'] + 1; 
     $args = array(
         'post_type' => 'post',
         'paged' => $paged,
         'posts_per_page' => 10,
     );
-
     // Check for category filter
     if (!empty($_POST['category_id'])) {
-        $args['cat'] = $_POST['category_id']; // Set the category ID
+        $args['cat'] = $_POST['category_id']; 
     }
-
     // Check for author filter
     if (!empty($_POST['author_id'])) {
-        $args['author'] = $_POST['author_id']; // Set the author ID
+        $args['author'] = $_POST['author_id']; 
     }
-
     // Check for tag filter
     if (!empty($_POST['tag_id'])) {
-        $args['tag_id'] = $_POST['tag_id']; // Set the tag ID
+        $args['tag_id'] = $_POST['tag_id'];
     }
-
     // Check for archive filter (e.g., year, month)
     if (!empty($_POST['archive_id'])) {
-        // You may need to adjust this depending on how archives are structured
-        // You can add specific arguments for year, month, etc.
         $args['year'] = date('Y', strtotime($_POST['archive_id']));
     }
-
     $sportshub_qry = new WP_Query($args);
-
     if ($sportshub_qry->have_posts()) :
         while ($sportshub_qry->have_posts()) : $sportshub_qry->the_post();
             get_template_part('inc/post-layout/content', 'list'); // Adjust as per your layout
         endwhile;
     endif;
-
     wp_reset_postdata();
     die(); // End the Ajax request
 }
@@ -970,8 +937,6 @@ include get_template_directory() . '/inc/assets/import-demo.php';
 include get_template_directory() . '/inc/assets/view-post-counter.php';
 // Load Google Fonts
 include get_template_directory() . '/inc/assets/load-fonts.php';
-// Extra User Contact Method
-include get_template_directory() . '/inc/assets/user-contactmethod.php';
 // Metabox 
 include get_template_directory() . '/inc/metabox/category-meta.php';
 ?>

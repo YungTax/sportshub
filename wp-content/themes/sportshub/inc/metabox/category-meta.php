@@ -22,11 +22,11 @@ function sportshub_add_category_settings() {
 		<td>
 			
 			<div style="line-height:60px;">
-				<input type="hidden" id="jelly_cat_header_image_id" name="jelly_cat_header_image_id" value="<?php echo esc_attr($lazer_header_id); ?>" />
-				<button type="submit" class="jelly_upload_header button"><?php esc_html_e( 'Add Category Background Image', 'sportshub' ); ?></button>
-				<button type="submit" class="jelly_remove_header button"><?php esc_html_e( 'Remove Image', 'sportshub' ); ?></button>
+				<input type="hidden" id="sportshub_cat_header_image_id" name="sportshub_cat_header_image_id" value="<?php echo esc_attr($lazer_header_id); ?>" />
+				<button type="submit" class="sportshub_upload_header button"><?php esc_html_e( 'Add Category Background Image', 'sportshub' ); ?></button>
+				<button type="submit" class="sportshub_remove_header button"><?php esc_html_e( 'Remove Image', 'sportshub' ); ?></button>
 			</div>
-			<div id="jelly_cat_header" style="margin-top:-20px; width: 150px;"><img src="<?php echo esc_url(get_stylesheet_directory_uri().'/inc/metabox/category_asset/images/none_image.png'); ?>" style="max-width: 150px;"/></div>
+			<div id="sportshub_cat_header" style="margin-top:-20px; width: 150px;"><img src="<?php echo esc_url(get_stylesheet_directory_uri().'/inc/metabox/category_asset/images/none_image.png'); ?>" style="max-width: 150px;"/></div>
 		</td>
 
 	</tr>
@@ -83,11 +83,11 @@ function sportshub_edit_category_settings( $term, $taxonomy ) {
 		<td>
 			
 			<div style="line-height:60px;">
-				<input type="hidden" id="jelly_cat_header_image_id" name="jelly_cat_header_image_id" value="<?php echo esc_attr($lazer_header_id); ?>" />
-				<button type="submit" class="jelly_upload_header button"><?php esc_html_e( 'Add Category background Image', 'sportshub' ); ?></button>
-				<button type="submit" class="jelly_remove_header button"><?php esc_html_e( 'Remove Image', 'sportshub' ); ?></button>
+				<input type="hidden" id="sportshub_cat_header_image_id" name="sportshub_cat_header_image_id" value="<?php echo esc_attr($lazer_header_id); ?>" />
+				<button type="submit" class="sportshub_upload_header button"><?php esc_html_e( 'Add Category background Image', 'sportshub' ); ?></button>
+				<button type="submit" class="sportshub_remove_header button"><?php esc_html_e( 'Remove Image', 'sportshub' ); ?></button>
 			</div>
-			<div id="jelly_cat_header" style="margin-top:-20px; width: 150px;"><img src="<?php echo esc_url($category_image); ?>" style="max-width: 150px;" /></div>		
+			<div id="sportshub_cat_header" style="margin-top:-20px; width: 150px;"><img src="<?php echo esc_url($category_image); ?>" style="max-width: 150px;" /></div>		
 		</td>
 
 	</tr>
@@ -116,8 +116,8 @@ add_action( 'category_edit_form_fields', 'sportshub_edit_category_settings', 10,
 
 function sportshub_category_setting_save( $term_id='', $tt_id='', $taxonomy='' ) {	
 
-	if ( isset( $_POST['jelly_cat_header_image_id'] ) ) {
-		update_term_meta( $term_id, 'lazer_header_id', absint( $_POST['jelly_cat_header_image_id'] ) );
+	if ( isset( $_POST['sportshub_cat_header_image_id'] ) ) {
+		update_term_meta( $term_id, 'lazer_header_id', absint( $_POST['sportshub_cat_header_image_id'] ) );
 	}
 
 	if ( isset( $_POST['category_color_options'] ) ) {

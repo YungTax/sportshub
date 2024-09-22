@@ -14,15 +14,15 @@ if (post_password_required()) {
 if (have_comments()) :
     // Separate comments by type (comments and pings).
     $comments_by_type = separate_comments($comments);
-    $jelly_comments_count = count($comments_by_type['comment']); // Count of comments
-    $jelly_pings_count = count($comments_by_type['pings']); // Count of pings and trackbacks
+    $sportshub_comments_count = count($comments_by_type['comment']); // Count of comments
+    $sportshub_pings_count = count($comments_by_type['pings']); // Count of pings and trackbacks
 ?>
-    <?php if ($jelly_pings_count) : // If there are pings or trackbacks. ?>
+    <?php if ($sportshub_pings_count) : // If there are pings or trackbacks. ?>
         <div class="themelazer_title_head">
             <h3>
                 <?php
                 // Display the count of pings and trackbacks.
-                echo esc_html(sprintf(_n('One Ping', '%1$s Pings & Trackbacks', $jelly_pings_count, 'sportshub'), number_format_i18n($jelly_pings_count)));
+                echo esc_html(sprintf(_n('One Ping', '%1$s Pings & Trackbacks', $sportshub_pings_count, 'sportshub'), number_format_i18n($sportshub_pings_count)));
                 ?>
             </h3>
         </div>
@@ -34,12 +34,12 @@ if (have_comments()) :
         </ol>
     <?php endif; ?>
 
-    <?php if ($jelly_comments_count) : // If there are comments. ?>
+    <?php if ($sportshub_comments_count) : // If there are comments. ?>
         <div class="themelazer_title_head">
             <h3>
                 <?php
                 // Display the count of comments.
-                echo esc_html(sprintf(_n('One Comment', '%1$s Comments', $jelly_comments_count, 'sportshub'), number_format_i18n($jelly_comments_count)));
+                echo esc_html(sprintf(_n('One Comment', '%1$s Comments', $sportshub_comments_count, 'sportshub'), number_format_i18n($sportshub_comments_count)));
                 ?>
             </h3>
         </div>
@@ -79,7 +79,7 @@ comment_form(array(
         'email'  => '<span class="comment-form-email col-md-4"><input id="email" name="email" type="text" value="' . esc_attr($commenter['comment_author_email']) . '" size="30" placeholder="' . esc_attr__('Email address *', 'sportshub') . '" /></span>',
         'url' => '<span class="comment-form-author col-md-4"><input class="form-website" name="url" type="text" placeholder="' . esc_attr__('Website', 'sportshub') . '" value="' . esc_attr($commenter['comment_author_url']) . '" size="30" /></span></div>',
     )),
-    'comment_field' => '<p class="comment-form-comment"><textarea class="u-full-width" id="comment" name="comment" cols="45" rows="8" aria-required="true" placeholder="' . esc_attr__('Comment *', 'sportshub') . '"></textarea></p>' // Customize the comment field.
+    'comment_field' => '<p class="comment-form-comment"><textarea class="u-full-width" id="comment" name="comment" cols="45" rows="8" aria-required="true" placeholder="' . esc_attr__('Comment *', 'sportshub') . '"></textarea></p>'
 ));
 ?>
 

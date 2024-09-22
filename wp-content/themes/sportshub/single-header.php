@@ -8,7 +8,9 @@
                   $title_bg_Color = get_term_meta($tag->term_id, "category_color_options", true);
                   $title_reactions = get_term_meta($tag->term_id, "sportshub_cat_reactions", true);
                   if (!$title_reactions) : ?>
-                     <a class="post-category-color-text" itemprop="articleSection" style="background:<?php echo esc_attr($title_bg_Color); ?>" href="<?php echo esc_url($tag_link); ?>"><?php echo $tag->name; ?></a>
+                   <a class="post-category-color-text" itemprop="articleSection" style="background:<?php echo esc_attr($title_bg_Color); ?>" href="<?php echo esc_url($tag_link); ?>">
+                     <?php echo esc_html($tag->name); ?>
+                  </a>
                <?php endif;
                endforeach; ?>
             </div>

@@ -19,7 +19,7 @@ class sportshub_about_us_widget extends WP_widget{
 /*-----------------------------------------------------------------------------------*/
 
     public function __construct() {
-        $widget_ops = array( 'classname' => 'jellywp_about_us_widget', 'description' => esc_html__( 'About me and social icons' , 'sportshub') );
+        $widget_ops = array( 'classname' => 'sportshubwp_about_us_widget', 'description' => esc_html__( 'About me and social icons' , 'sportshub') );
         parent::__construct('sportshub_about_us_widget', esc_html__('Themelazer: About me', 'sportshub'), $widget_ops);
         wp_enqueue_script('sportshub_js_admin', get_template_directory_uri() . '/js/about-me-widget.js', array('jquery'));
     }

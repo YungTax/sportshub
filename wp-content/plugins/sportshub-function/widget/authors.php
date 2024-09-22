@@ -24,34 +24,37 @@ class sportshub_authors_list_widget_post_count extends WP_Widget {
 
     public function widget($args, $instance) {
         echo $args['before_widget'];
-
+    
         if (!empty($instance['title'])) {
             echo $args['before_title'] . apply_filters('widget_title', $instance['title']) . $args['after_title'];
         }
-
+    
         $authors = get_users(array('role_author' => 'all_users'));
-
+    
         if (!empty($authors)) {
             echo '<ul class="authors-list">';
             foreach ($authors as $author) {
-                $author_avatar = get_avatar($author->user_email, 48);   
-                $author_name = $author->display_name;
-                $author_url = get_author_posts_url($author->ID);
                 $post_count = count_user_posts($author->ID);
-                $author_dec = get_the_author_meta('description', $author->ID);
-
-                echo '<li class="author-item">';
-                echo '<div class="author-avatar">' . $author_avatar . '</div>';
-                echo '<div class="author-info">';
-                echo '<h4 class="author-name"><a href="' . esc_url($author_url) . '">' . $author_name . '</a></h4>';
-                echo '<p class="post-count">' . esc_html__('Posts made: ', 'sportshub'). sprintf(_n('%d post', '%d posts', $post_count, 'sportshub'), $post_count) . '</p>';
-                echo '<p class="author-dec">' .wp_trim_words($author_dec,9) .'</p>';
-                echo '</div>'; 
-                echo '</li>';
+    
+                // Only show the author if they have posts
+                if ($post_count > 0) {
+                    $author_avatar = get_avatar($author->user_email, 150);   
+                    $author_name = $author->display_name;
+                    $author_url = get_author_posts_url($author->ID);
+                    $author_dec = get_the_author_meta('description', $author->ID);
+    
+                    echo '<li class="author-item">';
+                    echo '<div class="author-avatar">' . $author_avatar . '</div>';
+                    echo '<div class="author-info">';
+                    echo '<a href="'.esc_url($author_url).'"><h4 class="author-name">'.esc_html($author_name).'</h4></a>';
+                    echo '<p class="post-count">' . esc_html__('Posts made: ', 'sportshub'). sprintf(_n('%d post', '%d posts', $post_count, 'sportshub'), $post_count) . '</p>';
+                    echo '</div>'; 
+                    echo '</li>';
+                }
             }
             echo '</ul>';
         }
-
+    
         echo $args['after_widget'];
     }
 

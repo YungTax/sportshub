@@ -8,26 +8,27 @@
                <div class="col-md-12"> <!-- Full-width column -->
                   <div class="author_info author_info_page"> <!-- Author info section -->
                      <div class="author_avatar">
-                        <?php echo get_avatar(get_the_author_meta('user_email'), 300); // Display author's avatar with size 300px ?>
+                        <?php echo get_avatar(get_the_author_meta('user_email'), 500); // Display author's avatar with size 1000px ?>
                      </div>
                      <div class="author_description">
-                        <h3 class="author_title"><?php the_author_meta('display_name'); // Display author's display name ?></h3>
-                        <div class="author_bio">
-                           <p><?php echo get_the_author_meta('description'); // Display author's description ?></p>
-                           <p class="author_post_count">
-                              <?php echo esc_html_e('Posts made: ', 'sportshub') . count_user_posts(get_the_author_meta('ID')); // Display count of posts made by the author ?>
-                           </p>
-                        </div>
+                        <h2 class="author_title"><?php the_author_meta('display_name'); // Display author's display name ?></h2>
                         <div class="themelazer-author-social-links"> <!-- Author social links section -->   
                            <div class="themelazer-social-links-items">
                               <div class="themelazer-social-links-item">
                                  <?php 
                                  if (function_exists('sportshub_author_contact_icons')) { 
+                                    echo esc_html_e('Follow: ', 'sportshub');
                                     sportshub_author_contact_icons(get_the_ID()); // Display author's social contact icons if the function exists
                                  } 
                                  ?>
                               </div>
                            </div>
+                        </div>
+                        <div class="author_bio">
+                           <p><?php echo get_the_author_meta('description'); // Display author's description ?></p>
+                           <p class="author_post_count">
+                              <?php echo esc_html_e('Posts made: ', 'sportshub') . count_user_posts(get_the_author_meta('ID')); // Display count of posts made by the author ?>
+                           </p>
                         </div>
                      </div>
                   </div>
@@ -41,7 +42,7 @@
                $sportshub_qry = sportshub_get_qry(); // Custom query to get posts
                if ($sportshub_qry->have_posts()) :
                   while ($sportshub_qry->have_posts()) : $sportshub_qry->the_post();
-                        get_template_part('inc/post-layout/content', 'list'); // Include the post layout template part
+                        get_template_part('inc/post-layout/content-author', 'list'); // Include the post layout template part
                   endwhile;
                else :
                   echo '<div>No results found.</div>';
@@ -54,8 +55,8 @@
          </div>
          <div class="col-md-4 themelazer_sidebar themelazer_sticky"> <!-- Sidebar area taking up 4 out of 12 columns on medium and larger screens -->
             <?php 
-            if (is_active_sidebar('general-sidebar')) : 
-               dynamic_sidebar('general-sidebar'); // Display the 'general-sidebar' if active
+            if (is_active_sidebar('authors-sidebar')) : 
+               dynamic_sidebar('authors-sidebar'); // Display the 'general-sidebar' if active
             endif; 
             ?>
          </div>
