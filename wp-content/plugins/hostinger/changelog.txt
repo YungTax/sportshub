@@ -236,3 +236,18 @@ Fixed
 
 3.0.7 (2024-07-31)
 - Added plugin split notice to plugin UI
+
+3.0.8 (2024-08-27)
+- Updated recommended PHP version
+
+3.0.9 (2024-08-04)
+- Added conditional check for maintenance class CLI
+
+3.0.10 (2024-09-11)
+- Update packages
+
+3.0.11 (2024-09-13)
+- Fix logo visibility
+
+3.0.12 (2024-10-01)
+- Fix maintenance mode cache issue
