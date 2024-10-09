@@ -7,7 +7,7 @@
 <div class="themelazer-blog-body single_section_content themelazer-content-area">
    <div class="container" id="wrapper_masonry">
       <div class="row">
-         <div class="col-md-8 themelazer_content">
+         <div class="col-12 col-md-12 col-sm-12 col-lg-8 themelazer_content">
             <?php if (have_posts()) : while (have_posts()) : the_post();
                echo '<div class="themelazer_title_p">';
                   echo '<h2>';
@@ -35,7 +35,7 @@
          </div>
          <!-- End content -->
          <!-- Start sidebar -->
-         <div class="col-xl-4 col-lg-4 col-md-4 themelazer_sidebar themelazer_sticky">
+         <div class="col-12 col-md-12 col-sm-12 col-lg-4 themelazer_sidebar themelazer_sticky">
             <?php if (is_active_sidebar('general-sidebar')) : dynamic_sidebar('general-sidebar');endif; ?>
          </div>
          <!-- End sidebar -->

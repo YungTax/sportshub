@@ -258,6 +258,16 @@ class sportshub_list_post extends Widget_Base {
         $this->add_control(
             'show_author',
             [
+                'label' => esc_html__('Show Author Profile', 'sportshub'),
+                'type' =>Controls_Manager::SWITCHER,
+                'label_on' => esc_html__('yes', 'sportshub'),
+                'label_off' => esc_html__('no', 'sportshub'),
+                'default' => 'yes',
+            ]
+        );
+        $this->add_control(
+            'show_author_name',
+            [
                 'label' => esc_html__('Show Author', 'sportshub'),
                 'type' =>Controls_Manager::SWITCHER,
                 'label_on' => esc_html__('yes', 'sportshub'),
@@ -279,6 +289,16 @@ class sportshub_list_post extends Widget_Base {
             'show_postview',
             [
                 'label' => esc_html__('Show Post Views', 'sportshub'),
+                'type' =>Controls_Manager::SWITCHER,
+                'label_on' => esc_html__('yes', 'sportshub'),
+                'label_off' => esc_html__('no', 'sportshub'),
+                'default' => 'yes',
+            ]
+        );
+        $this->add_control(
+            'show_timeread',
+            [
+                'label' => esc_html__('Show Time Read', 'sportshub'),
                 'type' =>Controls_Manager::SWITCHER,
                 'label_on' => esc_html__('yes', 'sportshub'),
                 'label_off' => esc_html__('no', 'sportshub'),
@@ -818,12 +838,14 @@ class sportshub_list_post extends Widget_Base {
         $section_title_html_tag = $settings['section_title_html_tag'];
         $post_list_layout = $settings['post_list_layout'];
         $show_thumbnail =$settings['show_thumbnail'];
-        $thumbnail_size = $settings['thumbnail_size'];
+        $thumbnail_size = $settings['thumbnail_size'];  
         $show_cat = $settings['show_cat'];
         $show_meta = $settings['show_meta'];
         $show_author = $settings['show_author'];
+        $show_author_name = $settings['show_author_name'];
         $show_date = $settings['show_date'];
         $show_postview = $settings['show_postview'];
+        $show_timeread = $settings['show_timeread'];
         $show_contents =$settings['show_contents'];
         $section_title    = $settings['section_title'];
         $section_sub_title = $settings['section_sub_title'];
@@ -1009,18 +1031,6 @@ class sportshub_list_post extends Widget_Base {
                             <?php endif; ?>
                             <div class="post-inner">
                                 <div class="entry-header"<?php echo 'style="text-align:'.$blog_text_align.';'.'">'?>
-                                    <!-- <?php if(get_theme_mod('disable_post_category') !=1 && $show_cat=='yes'){
-                                        $categories = get_the_category(get_the_ID());          
-                                        if ($categories) { 
-                                                echo '<div class="themelazer_post_categories">';
-                                                foreach( $categories as $tag) {
-                                                    echo '<a '.$tag->name.'" href="'.esc_url(get_category_link($tag->term_id)).'">'.$tag->name.'</a>';
-                                                }
-                                                echo "</div>";
-                                    
-                                            }
-                                        }
-                                    ?> -->
                                     <?php if(get_theme_mod('disable_post_category') !=1 && $show_cat=='yes'){
                                             $categories = get_the_category(get_the_ID());          
                                             if ($categories) {
@@ -1035,21 +1045,29 @@ class sportshub_list_post extends Widget_Base {
                                     }?>
                                     <?php echo '<'.$post_title_html_tag.' class="entry-title">'.'<a href="'.esc_url(get_the_permalink()).'" tabindex="-1">'.esc_attr(get_the_title()).'</a>'.'</'.$post_title_html_tag.'>' ?>
                                     <?php if($show_meta =='yes'){
-                                        echo'<div class="meta-info"> <ul>';
-                                            if( get_theme_mod('disable_post_author') !=1 && $show_author =='yes'){ 
+                                            echo'<div class="meta-info"> <ul>';
+                                                if( get_theme_mod('disable_post_author') !=1 && $show_author =='yes'){ 
                                                     echo '<li class="post-author">';
-                                                    echo esc_html_e('by ','sportshub').the_author_posts_link().'</li>';
-                                            } 
-                                            if(get_theme_mod('disable_post_date') !=1 && $show_date =='yes'){ 
-                                                echo '<li class="post-date">'.get_the_date().'</li>';
-                                            }
-                                            if(get_theme_mod('disable_post_view') !=1 && $show_postview =='yes'){
-                                                echo '<li class="post-view">';                
-                                                echo sportshub_get_PostViews(get_the_ID()).' ';
-                                                esc_html_e('Views', 'sportshub');                
-                                                echo '</li>';
-                                            }
-                                        echo'</ul></div>'; 
+                                                    echo get_avatar(get_the_author_meta('ID'), 30);
+                                                    if( $show_author_name == 'yes' ){
+                                                        echo the_author_posts_link();
+                                                        
+                                                    }    
+                                                    echo '</li>';
+                                                } 
+                                                if(get_theme_mod('disable_post_date') !=1 && $show_date =='yes'){ 
+                                                    echo '<li class="post-date">'.get_the_date().'</li>';
+                                                }
+                                                if(get_theme_mod('disable_post_view') !=1 && $show_postview =='yes'){
+                                                    echo '<li class="post-view">';                
+                                                    echo sportshub_get_PostViews(get_the_ID()).' ';
+                                                    esc_html_e('Views', 'sportshub');                
+                                                    
+                                                }
+                                                if( get_theme_mod('disable_time_read') !=1 && $show_timeread == 'yes'){
+                                                    echo '<li class="post-read">'.sportshub_reading_time_calculation('content').' minutes read'.'</li>';
+                                                }
+                                            echo'</ul></div>'; 
                                     }?>
                                     <p><?php if($show_contents=='yes'){ echo wp_trim_words( get_the_content(), $count_words, '...' );}?> </p>
                                 </div>
@@ -1066,18 +1084,6 @@ class sportshub_list_post extends Widget_Base {
                             </div>
                             <div class="post-inner">
                                 <div class="entry-header"<?php echo 'style="text-align:'.$blog_text_align.';'.'">'?>
-                                    <!-- <?php if(get_theme_mod('disable_post_category') !=1 && $show_cat=='yes'){
-                                        $categories = get_the_category(get_the_ID());          
-                                        if ($categories) { 
-                                                echo '<div class="themelazer_post_categories">';
-                                                foreach( $categories as $tag) {
-                                                    echo '<a '.$tag->name.'" href="'.esc_url(get_category_link($tag->term_id)).'">'.$tag->name.'</a>';
-                                                }
-                                                echo "</div>";
-                                    
-                                            }
-                                        }
-                                    ?> -->
                                     <?php if(get_theme_mod('disable_post_category') !=1){
                                             $categories = get_the_category(get_the_ID());          
                                             if ($categories) {
@@ -1092,21 +1098,83 @@ class sportshub_list_post extends Widget_Base {
                                     }?>
                                     <?php echo '<'.$post_title_html_tag.' class="entry-title">'.'<a href="'.esc_url(get_the_permalink()).'" tabindex="-1">'.esc_attr(get_the_title()).'</a>'.'</'.$post_title_html_tag.'>' ?>
                                     <?php if($show_meta =='yes'){
-                                        echo'<div class="meta-info"> <ul>';
-                                            if( get_theme_mod('disable_post_author') !=1 && $show_author =='yes'){ 
-                                                    echo '<li class="post-author">';
-                                                    echo esc_html_e('by ','sportshub').the_author_posts_link().'</li>';
-                                            } 
-                                            if(get_theme_mod('disable_post_date') !=1 && $show_date =='yes'){ 
-                                                echo '<li class="post-date">'.get_the_date().'</li>';
-                                            }
-                                            if(get_theme_mod('disable_post_view') !=1 && $show_postview =='yes'){
-                                                echo '<li class="post-view">';                
-                                                echo sportshub_get_PostViews(get_the_ID()).' ';
-                                                esc_html_e('Views', 'sportshub');                
+                                            echo'<div class="meta-info"> <ul>';
+                                                echo '<li class="post-author">';
+                                                    if( get_theme_mod('disable_post_author') !=1 && $show_author =='yes'){ 
+                                                        echo get_avatar(get_the_author_meta('ID'), 30);
+                                                    } 
+                                                    if( $show_author_name == 'yes' ){
+                                                        echo the_author_posts_link();
+                                                    }    
                                                 echo '</li>';
+                                                if(get_theme_mod('disable_post_date') !=1 && $show_date =='yes'){ 
+                                                    echo '<li class="post-date">'.get_the_date().'</li>';
+                                                }
+                                                if(get_theme_mod('disable_post_view') !=1 && $show_postview =='yes'){
+                                                    echo '<li class="post-view">';                
+                                                    echo sportshub_get_PostViews(get_the_ID()).' ';
+                                                    esc_html_e('Views', 'sportshub');                
+                                                    echo '</li>';
+                                                }
+                                                if( get_theme_mod('disable_time_read') !=1 && $show_timeread == 'yes'){
+                                                    echo '<li class="post-read">'.sportshub_reading_time_calculation('content').' minutes read'.'</li>';
+                                                }
+                                            echo'</ul></div>'; 
+                                    }?>
+                                    <p><?php if($show_contents=='yes'){ echo wp_trim_words( get_the_content(), $count_words, '...' );}?> </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <?php }elseif($post_list_layout == 'list_layout3'){?>           
+                    <div class="themelazer_article_list themelazer_article_list_lv">
+                        <div class="post-outer">
+                            <?php if ($show_thumbnail == 'yes') : ?>
+                                <div class="post-inner">
+                                    <div class="post-thumbnail">
+                                        <a href="<?php the_permalink(); ?>"></a><?php if( has_post_thumbnail()) {the_post_thumbnail($thumbnail_size);} ?>
+                                    </div>
+                                </div>    
+                            <?php endif; ?>
+                            <div class="post-inner">
+                                <div class="entry-header"<?php echo 'style="text-align:'.$blog_text_align.';'.'">'?>
+                                    <?php if(get_theme_mod('disable_post_category') !=1 && $show_cat=='yes'){
+                                            $categories = get_the_category(get_the_ID());          
+                                            if ($categories) {
+                                                echo '<div class="themelazer_post_categories">';
+                                                    foreach( $categories as $tag) {
+                                                        $tag_link = get_category_link($tag->term_id);
+                                                        $title_bg_Color = get_term_meta($tag->term_id, "category_color_options", true);
+                                                            echo '<a class="post-category-color-text" itemprop="articleSection" style="background:'.$title_bg_Color.'" href="'.esc_url($tag_link).'">'.$tag->name.'</a>';
+                                                    }
+                                                echo "</div>";
                                             }
-                                        echo'</ul></div>'; 
+                                    }?>
+                                    <?php echo '<'.$post_title_html_tag.' class="entry-title">'.'<a href="'.esc_url(get_the_permalink()).'" tabindex="-1">'.esc_attr(get_the_title()).'</a>'.'</'.$post_title_html_tag.'>' ?>
+                                    <?php if($show_meta =='yes'){
+                                            echo'<div class="meta-info"> <ul>';
+                                                    if( get_theme_mod('disable_post_author') !=1 && $show_author =='yes'){ 
+                                                        echo '<li class="post-author">';
+                                                        echo get_avatar(get_the_author_meta('ID'), 30);
+                                                    } 
+                                                    if( $show_author_name == 'yes' ){
+                                                        echo the_author_posts_link();
+                                                        echo '</li>';
+                                                    }    
+                                              
+                                                if(get_theme_mod('disable_post_date') !=1 && $show_date =='yes'){ 
+                                                    echo '<li class="post-date">'.get_the_date().'</li>';
+                                                }
+                                                if(get_theme_mod('disable_post_view') !=1 && $show_postview =='yes'){
+                                                    echo '<li class="post-view">';                
+                                                    echo sportshub_get_PostViews(get_the_ID()).' ';
+                                                    esc_html_e('Views', 'sportshub');                
+                                                    echo '</li>';
+                                                }
+                                                if( get_theme_mod('disable_time_read') !=1 && $show_timeread == 'yes'){
+                                                    echo '<li class="post-read">'.sportshub_reading_time_calculation('content').' minutes read'.'</li>';
+                                                }
+                                            echo'</ul></div>'; 
                                     }?>
                                     <p><?php if($show_contents=='yes'){ echo wp_trim_words( get_the_content(), $count_words, '...' );}?> </p>
                                 </div>

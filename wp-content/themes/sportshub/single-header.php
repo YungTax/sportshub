@@ -1,3 +1,4 @@
+<!-- Scroll indicator element -->
 <div class="single_header_wrapper">
    <?php if (get_theme_mod('disable_post_category') != 1) :
          $categories = get_the_category(get_the_ID());

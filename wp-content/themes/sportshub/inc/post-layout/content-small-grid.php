@@ -1,4 +1,4 @@
-<div <?php post_class( 'col-md-3');?>>
+<div <?php post_class( 'col-md-4');?>>
      <div class=" blog-style-one blog-small-grid">
          <div class="single-blog-style-one">
             <div class="img-box <?php if ( has_post_thumbnail()){echo 'ghave_img';}else{echo 'gnone_img';}?>">

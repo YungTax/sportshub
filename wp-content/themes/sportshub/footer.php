@@ -1,12 +1,8 @@
 <!-- Start footer -->
 <?php if (is_active_sidebar('instagram-sidebar')) : ?>
-   <div class="container">
-      <div class="row">
-         <div class="footer_insta">
-                     <?php  if (is_active_sidebar('instagram-sidebar')) : dynamic_sidebar('instagram-sidebar'); endif; ?> 
-         </div>
+      <div class="footer_insta">
+                  <?php  if (is_active_sidebar('instagram-sidebar')) : dynamic_sidebar('instagram-sidebar'); endif; ?> 
       </div>
-   </div>      
 <?php endif; ?>
 <div class="clearfix"></div>
 <div class="theme_lazerfooter_widget_area <?php if (is_active_sidebar('footer1-sidebar') || is_active_sidebar('footer2-sidebar') || is_active_sidebar('footer3-sidebar') || is_active_sidebar('footer4-sidebar')) {echo ' theme_lazerfooter_active';}else{echo ' theme_lazerfooter_noactive';}?>">
@@ -37,16 +33,16 @@
                   </div>
                   <!-- column 4 -->
                   <?php }elseif(get_theme_mod('footer_columns') == 'footer4col' ){?>
-                  <div class="col-md-3">
+                  <div class="col-12 col-md-6  col-sm-12 col-lg-3">
                      <?php if (is_active_sidebar('footer1-sidebar')) : dynamic_sidebar('footer1-sidebar'); endif; ?>
                   </div>
-                  <div class="col-md-3">
+                  <div class="col-12 col-md-6 col-sm-12 col-lg-3">
                      <?php if (is_active_sidebar('footer2-sidebar')) : dynamic_sidebar('footer2-sidebar'); endif; ?>
                   </div>
-                  <div class="col-md-3">
+                  <div class="col-12 col-md-6 col-sm-12 col-lg-3">
                      <?php if (is_active_sidebar('footer3-sidebar')) : dynamic_sidebar('footer3-sidebar'); endif; ?>
                   </div>
-                  <div class="col-md-3">
+                  <div class="col-12 col-md-6 col-sm-12 col-lg-3">
                      <?php if (is_active_sidebar('footer4-sidebar')) : dynamic_sidebar('footer4-sidebar'); endif; ?>
                   </div>
                   <?php }elseif(get_theme_mod('footer_columns') == 'footer4cola' ){?>
@@ -250,7 +246,7 @@
                         <?php if (!empty($logo)): ?>
                         <img src="<?php echo esc_url($logo); ?>" alt="<?php bloginfo('description'); ?>" />
                         <?php else: ?>
-                        <img src="<?php echo esc_url(get_template_directory_uri().'/img/sportshub.png'); ?>" alt="<?php bloginfo('description'); ?>" />
+                        <img src="<?php echo esc_url(get_template_directory_uri().'/img/sportshub-black.png'); ?>" alt="<?php bloginfo('description'); ?>" />
                         <?php endif; ?></a>
                </div>
             </div>
@@ -261,7 +257,7 @@
                         <?php if (!empty($logo)): ?>
                         <img src="<?php echo esc_url($logo); ?>" alt="<?php bloginfo('description'); ?>" />
                         <?php else: ?>
-                        <img src="<?php echo esc_url(get_template_directory_uri().'/img/logo.png'); ?>" alt="<?php bloginfo('description'); ?>" />
+                        <img src="<?php echo esc_url(get_template_directory_uri().'/img/sportshub-whtie.png'); ?>" alt="<?php bloginfo('description'); ?>" />
                         <?php endif; ?></a>
                </div>
             </div>
@@ -278,6 +274,121 @@
             <?php }}?>
          </div>
          <div class="themelazer_mobile_menu"></div>
+         <div class="container p-4">
+            <!-- <div class="single-sidebar ">
+            <div class="title">
+               <h3><?php echo esc_html('Top 3 Most Popular'); ?></h3>
+            </div>
+            </div> 
+            <div class="recent-post-wrapper">
+         
+               <?php
+               $args = array(
+                  'posts_per_page' => 3,
+                  'post_status'    => 'publish',
+                  'orderby'        => 'comment_count',  // Order by number of comments (popularity)
+                  'order'          => 'DESC'  // Show most popular first
+               );
+               $i=0;
+               $query = new WP_Query($args);
+               while($query->have_posts()){ 
+                  $i++;	
+                  $query->the_post();
+                  $post_id = get_the_ID(); 
+                  $categories = get_the_category(get_the_ID());          
+                     if ($categories) {
+                           foreach( $categories as $tag) {
+                              $tag_link = get_category_link($tag->term_id);
+                              $title_bg_Color = get_term_meta($tag->term_id, "category_color_options", true);
+                           }
+                     }?>
+                     <div class="themelazer_article_list">
+                           <div class="post-outer">
+                              <?php if ( has_post_thumbnail()) {?>
+                                 <div class="post-inner">
+                                    <div class="post-thumbnail sidebar"> 
+                                    <?php the_post_thumbnail('sportshub_small_recent_feature'); ?>
+                                    <span class="themelazer_site_count" style="color:<?= $title_bg_Color; ?> !important;">
+                                       <?= $i; ?>
+                                    </span>
+                                       <a href="<?php the_permalink(); ?>"></a>
+                                    </div>
+                                 </div>
+                              <?php }?>
+                              <div class="post-inner">
+                                 <div class="entry-header">
+                                       <h2 class="entry-title"> 
+                                          <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title()?></a>
+                                       </h2>
+                                       <?php sportshub_post_meta_w(get_the_ID());?>
+                                 </div>
+                              </div>
+                           </div>
+                     </div>
+                  <?php }
+               wp_reset_postdata();
+               ?>
+            </div>
+            <div class="wrapper_category_image">
+               <div class="single-sidebar ">
+                  <div class="title">
+                     <h3><?php echo esc_html('All Categories'); ?></h3>
+                  </div>
+               <?php
+                  $cat_id = isset($instance['cat_id']) ? $instance['cat_id']: "";
+                  if($cat_id){$cat_id = explode(",",$cat_id);}else{$cat_id = "";}
+                  $args = array(
+                  'orderby'       => 'include', 
+                  'order'         => 'ASC',
+                  'hide_empty'    => false,
+                  'fields'        => 'all',
+                  'pad_counts'    => false, 
+                  'include'       => $cat_id,
+                  'exclude'       => array(1)
+                  );
+                  $categories = get_terms('category', $args);
+                  if ($categories) {
+                  echo '<div class="category_image_wrapper_main">';
+                  foreach( $categories as $tag) {
+                     $tag_link = get_category_link($tag->term_id);
+                     $tag_dec =  category_description($tag->term_id);
+                     $title_bg_Color = get_term_meta($tag->term_id, "category_color_options", true);
+                     $category_image_main = get_term_meta($tag->term_id, "sportshub_cat_header_image_id", true);
+                     
+                     $category_image = '';
+                     $lazer_header_id = absint( get_term_meta( $tag->term_id, 'lazer_header_id', true ) );
+                     if ($lazer_header_id){
+                     $category_image = wp_get_attachment_image_src( $lazer_header_id , 'sportshub_slider_grid_small' );
+                     echo '<div class="category_image_bg_image" style="background-image: url('.$category_image[0].');">';
+                     }else{
+                     echo '<div class="category_image_bg_image">';
+                     }
+                  echo '<a class="category_image_link" id="category_color_'.$tag->term_id.'" href="'.esc_url($tag_link).'"><span class="themelazer_cm_overlay"><span class="themelazer_cm_name">'.$tag->name.'</span><span class="sportshub_tag_dec">'.$tag_dec.'</span><span class="themelazer_cm_count" style="background:'.$title_bg_Color.' !important;">'.$tag->count.'</span></span></a>';
+                  echo '<div class="category_image_bg_overlay" style="background: '.$title_bg_Color.';"></div>';
+                  echo '</div>';
+                  }
+                  echo "</div>";
+                  }
+               ?>
+               <?php
+                  echo '<span class="themelazer_none_space"></span>';
+                  echo "</div>";
+               ?> -->
+
+         <?php 
+            if (is_active_sidebar('moobile-sidebar')) : 
+               dynamic_sidebar('moobile-sidebar');
+            endif; 
+         ?>      
+         </div>   
+         <div class="container">
+           
+            <div class="copyright-area">   
+               <div class="copyright-area-inner-sidebar">
+                  <?php echo esc_html(get_theme_mod('themelazer_copyright', __('© Copyright 2024 Themelazer. All Rights Reserved', 'sportshub'))); ?>
+               </div>
+            </div>   
+         </div>   
       </div>
    </aside>
 <div class="body-overlay"></div>

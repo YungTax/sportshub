@@ -4,7 +4,6 @@
             <div class="post-thumbnail">
                 <!-- <a href="<?php the_permalink(); ?>"></a><?php if( has_post_thumbnail()) {the_post_thumbnail();} ?> -->
                 <?php
-                // Check for the video_url custom field
                 $video_post_link = get_post_meta(get_the_ID(), 'video_post_link', true);
                 if ($video_post_link) :
                     // Extract the YouTube video ID
@@ -12,7 +11,6 @@
                     if ($matches) :
                         $video_id = $matches[1];
                 ?>
-                    <!-- Embed the YouTube video with autoplay and mute -->
                     <div class="featured-video">
                         <iframe width="560" height="315" 
                                 src="https://www.youtube.com/embed/<?php echo esc_attr($video_id); ?>?autoplay=1&mute=1&modestbranding=1&rel=0&controls=1&showinfo=0" 
@@ -22,7 +20,6 @@
                         </iframe>
                     </div>
                 <?php else : ?>
-                    <!-- Display the regular featured image if no video URL is found -->
                     <?php if ( has_post_thumbnail() ) : ?>
                         <div class="featured-image">
                             <?php the_post_thumbnail('sportshub_list'); ?>
@@ -30,7 +27,6 @@
                     <?php endif; ?>
                 <?php endif; ?>
                 <?php else : ?>
-                    <!-- Display the regular featured image if no video URL is found -->
                     <?php if ( has_post_thumbnail() ) : ?>
                         <div class="featured-image">
                             <?php the_post_thumbnail('sportshub_list'); ?>

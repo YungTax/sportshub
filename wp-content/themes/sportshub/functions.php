@@ -139,6 +139,10 @@ function sportshub_sidebar_register() {
             'id' => 'general-sidebar',
         ),
         array(
+            'name' => esc_html__('Mobile Sidebar', 'sportshub'),
+            'id' => 'moobile-sidebar',
+        ),
+        array(
             'name' => esc_html__('Authors Sidebar', 'sportshub'),
             'id' => 'authors-sidebar',
         ),
@@ -439,6 +443,11 @@ function sportshub_post_meta_s($post_id) {
     esc_html_e('Views', 'sportshub');                
     echo '</li>';
     }
+    echo'</ul></div>'; 
+}
+function sportshub_post_meta_w($post_id) {
+    echo'<div class="meta-info"> <ul>';   
+    if(get_theme_mod('disable_post_date') !=1){ echo '<li class="post-date">'.get_the_date().'</li>';}
     echo'</ul></div>'; 
 }
 function sportshub_post_meta_next_post($post_id) {

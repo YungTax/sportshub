@@ -5,12 +5,16 @@
             <div class="col-md-8 themelazer_content">
                <?php echo sportshub_breadcrumb();?>
                <div class="row">
-                  <div class="col-md-12">
-                     <div class="themelazer_title_p">
-                        <h2><?php single_tag_title('', true);?></h2>
-                        <p><?php echo tag_description();?></p>
-                     </div>
+               <div class="col-md-12">
+                  <div class="themelazer_title_p">
+                     <?php
+                        $current_tag = get_queried_object();
+                     ?>
+                     <h2><?php single_tag_title('', true); echo " ($current_tag->count " . _n('post', 'posts', $current_tag->count, 'sportshub') . ")"; ?></h2>
+                     <p><?php echo tag_description(); ?></p>
+                     
                   </div>
+               </div>
                </div>
                <div id="post-wrapper"> 
                <?php

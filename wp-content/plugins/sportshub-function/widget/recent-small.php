@@ -78,7 +78,7 @@ class sportshub_recent_post_widget extends WP_Widget {
                         <h2 class="entry-title"> 
                             <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"> <?php the_title()?></a>
                         </h2>
-                           <?php sportshub_post_meta_s(get_the_ID());?>
+                           <?php sportshub_post_meta_w(get_the_ID());?>
                     </div>
                 </div>
             </div>
