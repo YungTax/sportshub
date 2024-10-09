@@ -17,7 +17,7 @@
     $sportshub_category_font_size = get_theme_mod('sportshub_category_font_size', '12px');
     $sportshub_category_font_weight = get_theme_mod('sportshub_category_font_weight', '600');
     //Title
-    $sportshub_title_font_family = get_theme_mod('sportshub_title_font_family', 'Playfair Display ');
+    $sportshub_title_font_family = get_theme_mod('sportshub_title_font_family', 'Barlow semi condensed, sans-serif');
     $sportshub_title_font_weight = get_theme_mod('sportshub_title_font_weight', '600');
     $sportshub_title_transform = get_theme_mod('sportshub_title_transform', 'capitalize');    
     // Letter Spacing
@@ -109,7 +109,7 @@ body, p {
 
 /* Meta Info Styles */
 .meta-info ul li {
-    font-family: <?php echo esc_attr($sportshub_p_font_family); ?> !important;
+    font-family: <?php echo esc_attr($sportshub_p_font_family); ?>, sans-serif !important;
     <?php if($sportshub_title_transform) { echo 'text-transform:'.$sportshub_title_transform.' !important;'; } ?>
 }
 
@@ -152,12 +152,26 @@ body, p {
 .themelazer-navigation .menu > li li a{<?php echo 'letter-spacing: '.$letter_spacing_sub_menu.' !important;';?> <?php echo 'text-transform: '.esc_attr($sportshub_sub_menu_transform).' !important;';?> <?php echo 'font-size:'.esc_attr($sportshub_sub_menu_font_size).' !important;';?> <?php echo 'font-weight:'.esc_attr($sportshub_sub_menu_font_weight).' !important;';?>}
 
 <?php // body font?>
-.themelazer_footer_social_media .themelazer_social_wrapper li a:hover{
-    color:<?php echo esc_attr($color);?> !important;
-}
 .blog-tags a:hover{color:<?php echo esc_attr($color);?> !important;}
 .themelazer_post_categories a{font-family:<?php echo esc_attr($sportshub_category_font_family);?> !important; font-size:<?php echo esc_attr($sportshub_category_font_size);?> !important; font-weight:<?php echo esc_attr($sportshub_category_font_weight);?> !important;}
+.themelazer_article_list .post-outer .post-inner .entry-header h3 a{ background-image: linear-gradient(to right, <?php echo esc_attr($color);?> 0%, #EAEAEA 100%) !important;}
+.themelazer_next_prev_post_wrapper .title a{ background-image: linear-gradient(to right, <?php echo esc_attr($color);?> 0%, #EAEAEA 100%) !important;}
+.themelazer_article_list .post-outer .post-inner .entry-header h3 a:hover{  color:<?php echo esc_attr($color);?> !important;}
+.themelazer_article_list .entry-title a:hover{color:<?php echo esc_attr($color);?> !important; }
 
+.themelazer_related_post .blog-small-grid .text-box h5 a{ background-image: linear-gradient(to right, <?php echo esc_attr($color);?> 0%, #EAEAEA 100%) !important;}
+.themelazer-pagination .page-numbers:hover{background:<?php echo esc_attr($color);?> !important;}
+.themelazer_related_post .blog-small-grid .text-box h5 a:hover{color:<?php echo esc_attr($color);?> !important; }
+#load-more{background-color:<?php echo esc_attr($color);?> !important;}
+.blog-style-one .single-blog-style-one .text-box h1 a:hover{color:<?php echo esc_attr($color);?> !important;}
+.blog-style-one .single-blog-style-one .text-box h2 a:hover{color:<?php echo esc_attr($color);?> !important;}
+.blog-style-one .single-blog-style-one .text-box h3 a:hover{color:<?php echo esc_attr($color);?> !important;}
+.blog-style-one .single-blog-style-one .text-box h4 a:hover{color:<?php echo esc_attr($color);?> !important;}
+.blog-style-one .single-blog-style-one .text-box h5 a:hover{color:<?php echo esc_attr($color);?> !important;}
+.blog-style-one .single-blog-style-one .text-box h6 a:hover{color:<?php echo esc_attr($color);?> !important;}
+
+.themelazer_footer_menu li a:after{background:<?php echo esc_attr($color);?> !important; }
+.theme_lazerfooter_widget_area .widget_nav_menu ul li a:after{background:<?php echo esc_attr($color);?> !important;}
 .themelazer_post_categories a{color:<?php echo esc_attr($color);?> !important;}
 .themelazer_article_list.themelazer_article_list_l h3.entry-title a{ background-image: linear-gradient(to right, <?php echo esc_attr($color);?> 0%, #EAEAEA 100%) !important;}
 
@@ -200,10 +214,6 @@ blockquote code, .wp-block-freeform.block-library-rich-text__tinymce code{color:
 	color: <?php echo esc_attr($color);?> !important;
 }
 .themelazer_next_prev_post_wrapper .title a:hover {color: <?php echo esc_attr($color);?> !important;}
-
-.themelazer_footer_menu li a:hover {
-	color: <?php echo esc_attr($color);?> !important;
-}
 <!-- Body -->
 body{
  background:<?php echo esc_attr($body_background_color);?> !important;

@@ -46,37 +46,22 @@ var sidemenuoption = $('.sidemenuoption');
 //        Search Header 
 ////////////////////////////////////////////////////////////////////////// 
 
-// $('a[href="#search_popup"]').on('click keyup', function(event) {
-//   event.preventDefault();
-//   var target = $("#search_popup");
+$('a[href="#search_popup"]').on('click keyup', function(event) {
+  event.preventDefault();
+  var target = $("#search_popup");
 
-//   $('#themelazer_search_wrapper').addClass('open');
-//   target.find('input').focus();
-//   $('#themelazer_search_wrapper > form > input[type="text"]').focus();
+  $('#themelazer_search_wrapper').addClass('open');
+  target.find('input').focus();
+  $('#themelazer_search_wrapper > form > input[type="text"]').focus();
    
-// });
+});
 
-// $('#themelazer_search_wrapper, #themelazer_search_wrapper i').on('click ', function(event) {
-//   if (event.target == this || event.target.className == 'ti-close' || event.keyCode == 27) {
-//     $(this).removeClass('open');
-//   }
-// });s
-  // Use event delegation for click and keyup events on 'a[href="#search_popup"]'
-  $(document).on('click keyup', 'a[href="#search_popup"]', function (event) {
-    event.preventDefault();
-    var target = $("#search_popup");
+$('#themelazer_search_wrapper, #themelazer_search_wrapper i').on('click ', function(event) {
+  if (event.target == this || event.target.className == 'ti-close' || event.keyCode == 27) {
+    $(this).removeClass('open');
+  }
+});
 
-    $('#themelazer_search_wrapper').addClass('open');
-    target.find('input').focus();
-  });
-
-  // Use event delegation for click events on '#themelazer_search_wrapper' and '#themelazer_search_wrapper i'
-  $(document).on('click', '#themelazer_search_wrapper, #themelazer_search_wrapper i', function (event) {
-    var $this = $(this);
-    if ($this.is('#themelazer_search_wrapper') || $this.hasClass('ti-close') || event.keyCode == 27) {
-      $this.removeClass('open');
-    }
-  });
 
  
 /////////////////////////////////////////////////////////////////////////
@@ -148,6 +133,7 @@ $('.justified-gallery-post').magnificPopup({
       popupCopyLink.removeClass('show');
     }, 2000);
   });
+
 //////////////////////////////////////////////////////////////////////////
 //        Sticky Sidebar
 ////////////////////////////////////////////////////////////////////////// 
@@ -177,7 +163,7 @@ if (jQuery('.themelazer_sticky').length) {
 // Define variables outside the scroll function to avoid repeated calculations
 var $window = $(window);
 var $document = $(document);
-var $target = $('.themelazer_single_post_content_wrapper');
+var $target = $(".themelazer-blog-body, .themelazer_single_post_content_wrapper ");
 var $goToTop = $('.themelazer_go_to_top');
 var $nextPrevPostWrapper = $('.themelazer_next_prev_post_wrapper');
 var $progressBarActive = $("#progress_bar_active");
@@ -201,7 +187,7 @@ function scrollFunction() {
         if (0 <= scrolled) {
             var scrolledPercentage = (scrolled / contentHeight) * 100;
             var color = (scrolledPercentage >= 82) ? "#FFFFFF" : "#000000";
-            $(".themelazer_go_to_top_body, .themelazer_go_to_text").css("color", color);
+            $(".themelazer_go_to_top_body, .themelazer_single_post_content_wrapper, .themelazer_go_to_text").css("color", color);
             if (scrolledPercentage >= 0 && scrolledPercentage <= 100) {
                 scrolledPercentage = (scrolledPercentage >= 90) ? 100 : scrolledPercentage;
                 $progressBarActive.css("width", scrolledPercentage + "%");

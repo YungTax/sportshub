@@ -1152,32 +1152,31 @@ class sportshub_grid_post extends Widget_Base {
                                             }?>
                                             <?php echo '<'.$post_title_html_tag.'>'.'<a href="'.esc_url(get_the_permalink()).'" title="'.esc_attr(get_the_title()).'" tabindex="-1">'.esc_attr(get_the_title()).'</a>'.'</'.$post_title_html_tag.'>' 
                                             ?>
-                                            <?php 
-                                                if($show_meta =='yes'){
-                                                    echo'<div class="meta-info"> <ul>';
+                                            <?php if($show_meta =='yes'){
+                                                echo'<div class="meta-info"> <ul>';
+                                                    if( get_theme_mod('disable_post_author') !=1 && $show_author =='yes'){ 
                                                         echo '<li class="post-author">';
-                                                            if( get_theme_mod('disable_post_author') !=1 && $show_author =='yes'){ 
-                                                                echo get_avatar(get_the_author_meta('ID'), 30);
-                                                            } 
-                                                            if( $show_author_name == 'yes' ){
-                                                                echo the_author_posts_link();
-                                                            }    
+                                                        echo get_avatar(get_the_author_meta('ID'), 30);
+                                                        if( $show_author_name == 'yes' ){
+                                                            echo the_author_posts_link();
+                                                            
+                                                        }    
                                                         echo '</li>';
-                                                        if(get_theme_mod('disable_post_date') !=1 && $show_date =='yes'){ 
-                                                            echo '<li class="post-date">'.get_the_date().'</li>';
-                                                        }
-                                                        if(get_theme_mod('disable_post_view') !=1 && $show_postview =='yes'){
-                                                            echo '<li class="post-view">';                
-                                                            echo sportshub_get_PostViews(get_the_ID()).' ';
-                                                            esc_html_e('Views', 'sportshub');                
-                                                            echo '</li>';
-                                                        }
-                                                        if( get_theme_mod('disable_time_read') !=1 && $show_timeread == 'yes'){
-                                                            echo '<li class="post-read">'.sportshub_reading_time_calculation('content').' minutes read'.'</li>';
-                                                        }
-                                                    echo'</ul></div>'; 
-                                                }
-                                            ?>
+                                                    } 
+                                                    if(get_theme_mod('disable_post_date') !=1 && $show_date =='yes'){ 
+                                                        echo '<li class="post-date">'.get_the_date().'</li>';
+                                                    }
+                                                    if(get_theme_mod('disable_post_view') !=1 && $show_postview =='yes'){
+                                                        echo '<li class="post-view">';                
+                                                        echo sportshub_get_PostViews(get_the_ID()).' ';
+                                                        esc_html_e('Views', 'sportshub');                
+                                                        
+                                                    }
+                                                    if( get_theme_mod('disable_time_read') !=1 && $show_timeread == 'yes'){
+                                                        echo '<li class="post-read">'.sportshub_reading_time_calculation('content').' minutes read'.'</li>';
+                                                    }
+                                                echo'</ul></div>'; 
+                                             }?>
 
                                             <p>
                                                 <?php if($show_contents=='yes'){ 

@@ -44,13 +44,6 @@
     <?php wp_head(); ?>
 </head>
    <body <?php body_class(); ?>>
-      <!-- Scroll indicator element -->
-      <div class="themelazer_scroll">
-         <p class="themelazer_scroll_body">
-            <span class="themelazer_scroll_text"><?php esc_html_e('SCROLL' , 'sportshub'); ?></span> 
-            <span class="themelazer_scroll_line"></span> 
-         </p>
-      </div>
       <!-- Main wrapper with conditional classes based on theme settings -->
       <div class="themelazer_main_wrapper 
             <?php 
@@ -62,7 +55,7 @@
             ?> 
             <?php 
             if(get_theme_mod('en_border_radius') == 1) {
-               echo 'themelazer_en_radius'; // Adds a class if border radius is enabled in theme settings
+               echo 'themelazer_en_radius'; 
             } 
             ?>
       ">

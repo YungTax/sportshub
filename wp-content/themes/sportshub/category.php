@@ -13,7 +13,7 @@ $categories = get_the_category(get_the_ID()); // Get the categories associated w
     <div class="container" id="wrapper_masonry"> <!-- Main container with an ID for potential JavaScript or CSS targeting -->
     
         <div class="row"> <!-- Bootstrap row for creating a grid layout -->
-            <div class="col-md-8"> <!-- Main content area taking up 8 out of 12 columns on medium and larger screens -->
+            <div class="col-12 col-md-12 col-sm-12 col-lg-8"> <!-- Main content area taking up 8 out of 12 columns on medium and larger screens -->
             <?php echo sportshub_breadcrumb();?>
             <section class="themelazer_page_category_wrapper">
                 <div class="themelazer_page_category">
@@ -49,7 +49,7 @@ $categories = get_the_category(get_the_ID()); // Get the categories associated w
            <button id="load-more" data-page="1" data-url="<?php echo admin_url('admin-ajax.php'); ?>" 
            data-category="<?php echo get_queried_object_id(); ?>"><?php echo esc_html_e('Load More ', 'sportshub');?></button>
             </div>
-            <div class="col-md-4 themelazer_sidebar themelazer_sticky"> <!-- Sidebar area taking up 4 out of 12 columns on medium and larger screens -->
+            <div class="col-12 col-md-12 col-sm-12 col-lg-4 themelazer_sidebar themelazer_sticky"> <!-- Sidebar area taking up 4 out of 12 columns on medium and larger screens -->
                 <?php 
                 if (is_active_sidebar('general-sidebar')) : 
                     dynamic_sidebar('general-sidebar'); // Display the 'general-sidebar' if active

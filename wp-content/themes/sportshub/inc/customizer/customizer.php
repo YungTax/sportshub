@@ -2675,6 +2675,22 @@ function sportshub_register_theme_customizer( $sportshub_customize ) {
 	        'type'      => 'checkbox'
 	    )
 	);
+    $sportshub_customize->add_setting(
+		'disable_post_marquee', 
+		array(
+			'default' => true, 
+			'transport' => 'refresh',
+	        'sanitize_callback' => 'sanitize_text_field',
+		)
+	);
+	$sportshub_customize->add_control(
+	    'disable_post_marquee',
+	    array(
+	        'section'   => 'sportshub_blog_single_setting',
+	        'label'     => esc_html__('Disable Post Marquee','sportshub'),
+	        'type'      => 'checkbox'
+	    )
+	);
 
 	// $sportshub_customize->add_setting(
 	// 	'disable_post_love', 

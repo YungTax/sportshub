@@ -39,16 +39,16 @@
                 <?php endif; ?>
             </div>                        
             <?php if(get_theme_mod('disable_post_category') !=1){
-                        $categories = get_the_category(get_the_ID());          
-                        if ($categories) {
-                           echo '<div class="themelazer_post_categories">';
-                           foreach( $categories as $tag) {
-                              $tag_link = get_category_link($tag->term_id);
-                              $title_bg_Color = get_term_meta($tag->term_id, "category_color_options", true);
-                                 echo '<a class="post-category-color-text" itemprop="articleSection" style="background:'.$title_bg_Color.'" href="'.esc_url($tag_link).'">'.$tag->name.'</a>';
-                           }
-                           echo "</div>";
-                        }
+                    $categories = get_the_category(get_the_ID());          
+                    if ($categories) {
+                    echo '<div class="themelazer_post_categories">';
+                    foreach( $categories as $tag) {
+                        $tag_link = get_category_link($tag->term_id);
+                        $title_bg_Color = get_term_meta($tag->term_id, "category_color_options", true);
+                            echo '<a class="post-category-color-text" itemprop="articleSection" style="background:'.$title_bg_Color.'" href="'.esc_url($tag_link).'">'.$tag->name.'</a>';
+                    }
+                    echo "</div>";
+                    }
             }?>
             <div class="text-box">
                <h3>

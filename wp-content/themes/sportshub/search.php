@@ -7,7 +7,7 @@ get_header(); ?>
 <div class="themelazer-blog-body">
     <div class="container" id="wrapper_masonry">
         <div class="row">
-            <div class="col-md-8 themelazer_content">
+            <div class="col-12 col-md-12 col-sm-12 col-lg-8 themelazer_content">
                 <?php echo sportshub_breadcrumb();?>
                 <div class="row">
                     <div class="col-md-12">
@@ -35,12 +35,10 @@ get_header(); ?>
 
                     // Check if there are posts
                     if ($sportshub_qry->have_posts()) {
-                        // Loop through the posts
                         while ($sportshub_qry->have_posts()) {
                             $sportshub_qry->the_post();
                             $sportshub_post_id = $post->ID;
-                            // Include the post layout template
-                            get_template_part('inc/post-layout/content', 'grid');
+                            get_template_part('inc/post-layout/content', 'list');
                         }
                     } else {
                         // Display a message if no results found
@@ -54,13 +52,11 @@ get_header(); ?>
                 <?php
                 // Display pagination
                 sportshub_pagination($sportshub_qry); 
-                // Reset post data
                 wp_reset_postdata();
                 ?>
             </div>
-            <div class="col-md-4 themelazer_sidebar themelazer_sticky">
+            <div class="col-12 col-md-12 col-sm-12 col-lg-4 themelazer_sidebar themelazer_sticky">
                 <?php
-                // Display the general sidebar
                 if (is_active_sidebar('general-sidebar')) :
                     dynamic_sidebar('general-sidebar');
                 endif; ?>

@@ -131,7 +131,7 @@ class sportshub_feature_list_z extends Widget_Base {
                         ],
                     ],
                     'default' => [
-                        'size' => 6,
+                        'size' => 4,
                     ],   
             ]
         );

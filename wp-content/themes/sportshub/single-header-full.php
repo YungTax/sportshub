@@ -5,7 +5,7 @@
     $feature_img_main = get_post_thumbnail_id();
 
     // Get the URL of the featured image in the 'sportshub_large_slider_image' size
-    $feature_img_main_bg = wp_get_attachment_image_src($feature_img_main, 'sportshub_large_slider_image', true);
+    $feature_img_main_bg = wp_get_attachment_image_src($feature_img_main, 'sportshub_slider_grid_large', true);
 
     // If there's a featured image, display it as background
     if ($feature_img_main) {

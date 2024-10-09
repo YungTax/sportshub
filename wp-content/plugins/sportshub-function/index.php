@@ -111,26 +111,40 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 		<div class="blog-social-list">
 			<ul class="single_post_share_icon_post">
 				<span><?php esc_html_e('Share: ', 'sportshub') ?></span>
-				<a class="facebook-bg" href="http://www.facebook.com/share.php?u=<?php echo esc_url(get_permalink());?>"title="facebook" aria-label="Facebook" target="_blank" original-title="facebook"><i class="fa-brands fa-facebook-f"></i></i>
-				<!-- <?php esc_html_e('share', 'sportshub') ?> -->
+
+				<a class="facebook-bg" href="http://www.facebook.com/share.php?u=<?php echo esc_url(get_permalink());?>" title="facebook" aria-label="Facebook" target="_blank">
+					<i class="fa-brands fa-facebook-f"></i>
 				</a>
-				<a class="telegram-bg" rel="nofollow noopener" href="https://telegram.me/share/url?url=<?php echo esc_url(get_permalink());?>"target="_blank"><i class="fa-brands fa-telegram"></i>
-					<!-- <?php esc_html_e('telegram', 'sportshub') ?> -->
+				<a class="telegram-bg" rel="nofollow noopener" href="https://telegram.me/share/url?url=<?php echo esc_url(get_permalink());?>" target="_blank">
+					<i class="fa-brands fa-telegram"></i>
 				</a>
-				<!-- <a class="instagram-bg" href="https://www.instagram.com/?url=<?php echo esc_url(get_permalink()); ?>" target="_blank">
-					<i class="fab fa-instagram"></i>
+				<a class="linkedin-bg" href="http://www.linkedin.com/shareArticle?mini=true&url=<?php echo esc_url(get_permalink());?>&title=<?php echo esc_url(get_permalink());?>" target="_blank">
+					<i class="fa-brands fa-linkedin"></i>
+				</a>
+				<a class="pinterest-bg" rel="nofollow noopener" href="https://pinterest.com/pin/create/link/?url=<?php echo esc_url(get_permalink());?>" target="_blank">
+					<i class="fab fa-pinterest"></i>
+				</a>
+				<a class="flipboard-bg" href="<?php echo esc_url(sprintf('https://share.flipboard.com/bookmarklet/popout?v=%s&url=%s&t=%s', get_the_title(), get_permalink(), get_the_excerpt())); ?>" class="flipboard-button" target="_blank" rel="nofollow">
+					<i class="fab fa-flipboard"></i>
+				</a>
+				<a class="whatsapp-bg" rel="nofollow" href="https://api.whatsapp.com/send?text=<?php echo esc_url(get_permalink());?>" target="_blank">
+					<i class="fa-brands fa-square-whatsapp"></i>
+				</a>
+				<a class="line-bg" href="https://social-plugins.line.me/lineit/share?url=<?php echo esc_url(get_permalink());?>" target="_blank">
+					<i class="fa-brands fa-line"></i>
+				</a>
+				<a class="reddit-bg" href="https://reddit.com/submit?url=<?php echo esc_url(get_permalink()); ?>&title=<?php echo urlencode(get_the_title()); ?>" target="_blank">
+					<i class="fa-brands fa-reddit"></i>
+				</a>
+				<a class="mail-bg" rel="nofollow" href="mailto:?subject=<?php echo esc_url(get_permalink()); ?>" target="_blank">
+					<i class="fa fa-envelope"></i>
+				</a>
+				<a class="x-bg" href="https://twitter.com/intent/tweet?text=<?php echo urlencode(get_the_title()); ?>&url=<?php echo esc_url(get_permalink()); ?>" target="_blank">
+					<i class="fa-brands fa-x-twitter"></i>
+				</a>
+				<!-- <a class="copy-link-bg" value="<?php echo urldecode( get_the_permalink() ); ?>" href="#" id="copyLink" title="Copy Link">
+				<i class="fa-solid fa-link"></i>
 				</a> -->
-				<a class="linkedin-bg" href="http://www.linkedin.com/shareArticle?mini=true&url=<?php echo esc_url(get_permalink());?>&title=<?php echo esc_url(get_permalink());?>" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
-				<a class="pinterest-bg" rel="nofollow noopener"  href="https://pinterest.com/pin/create/link/?url=<?php echo esc_url(get_permalink());?>" target="_blank"><i class="fab fa-pinterest"></i></a>
-				
-				<a class="flipboard-bg" href="<?php echo esc_url(sprintf('https://share.flipboard.com/bookmarklet/popout?v=%s&url=%s&t=%s',get_the_title(), get_permalink(), get_the_excerpt())); ?>"class="flipboard-button" target="_blank" rel="nofollow"><i class="fab fa-flipboard"></i></a>
-				<a class="whatsapp-bg" rel="nofollow" href="https://api.whatsapp.com/send?text=<?php echo esc_url(get_permalink());?>" data-action="share/whatsapp/share" target="_blank"><i class="fa-brands fa-square-whatsapp"></i>	
-				</a>
-				<a class="line-bg" href="https://social-plugins.line.me/lineit/share?url=' <?php echo esc_url(get_permalink());?>'" target="_blank"><i class="fa-brands fa-line"></i>
-				</a>
-				<a class="mail-bg" rel="nofollow" href="mailto:?subject= <?php echo esc_url( get_permalink()); ?>" target="_blank"><i class="fa fa-envelope"></i></a>
-				<a class="x-bg" href="https://twitter.com/intent/tweet?text=<?php echo urlencode(get_the_title()); ?>&url=<?php echo esc_url(get_permalink()); ?>" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
-				<a class="reddit-bg" href="https://reddit.com/submit?url=<?php echo esc_url(get_permalink()); ?>&title=<?php echo urlencode(get_the_title()); ?>" target="_blank"><i class="fa-brands fa-reddit"></i></a>
 			</ul>
 		</div>
 	    <?php 

@@ -70,6 +70,8 @@ if ( ! defined( 'ABSPATH' ) ) exit;
             $widgets_manager->register(new Elementor\sportshub_feature_list_z());
             require_once 'feature-card-post.php';
             $widgets_manager->register(new Elementor\sportshub_feature_card_post());
+            require_once 'feature-gird.php';
+            $widgets_manager->register(new Elementor\sportshub_feature_grid());
             
             
       }
