@@ -23,16 +23,16 @@ define( 'WP_CACHE', true );
 
 // ** Database settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
-define( 'DB_NAME', 'sporthub' );
+define( 'DB_NAME', 'u985379591_Z2e4g' );
 
 /** Database username */
-define( 'DB_USER', 'root' );	
+define( 'DB_USER', 'u985379591_ICtbM' );
 
 /** Database password */
-define( 'DB_PASSWORD', 'root' );
+define( 'DB_PASSWORD', '3jTlc1PYO4' );
 
 /** Database hostname */
-define( 'DB_HOST', 'localhost' );
+define( 'DB_HOST', '127.0.0.1' );
 
 /** Database charset to use in creating database tables. */
 define( 'DB_CHARSET', 'utf8' );
@@ -91,13 +91,13 @@ $table_prefix = 'wp_';
  */
 if ( ! defined( 'WP_DEBUG' ) ) {
 	define( 'WP_DEBUG', true );
-	define( 'WP_DEBUG_LOG', true );
-	define( 'WP_DEBUG_DISPLAY', true );
 }
 
 define( 'FS_METHOD', 'direct' );
 define( 'WP_AUTO_UPDATE_CORE', 'minor' );
 define('WP_MEMORY_LIMIT','1536M');
+
+
 /* That's all, stop editing! Happy publishing. */
 
 /** Absolute path to the WordPress directory. */
