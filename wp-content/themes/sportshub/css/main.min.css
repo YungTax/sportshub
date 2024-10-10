@@ -41492,7 +41492,9 @@ body.themelazer-dark-mode-activate .themelazer_full_post .single_header_wrapper 
 
 
 @media only screen and (min-width: 768px) and (max-width: 992px) {
-
+	p{
+		font-size: 14px;
+	}
 	.container {
 		max-width: 100%;
 		padding-right: 30px;
@@ -42005,7 +42007,18 @@ body.themelazer-dark-mode-activate .themelazer_full_post .single_header_wrapper 
 		width: 100%;
 		margin-top: 10px;
 	}
-
+	.themelazer_article_list .post-outer .post-inner .entry-header h3 a{
+		font-size: 20px;
+	}
+	.site-name-logo img{
+		    max-width: 50%;
+	}
+	.sidemenuoption{
+		padding-top: 35px;
+	}
+	.site-name-logo{
+		margin: 0px auto 0px auto;
+	}
 	.themelazer-feature-content.themelazer-feature-small:before {
 		display: none;
 	}
