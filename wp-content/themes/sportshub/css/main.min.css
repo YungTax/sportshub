@@ -42473,6 +42473,39 @@ body.themelazer-dark-mode-activate .themelazer_full_post .single_header_wrapper 
 	.blog-social-list span{
 		font-size: 12px;
 	}
+	.breadcrumb-item+.breadcrumb-item{
+		padding-left: .3rem;
+	}
+	.breadcrumb-item+.breadcrumb-item::before{
+		padding-right: .3rem;
+	}
+	.breadcrumb li+li:before{
+		padding: 0 3px;
+	}
+	.blog-social-list span{
+	    margin-right: 5px;
+	}
+	.blog-tags span{
+		margin-right: 5px;
+	}
+	.comment{
+		margin-bottom: 10px;
+	}
+	.wrapper_category_image{
+		margin-bottom: 20px;
+	}
+	.single-sidebar .title{
+		margin: 0 0 20px 0;
+	}
+	.recent-post-wrapper .themelazer_article_list .post-outer:nth-child(odd){
+		margin-bottom: 20px;
+	}
+	.recent-post-wrapper{
+		margin-bottom: 0;
+	}
+	.themelazer_page_category_wrapper .themelazer_category_div_wrapper{
+		padding: 20px;
+	}
 	body:not(.themelazer-has-sidebar) .themelazer_content{
 		order: 0;
 	}
