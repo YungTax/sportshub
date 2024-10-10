@@ -41800,10 +41800,16 @@ body.themelazer-dark-mode-activate .themelazer_full_post .single_header_wrapper 
 		margin: 30px 0;
 	}
 	.single_section_comment #respond{
-		margin-top: 20px;
+		margin: 20px 0;
 	}
 	#content .col-md-4, .comment-form-author, .comment-form-email, .comment-form-url{
 		width: 100%;
+	}
+	.widget_nav_menu ul li a{
+		font-size: 14px;
+	}
+	.themelazer_page_category_wrapper{
+		margin: 0 0 120px 0;
 	}
 
 	.single_header_wrapper {
@@ -41838,7 +41844,12 @@ body.themelazer-dark-mode-activate .themelazer_full_post .single_header_wrapper 
 		width: 100%;
 		margin-bottom: 0;
 	}
-
+	.themelazer_copy_link_form_wrapper .themelazer_popup_copy_link{
+		display: none;
+	}
+	.themelazer_full_post{
+		height: 50vh;
+	}
 	.themelazer_post_nav_section .postnav_right {
 		width: 100%;
 		padding-top: 0;
@@ -41847,7 +41858,9 @@ body.themelazer-dark-mode-activate .themelazer_full_post .single_header_wrapper 
 	.themelazer_title_head h3 {
 		font-size: 20px;
 	}
-
+	.themelazer_related_post .blog-small-grid .text-box h5 a{
+		font-size: 20px;
+	}
 	.themelazer-content-area blockquote {
 		margin-bottom: 20px;
 	}
@@ -41978,7 +41991,7 @@ body.themelazer-dark-mode-activate .themelazer_full_post .single_header_wrapper 
 	.themelazer_article_list.themelazer_article_list_l {
 		float: left;
 		width: 100%;
-		margin-bottom: 30px;
+		margin-bottom: 20px;
 	}
 
 	.themelazer_article_list.themelazer_article_list_l .post-outer .post-inner:first-child:not(:last-child) {

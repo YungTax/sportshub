@@ -2,7 +2,6 @@
     <div class="post-outer">
         <div class="post-inner">
             <div class="post-thumbnail">
-                <!-- <a href="<?php the_permalink(); ?>"></a><?php if( has_post_thumbnail()) {the_post_thumbnail();} ?> -->
                 <?php
                 $video_post_link = get_post_meta(get_the_ID(), 'video_post_link', true);
                 if ($video_post_link) :

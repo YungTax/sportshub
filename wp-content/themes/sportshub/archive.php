@@ -18,7 +18,7 @@
                      </div>
                   </div>
                </div>
-               <div class="row">
+               <div class="container p-0">
                      <?php
                      // Set up custom query arguments
                      $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
