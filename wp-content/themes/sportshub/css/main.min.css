@@ -41793,14 +41793,14 @@ body.themelazer-dark-mode-activate .themelazer_full_post .single_header_wrapper 
 	.breadcrumb li.active{
 		font-size: 12px;
 	}
-	#respond{
-		margin-top: 0;
-	}
 	.breadcrumb{
 		margin: 0 0 10px 0;
 	}
 	.themelazer_title_head{
-		margin-bottom: 30px;
+		margin: 30px 0;
+	}
+	.single_section_comment #respond{
+		margin-top: 20px;
 	}
 	#content .col-md-4, .comment-form-author, .comment-form-email, .comment-form-url{
 		width: 100%;
