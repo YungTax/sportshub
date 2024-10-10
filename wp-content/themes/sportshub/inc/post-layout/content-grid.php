@@ -2,7 +2,6 @@
      <div class=" blog-style-one blog-small-grid">
          <div class="single-blog-style-one">
             <div class="img-box <?php if ( has_post_thumbnail()){echo 'ghave_img';}else{echo 'gnone_img';}?>">
-               <!-- <a href="<?php the_permalink(); ?>"><?php if ( has_post_thumbnail()) {the_post_thumbnail('sportshub_slider_grid_small');} ?></a> -->
                <?php
                 // Check for the video_url custom field
                 $video_post_link = get_post_meta(get_the_ID(), 'video_post_link', true);
