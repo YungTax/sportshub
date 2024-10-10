@@ -37869,12 +37869,7 @@ h3.column-title.wow.fadeInUp span {
 		width: 100% !important;
 	}
 
-	.themelazer_tag_share {
-		text-align: center;
-	}
-
 	.blog-tags {
-		text-align: center;
 		float: none;
 	}
 
@@ -41792,8 +41787,17 @@ body.themelazer-dark-mode-activate .themelazer_full_post .single_header_wrapper 
 	p{
 		font-size: 14px;
 	}
+	.breadcrumb li, .breadcrumb a, .breadcrumb li{
+		font-size: 12px;
+	}
+	.breadcrumb li.active{
+		font-size: 12px;
+	}
 	#respond{
 		margin-top: 0;
+	}
+	.breadcrumb{
+		margin: 0 0 10px 0;
 	}
 	.themelazer_title_head{
 		margin-bottom: 30px;
@@ -42394,13 +42398,32 @@ body.themelazer-dark-mode-activate .themelazer_full_post .single_header_wrapper 
 	}
 	.themelazer-content-area{
 		margin-top: 0;
-		padding: 30px 0;
+		padding: 20px 0;
+	}
+	.meta-info ul li.post-read{
+		display: none;
+	}
+	.meta-info ul li.post-comment{
+		display: none;
+	}
+	.themelazer_tag_share{
+		padding: 0;
+	}
+	.blog-tags{
+		margin: 0;
+	}
+	.themelazer_copy_link_form_wrapper{
+		padding: 10px 0;
+        margin: 10px 0;
+	}
+	.themelazer-content-area blockquote{
+		padding-left: 1rem !important;
 	}
 	.themelazer_feature_link_marquee{
 		display: none;
 	}
 	.single_header_wrapper .themelazer_post_categories{
-		margin-bottom: 10px;
+		margin-bottom: 5px;
 	}
 	.themelazer_section_wrapper .themelazer_title_head h3{
 		font-size: 1.2em;
@@ -42441,16 +42464,21 @@ body.themelazer-dark-mode-activate .themelazer_full_post .single_header_wrapper 
 	.themelazer_right_sidebar{
 		order: 1;
 	}
+	.blog-tags span{
+		font-size: 12px;
+	}
+	.blog-tags a{
+		font-size: 12px;
+	}
+	.blog-social-list span{
+		font-size: 12px;
+	}
 	body:not(.themelazer-has-sidebar) .themelazer_content{
 		order: 0;
 	}
-	.themelazer_copy_link_form_wrapper{
-		padding: 20px 0;
-    	margin: 10px 0;
-	}
 	.themelazer_copy_link_form_wrapper .themelazer_share_link_text{
-		padding: 15px 20px;
-		padding-right: 35px;
+		padding: 10px 15px;
+        padding-right: 32px;
 	}
 	.blog-social-list a{
 		width: 30px;
@@ -42487,7 +42515,13 @@ body.themelazer-dark-mode-activate .themelazer_full_post .single_header_wrapper 
 		font-size: 24px;
 	}
 	.themelazer_copy_link_form_wrapper .themelazer_share_link_button svg{
-		width: 24px;
+		width: 19px;
+	}
+	.themelazer_copy_link_form_wrapper .themelazer_share_link_button{
+		line-height: 0;
+	}
+	.themelazer_copy_link_form_wrapper .themelazer_share_link_text{
+		font-size: 12px;
 	}
 	.themelazer_feature_card_Post_wrapper .thememlazer_feature_card_post .card_post_out{
 		padding: 2vw;
