@@ -41492,9 +41492,7 @@ body.themelazer-dark-mode-activate .themelazer_full_post .single_header_wrapper 
 
 
 @media only screen and (min-width: 768px) and (max-width: 992px) {
-	p{
-		font-size: 14px;
-	}
+	
 	.container {
 		max-width: 100%;
 		padding-right: 30px;
@@ -41791,6 +41789,9 @@ body.themelazer-dark-mode-activate .themelazer_full_post .single_header_wrapper 
 }
 
 @media only screen and (max-width:767px) {
+	p{
+		font-size: 14px;
+	}
 	#respond{
 		margin-top: 0;
 	}
