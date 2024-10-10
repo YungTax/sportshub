@@ -788,7 +788,7 @@ function sportshub_breadcrumb() {
 
         // WooCommerce Shop Page
         if (function_exists('is_shop') && is_shop()) {
-            $breadcrumb .= $before . woocommerce_page_title(false) . $after;
+            $breadcrumb .= $before . wp_trim_words(woocommerce_page_title(false), 3, '...') . $after;
         }
 
         // WooCommerce Product Category or Single Product
@@ -797,7 +797,7 @@ function sportshub_breadcrumb() {
             $breadcrumb .= '<li class="breadcrumb-item"><a href="' . $shop_page_url . '">Shop</a></li>';
 
             if (is_product_category()) {
-                $breadcrumb .= $before . single_cat_title('', false) . $after;
+                $breadcrumb .= $before . wp_trim_words(single_cat_title('', false), 3, '...') . $after;
             }
 
             if (is_product()) {
@@ -806,7 +806,7 @@ function sportshub_breadcrumb() {
                     $term = array_pop($terms);
                     $breadcrumb .= '<li class="breadcrumb-item"><a href="' . get_term_link($term) . '">' . $term->name . '</a></li>';
                 }
-                $breadcrumb .= $before . get_the_title() . $after;
+                $breadcrumb .= $before . wp_trim_words(get_the_title(), 3, '...') . $after;
             }
         }
 
@@ -816,17 +816,17 @@ function sportshub_breadcrumb() {
             if ($post_type) {
                 $breadcrumb .= '<li class="breadcrumb-item"><a href="' . get_post_type_archive_link($post_type->name) . '">' . $post_type->labels->singular_name . '</a></li>';
             }
-            $breadcrumb .= $before . get_the_title() . $after;
+            $breadcrumb .= $before . wp_trim_words(get_the_title(), 4, '...') . $after;
         }
 
         // Handle Category Pages
         elseif (is_category()) {
-            $breadcrumb .= $before . single_cat_title('', false) . $after;
+            $breadcrumb .= $before . wp_trim_words(single_cat_title('', false), 3, '...'). $after;
         }
 
         // Handle Tag Pages
         elseif (is_tag()) {
-            $breadcrumb .= $before . single_tag_title('', false) . $after;
+            $breadcrumb .= $before . wp_trim_words(single_tag_title('', false), 3, '...') . $after;
         }
 
         // Handle Author Pages
@@ -863,7 +863,7 @@ function sportshub_breadcrumb() {
                 $category = $categories[0];
                 $breadcrumb .= '<li class="breadcrumb-item"><a href="' . get_category_link($category->term_id) . '">' . $category->name . '</a></li>';
             }
-            $breadcrumb .= $before . get_the_title() . $after;
+            $breadcrumb .= $before . wp_trim_words(get_the_title(), 5, '...') . $after;
         }
 
         // Handle Pages
@@ -881,7 +881,7 @@ function sportshub_breadcrumb() {
                     $breadcrumb .= $crumb;
                 }
             }
-            $breadcrumb .= $before . get_the_title() . $after;
+            $breadcrumb .= $before . wp_trim_words(get_the_title(), 3, '...')() . $after;
         }
 
         $breadcrumb .= '</ul></nav>';
