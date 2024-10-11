@@ -158,6 +158,7 @@ body, p {
 .themelazer_next_prev_post_wrapper .title a{ background-image: linear-gradient(to right, <?php echo esc_attr($color);?> 0%, #EAEAEA 100%) !important;}
 .themelazer_article_list .post-outer .post-inner .entry-header h3 a:hover{  color:<?php echo esc_attr($color);?> !important;}
 .themelazer_article_list .entry-title a:hover{color:<?php echo esc_attr($color);?> !important; }
+.themelazer_newsletter .themelazer_submit{background:<?php echo esc_attr($color);?> !important;}
 
 .themelazer_related_post .blog-small-grid .text-box h5 a{ background-image: linear-gradient(to right, <?php echo esc_attr($color);?> 0%, #EAEAEA 100%) !important;}
 .themelazer-pagination .page-numbers:hover{background:<?php echo esc_attr($color);?> !important;}

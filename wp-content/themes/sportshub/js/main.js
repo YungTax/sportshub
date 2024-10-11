@@ -308,14 +308,14 @@ var themelazer_slider_option = function ($scope, $) {
             {
                 breakpoint: 991,
                 settings: {
-                    slidesToShow: 3,
+                    slidesToShow: 2,
                 }
             },
             {
                 breakpoint: 1199,
                 settings: {
                     arrows: true,
-                    slidesToShow: 3,
+                    slidesToShow: 2,
                 }
             },
             {
