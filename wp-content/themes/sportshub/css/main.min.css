@@ -41418,6 +41418,9 @@ body.themelazer-dark-mode-activate .themelazer_full_post .single_header_wrapper 
   											Responesive
 ===========================================================================================*/
 @media only screen and (min-width:760px) and (max-width:1199px) {
+	.themelazer-navigation ul{
+		display: none;
+	}
 	.container {
 		max-width: 100%;
 		padding-right: 30px;
