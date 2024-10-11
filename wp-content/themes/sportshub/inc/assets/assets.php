@@ -34,7 +34,7 @@
         wp_enqueue_script( 'theia-sticky-sidebar', get_template_directory_uri().'/js/theia-sticky-sidebar.js', array('jquery'), '1.0.4', true );
         wp_enqueue_script( 'sticky', get_template_directory_uri().'/js/jquery.sticky.js', array('jquery'), '1.0.4', true );      
         // wp_enqueue_script( 'marsonry', get_template_directory_uri().'/js/masonry.pkgd.min.js', array('jquery'), '4.2.2',true);
-        wp_enqueue_script( 'sportshub-main', get_template_directory_uri().'/js/main.js', array('jquery'), '1.0', true );
+        wp_enqueue_script( 'sportshub-main', get_template_directory_uri().'/js/main.min.js', array('jquery'), '1.0', true );
     }
     add_action( 'wp_enqueue_scripts', 'sportshub_enqueue_script' );
     
