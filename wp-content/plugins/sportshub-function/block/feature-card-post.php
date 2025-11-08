@@ -991,8 +991,8 @@ class sportshub_feature_card_post extends Widget_Base {
                             ?>
                             
                             <div class="thememlazer_feature_card_post">
-                                <a href="<?php the_permalink(); ?>">
-                                    <div class="card_post_out" <?php  echo 'style="background:'.$title_bg_Color.';"' ?>>
+                                <a href="<?php the_permalink(); ?>" aria-label="Read more about <?php the_title(); ?>" tabindex="-1">
+                                    <div class="card_post_out" <?php  echo 'style="background:'.$title_bg_Color.'!important;"' ?>>
                                         <?php if(get_theme_mod('disable_post_category') !=1){
                                                 $categories = get_the_category(get_the_ID());          
                                                 if ($categories) {
@@ -1066,8 +1066,8 @@ class sportshub_feature_card_post extends Widget_Base {
                                 }
                             ?>
                             <div class="thememlazer_feature_card_post">
-                                <a href="<?php the_permalink(); ?>">
-                                    <div class="card_post_out" <?php  echo 'style="background:'.$title_bg_Color.';"' ?>>
+                                <a href="<?php the_permalink(); ?>" aria-label="Read more about <?php the_title(); ?>" tabindex="-1">
+                                    <div class="card_post_out" <?php  echo 'style="background:'.$title_bg_Color.'!important;"' ?>>
                                         <?php if(get_theme_mod('disable_post_category') !=1){
                                                 $categories = get_the_category(get_the_ID());          
                                                 if ($categories) {
@@ -1142,7 +1142,7 @@ class sportshub_feature_card_post extends Widget_Base {
                            
                             <div class="thememlazer_feature_card_post">
                              <a href="<?php the_permalink(); ?>">
-                                <div class="card_post_out" <?php  echo 'style="background:'.$title_bg_Color.';"' ?>>
+                                <div class="card_post_out" <?php  echo 'style="background:'.$title_bg_Color.'!important;"' ?>>
                                     <?php if(get_theme_mod('disable_post_category') !=1){
                                             $categories = get_the_category(get_the_ID());          
                                             if ($categories) {
@@ -1217,7 +1217,7 @@ class sportshub_feature_card_post extends Widget_Base {
                             ?>
                             <div class="thememlazer_feature_card_post">
                                 <a href="<?php the_permalink(); ?>">
-                                    <div class="card_post_out" <?php  echo 'style="background:'.$title_bg_Color.';"' ?>>
+                                    <div class="card_post_out" <?php  echo 'style="background:'.$title_bg_Color.'!important;"' ?>>
                                         <?php if(get_theme_mod('disable_post_category') !=1){
                                                 $categories = get_the_category(get_the_ID());          
                                                 if ($categories) {
@@ -1293,7 +1293,7 @@ class sportshub_feature_card_post extends Widget_Base {
                             
                             <div class="thememlazer_feature_card_post">
                                 <a href="<?php the_permalink(); ?>">
-                                    <div class="card_post_out" <?php  echo 'style="background:'.$title_bg_Color.';"' ?>>
+                                    <div class="card_post_out" <?php  echo 'style="background:'.$title_bg_Color.'!important;"' ?>>
                                         <?php if(get_theme_mod('disable_post_category') !=1){
                                                 $categories = get_the_category(get_the_ID());          
                                                 if ($categories) {
@@ -1367,7 +1367,7 @@ class sportshub_feature_card_post extends Widget_Base {
                             
                             <div class="thememlazer_feature_card_post">
                                 <a href="<?php the_permalink(); ?>">    
-                                    <div class="card_post_out" <?php  echo 'style="background:'.$title_bg_Color.';"' ?>>
+                                    <div class="card_post_out" <?php  echo 'style="background:'.$title_bg_Color.'!important;"' ?>>
                                         <?php if(get_theme_mod('disable_post_category') !=1){
                                                 $categories = get_the_category(get_the_ID());          
                                                 if ($categories) {
@@ -1442,7 +1442,7 @@ class sportshub_feature_card_post extends Widget_Base {
                             
                             <div class="thememlazer_feature_card_post">
                                 <a href="<?php the_permalink(); ?>">
-                                    <div class="card_post_out" <?php  echo 'style="background:'.$title_bg_Color.';"' ?>>
+                                    <div class="card_post_out" <?php  echo 'style="background:'.$title_bg_Color.'!important;"' ?>>
                                         <?php if(get_theme_mod('disable_post_category') !=1){
                                                 $categories = get_the_category(get_the_ID());          
                                                 if ($categories) {
@@ -1517,7 +1517,7 @@ class sportshub_feature_card_post extends Widget_Base {
                             
                             <div class="thememlazer_feature_card_post layout_eight ">
                                 <a href="<?php the_permalink(); ?>">
-                                    <div class="card_post_out" <?php  echo 'style="background:'.$title_bg_Color.';"' ?>>
+                                    <div class="card_post_out" <?php  echo 'style="background:'.$title_bg_Color.'!important;"' ?>>
                                         <?php if(get_theme_mod('disable_post_category') !=1){
                                                 $categories = get_the_category(get_the_ID());          
                                                 if ($categories) {
@@ -1592,7 +1592,7 @@ class sportshub_feature_card_post extends Widget_Base {
                             
                             <div class="thememlazer_feature_card_post layout_night ">
                                 <a href="<?php the_permalink(); ?>">
-                                    <div class="card_post_out" <?php  echo 'style="background:'.$title_bg_Color.';"' ?>>
+                                    <div class="card_post_out" <?php  echo 'style="background:'.$title_bg_Color.'!important;"' ?>>
                                         <?php if(get_theme_mod('disable_post_category') !=1){
                                                 $categories = get_the_category(get_the_ID());          
                                                 if ($categories) {

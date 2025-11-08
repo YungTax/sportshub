@@ -890,7 +890,7 @@ class sportshub_feature_link_marquee_category extends Widget_Base {
                                         }
                                     }
                                 ?>            
-                                <div class="themelazer_bg_wrapper" style="background: <?php echo $title_bg_Color; ?>">
+                                <div class="themelazer_bg_wrapper" style="background: <?php echo $title_bg_Color; ?>!important">
                                     <div class="themelazer_article_list">
                                         <div class="post-outer">
                                             <div class="post-inner">
@@ -946,7 +946,7 @@ class sportshub_feature_link_marquee_category extends Widget_Base {
                                         }
                                     }
                                 ?>            
-                                <div class="themelazer_bg_wrapper" style="background: <?php echo $title_bg_Color; ?>">
+                                <div class="themelazer_bg_wrapper" style="background: <?php echo $title_bg_Color; ?> !important">
                                     <div class="themelazer_article_list">
                                         <div class="post-outer">
                                             <div class="post-inner">
@@ -1004,7 +1004,7 @@ class sportshub_feature_link_marquee_category extends Widget_Base {
                                         }
                                     }
                                 ?>            
-                                <div class="themelazer_bg_wrapper" style="background: <?php echo $title_bg_Color; ?>">
+                                <div class="themelazer_bg_wrapper" style="background: <?php echo $title_bg_Color; ?>!important">
                                     <div class="themelazer_article_list">
                                         <div class="post-outer">
                                             <div class="post-inner">
@@ -1067,7 +1067,7 @@ class sportshub_feature_link_marquee_category extends Widget_Base {
                                         }
                                     }
                                 ?>            
-                                <div class="themelazer_bg_wrapper" style="background: <?php echo $title_bg_Color; ?>">
+                                <div class="themelazer_bg_wrapper" style="background: <?php echo $title_bg_Color; ?>!important">
                                     <div class="themelazer_article_list">
                                         <div class="post-outer">
                                             <div class="post-inner">

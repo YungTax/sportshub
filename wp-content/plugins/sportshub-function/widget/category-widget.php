@@ -65,7 +65,7 @@ class sportshub_category_image_widget_register extends WP_widget{
 			echo '<div class="category_image_bg_image">';
 			}
 		echo '<a class="category_image_link" id="category_color_'.$tag->term_id.'" href="'.esc_url($tag_link).'"><span class="themelazer_cm_overlay"><span class="themelazer_cm_name">'.$tag->name.'</span><span class="sportshub_tag_dec">'.$tag_dec.'</span><span class="themelazer_cm_count" style="background:'.$title_bg_Color.' !important;">'.$tag->count.'</span></span></a>';
-		echo '<div class="category_image_bg_overlay" style="background: '.$title_bg_Color.';"></div>';
+		echo '<div class="category_image_bg_overlay" style="background: '.$title_bg_Color.'"></div>';
 		echo '</div>';
 		}
 		echo "</div>";

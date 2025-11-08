@@ -33,13 +33,15 @@ var sidemenuoption = $('.sidemenuoption');
     });
     
     if (typeof($.fn.slicknav) == 'function') {
-        $('.themelazer-navigation').slicknav({
-            prependTo: '.themelazer_mobile_menu',
-            closedSymbol: '<i class="fa fa-chevron-right"></i>',
-            openedSymbol: '<i class="fa fa-chevron-down"></i>',
-            label: '',
-            allowParentLinks: true
+      $('.themelazer-navigation').slicknav({
+        prependTo: '.themelazer_mobile_menu',
+        closedSymbol: '<i class="fa fa-chevron-right"></i>',
+        openedSymbol: '<i class="fa fa-chevron-down"></i>',
+        label: '',
+        allowParentLinks: true,
+        ariaLabel: 'Mobile navigation toggle', // Adding an aria-label for accessibility
     });
+    
 }
 
 /////////////////////////////////////////////////////////////////////////
@@ -56,8 +58,8 @@ $('a[href="#search_popup"]').on('click keyup', function(event) {
    
 });
 
-$('#themelazer_search_wrapper, #themelazer_search_wrapper i').on('click ', function(event) {
-  if (event.target == this || event.target.className == 'ti-close' || event.keyCode == 27) {
+$('#themelazer_search_wrapper, #themelazer_search_wrapper svg').on('click ', function(event) {
+  if (event.target == this || event.target.className == 'close' || event.keyCode == 27) {
     $(this).removeClass('open');
   }
 });
@@ -157,9 +159,38 @@ if (jQuery('.themelazer_sticky').length) {
   });
 }
 //////////////////////////////////////////////////////////////////////////
-//        Scroll To Top
+//        Bookmark
 //////////////////////////////////////////////////////////////////////////  
 
+function updateBookmarkCounter() {
+  const bookmarks = JSON.parse(localStorage.getItem('bookmarked_posts')) || [];
+  $('#bookmark-counter').text(`Total Bookmarked Posts: ${bookmarks.length}`);
+}
+
+// Call this function whenever bookmarks change
+$('.bookmark-btn').on('click', function () {
+  updateBookmarkCounter();
+});
+
+// Update the counter on page load
+updateBookmarkCounter();
+function toggleBookmark(postId, button) {
+  let bookmarks = JSON.parse(localStorage.getItem('bookmarked_posts')) || [];
+  if (bookmarks.includes(postId)) {
+      bookmarks = bookmarks.filter(id => id !== postId);
+      button.removeClass('bookmarked').text('Add to Bookmark');
+  } else {
+      bookmarks.push(postId);
+      button.addClass('bookmarked').text('Remove Bookmark');
+  }
+  localStorage.setItem('bookmarked_posts', JSON.stringify(bookmarks));
+}
+
+
+
+//////////////////////////////////////////////////////////////////////////
+//        Scroll To Top
+//////////////////////////////////////////////////////////////////////////  
 // Define variables outside the scroll function to avoid repeated calculations
 var $window = $(window);
 var $document = $(document);
@@ -280,8 +311,8 @@ var themelazer_slider_option = function ($scope, $) {
         adaptiveHeight: true,
         centerMode: true,
         centerPadding: '9%',
-        prevArrow: '<span class="themelazer-arrow-left"><i class="ti-arrow-left"></i></span>',
-        nextArrow: '<span class="themelazer-arrow-right"><i class="ti-arrow-right"></i></span>',
+        prevArrow: '<span class="themelazer-arrow-left"><i class="fa-solid fa-arrow-left"></i></span>',
+        nextArrow: '<span class="themelazer-arrow-right"><i class="fa-solid fa-arrow-right"></i></span>',
         slidesToScroll: 1,
         responsive: [
             {

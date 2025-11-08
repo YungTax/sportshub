@@ -5,7 +5,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-/*
+/**
  * Originally made by WordPress.
  *
  * What changed:
@@ -166,7 +166,8 @@ class WP_Exporter {
 	private function wxr_cdata( $str ) {
 		$str = (string) $str;
 
-		if ( ! seems_utf8( $str ) ) {
+		$is_valid_utf8 = wp_check_invalid_utf8( $str, true ) === $str;
+		if ( ! $is_valid_utf8 ) {
 			$str = utf8_encode( $str );
 		}
 
@@ -193,7 +194,7 @@ class WP_Exporter {
 	/**
 	 * Return a cat_name XML tag from a given category object.
 	 *
-	 * @param \WP_Term $category Category Object
+	 * @param \WP_Term $category Category Object.
 	 *
 	 * @return string
 	 */
@@ -208,7 +209,7 @@ class WP_Exporter {
 	/**
 	 * Return a category_description XML tag from a given category object.
 	 *
-	 * @param \WP_Term $category Category Object
+	 * @param \WP_Term $category Category Object.
 	 *
 	 * @return string
 	 */
@@ -223,7 +224,7 @@ class WP_Exporter {
 	/**
 	 * Return a tag_name XML tag from a given tag object.
 	 *
-	 * @param \WP_Term $tag Tag Object
+	 * @param \WP_Term $tag Tag Object.
 	 *
 	 * @return string
 	 */
@@ -238,7 +239,7 @@ class WP_Exporter {
 	/**
 	 * Return a tag_description XML tag from a given tag object.
 	 *
-	 * @param \WP_Term $tag Tag Object
+	 * @param \WP_Term $tag Tag Object.
 	 *
 	 * @return string
 	 */
@@ -253,7 +254,7 @@ class WP_Exporter {
 	/**
 	 * Return a term_name XML tag from a given term object.
 	 *
-	 * @param \WP_Term $term Term Object
+	 * @param \WP_Term $term Term Object.
 	 *
 	 * @return string
 	 */
@@ -268,7 +269,7 @@ class WP_Exporter {
 	/**
 	 * Return a term_description XML tag from a given term object.
 	 *
-	 * @param \WP_Term $term Term Object
+	 * @param \WP_Term $term Term Object.
 	 *
 	 * @return string
 	 */

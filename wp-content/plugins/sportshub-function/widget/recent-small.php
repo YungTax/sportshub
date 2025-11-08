@@ -69,14 +69,14 @@ class sportshub_recent_post_widget extends WP_Widget {
                         <div class="post-thumbnail sidebar"> 
                             <?php the_post_thumbnail('sportshub_small_recent_feature'); ?> 
                              <!-- <span class="themelazer_site_count"><?php echo esc_html($i);?></span> -->
-                                <a href="<?php the_permalink(); ?>"></a>
+                                <a href="<?php the_permalink(); ?>" aria-label="Read more about <?php the_title(); ?>"></a>
                         </div>
                     </div>
                 <?php }?>
                 <div class="post-inner">
                     <div class="entry-header">
                         <h2 class="entry-title"> 
-                            <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"> <?php the_title()?></a>
+                            <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>" aria-label="Read more about <?php the_title(); ?>" tabindex="-1"> <?php the_title()?></a>
                         </h2>
                            <?php sportshub_post_meta_w(get_the_ID());?>
                     </div>

@@ -1,12 +1,8 @@
 <div class="themelazer_full_post">
   
     <?php
-    // Get the ID of the featured image for the post
     $feature_img_main = get_post_thumbnail_id();
-
-    // Get the URL of the featured image in the 'sportshub_large_slider_image' size
     $feature_img_main_bg = wp_get_attachment_image_src($feature_img_main, 'sportshub_slider_grid_large', true);
-
     // If there's a featured image, display it as background
     if ($feature_img_main) {
     ?>
@@ -31,7 +27,7 @@
                 foreach ($categories as $tag) {
                     $tag_link = get_category_link($tag->term_id);
                     $title_bg_Color = get_term_meta($tag->term_id, "category_color_options", true);
-                    echo '<a class="post-category-color-text" itemprop="articleSection" style="background:' . $title_bg_Color . '" href="' . esc_url($tag_link) . '">' . $tag->name . '</a>';
+                    echo '<a class="post-category-color-text" itemprop="articleSection" style="background:' . $title_bg_Color . '!important" href="' . esc_url($tag_link) . '">' . $tag->name . '</a>';
                 }
                 echo "</div>";
             }

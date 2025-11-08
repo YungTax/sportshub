@@ -5,7 +5,7 @@ namespace Elementor\Modules\FloatingButtons\Widgets;
 use Elementor\Modules\FloatingButtons\Base\Widget_Floating_Bars_Base;
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
+	exit; // Exit if accessed directly.
 }
 
 /**
@@ -27,10 +27,6 @@ class Floating_Bars_Var_1 extends Widget_Floating_Bars_Base {
 
 	public function get_group_name(): string {
 		return 'floating-bars';
-	}
-
-	public function get_style_depends(): array {
-		return [ 'widget-floating-buttons' ];
 	}
 
 	public function render(): void {

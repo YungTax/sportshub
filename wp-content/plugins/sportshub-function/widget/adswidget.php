@@ -43,7 +43,7 @@ class sportshub_ads_widgets extends WP_widget{
     <div>
         <a href="<?php if($link != " "){echo esc_url($link);}else{echo "# ";} ?>">
           <div class="themelazer_content_banner"> 	
-            <img src="<?php if($image != ""){echo esc_url($image);}else{echo esc_url(get_template_directory_uri()."/img/300x250.png ");} ?>" alt="<?php bloginfo('description'); ?>"  />
+            <img src="<?php if($image != ""){echo esc_url($image);}else{echo esc_url(get_template_directory_uri()."/img/300x250.png ");} ?>" alt="<?php bloginfo('description'); ?>"  aria-label="Advertisement"  />
           </div>  
         </a>
     </div>

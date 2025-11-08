@@ -288,8 +288,8 @@ function sportshub_pagination_num($args = array()){
                         'current'   => max( 1, $args['paged'] ),
                         'total'     => $args['total'],
                         'prev_next' => true,
-                        'prev_text' => '<i class="ti-angle-left"></i>',
-                        'next_text' => '<i class="ti-angle-right"></i>',
+                        'prev_text' => '<i class="fa-solid fa-angle-left"></i>',
+                        'next_text' => '<i class="fa-solid fa-angle-right"></i>',
                         'type' => 'list',
                     );
     return paginate_links($paging);
@@ -343,8 +343,8 @@ if ( ! function_exists( 'sportshub_pagination' ) ) {
                     'total'    => $sportshub_total,
                     'current'  => max( 1, $sportshub_paged ),
                     'mid_size' => 2,
-                    'prev_text' => '<i class="ti-angle-left"></i>',
-                    'next_text' => '<i class="ti-angle-right"></i>',
+                    'prev_text' => '<i class="fa-solid fa-angle-left"></i>',
+                    'next_text' => '<i class="fa-solid fa-angle-right"></i>',
                     'type' => 'list',
                 ) );
                 echo '<div class="themelazer-pagination">
@@ -932,6 +932,52 @@ function sportshub_load_more_posts() {
 }
 add_action('wp_ajax_nopriv_sportshub_load_more_posts', 'sportshub_load_more_posts');
 add_action('wp_ajax_sportshub_load_more_posts', 'sportshub_load_more_posts');
+
+// Bookmark
+function enqueue_bookmark_script() {
+    wp_enqueue_script(
+        'bookmark-js',
+        get_template_directory_uri() . '/js/bookmark.js',
+        array('jquery'),
+        '1.0',
+        true
+    );
+}
+add_action('wp_enqueue_scripts', 'enqueue_bookmark_script');
+
+function fetch_bookmarked_posts() {
+    if (!isset($_POST['post_ids']) || empty($_POST['post_ids'])) {
+        wp_send_json_error('No posts specified.');
+        return;
+    }
+
+    $post_ids = array_map('intval', $_POST['post_ids']);
+    $query = new WP_Query([
+        'post__in' => $post_ids,
+        'post_type' => 'post',
+        'orderby' => 'post__in'
+    ]);
+
+    if ($query->have_posts()) {
+        ob_start();
+
+        while ($query->have_posts()) {
+            $query->the_post();
+            // Include your custom layout
+            get_template_part('inc/post-layout/content', 'grid');
+        }
+
+        wp_reset_postdata();
+        $html = ob_get_clean();
+        wp_send_json_success($html);
+    } else {
+        wp_send_json_error('No bookmarked posts found.');
+    }
+}
+add_action('wp_ajax_fetch_bookmarked_posts', 'fetch_bookmarked_posts');
+add_action('wp_ajax_nopriv_fetch_bookmarked_posts', 'fetch_bookmarked_posts');
+
+
 // Customizer Fucntion
 include get_template_directory() . '/inc/customizer/customizer.php';
 // Plugin Activation

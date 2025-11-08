@@ -170,12 +170,14 @@ body, p {
 .blog-style-one .single-blog-style-one .text-box h4 a:hover{color:<?php echo esc_attr($color);?> !important;}
 .blog-style-one .single-blog-style-one .text-box h5 a:hover{color:<?php echo esc_attr($color);?> !important;}
 .blog-style-one .single-blog-style-one .text-box h6 a:hover{color:<?php echo esc_attr($color);?> !important;}
+.themelazer_post_categories a{background:<?php echo esc_attr($color);?> !important;}
+.com_wp_nav .comment-reply-link{color:<?php echo esc_attr($color);?> !important;}
+#themelazer_search_wrapper .category_header_search .themelazer_post_categories_search_form a{background:<?php echo esc_attr($color);?> !important;}
 
 .themelazer_footer_menu li a:after{background:<?php echo esc_attr($color);?> !important; }
 .theme_lazerfooter_widget_area .widget_nav_menu ul li a:after{background:<?php echo esc_attr($color);?> !important;}
-.themelazer_post_categories a{color:<?php echo esc_attr($color);?> !important;}
 .themelazer_article_list.themelazer_article_list_l h3.entry-title a{ background-image: linear-gradient(to right, <?php echo esc_attr($color);?> 0%, #EAEAEA 100%) !important;}
-
+.wp-block-latest-comments .wp-block-latest-comments__comment-author{background:<?php echo esc_attr($color);?> !important;}
 .themelazer_blog_style_one .sigle_blog_style_one h1 a{ background-image: linear-gradient(to right, <?php echo esc_attr($color);?> 0%, #EAEAEA 100%) !important;}
 .blog-style-one .single-blog-style-one .text-box h2 a{background-image: linear-gradient(to right, <?php echo esc_attr($color);?> 0%, #EAEAEA 100%) !important;}
 .blog-style-one .single-blog-style-one .text-box h3 a{background-image: linear-gradient(to right, <?php echo esc_attr($color);?> 0%, #EAEAEA 100%) !important;}

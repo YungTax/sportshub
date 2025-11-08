@@ -4,10 +4,15 @@ namespace Elementor\Modules\AtomicWidgets\Base;
 
 use JsonSerializable;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 abstract class Atomic_Control_Base implements JsonSerializable {
 	private string $bind;
 	private $label = null;
 	private $description = null;
+	private $meta = null;
 
 	abstract public function get_type(): string;
 
@@ -37,6 +42,12 @@ abstract class Atomic_Control_Base implements JsonSerializable {
 		return $this;
 	}
 
+	public function set_meta( $meta ): self {
+		$this->meta = $meta;
+
+		return $this;
+	}
+
 	public function jsonSerialize(): array {
 		return [
 			'type' => 'control',
@@ -46,6 +57,7 @@ abstract class Atomic_Control_Base implements JsonSerializable {
 				'label' => $this->label,
 				'description' => $this->description,
 				'props' => $this->get_props(),
+				'meta' => $this->meta,
 			],
 		];
 	}

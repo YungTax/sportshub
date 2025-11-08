@@ -1,5 +1,5 @@
 === Sportshub ===
-Contributors: yourname
+Contributors: Theme-Lazer
 Tags: sports, news, blog, custom-background, custom-logo, custom-menu, featured-images, threaded-comments, translation-ready
 Requires at least: 5.0
 Tested up to: 6.2

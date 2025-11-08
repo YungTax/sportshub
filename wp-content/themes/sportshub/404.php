@@ -3,9 +3,9 @@
 <!-- Main body container for the blog content -->
 <div class="themelazer-blog-body">
    <div class="container">
-      <div class="row justify-content-center"> <!-- Center the content horizontally -->
-         <div class="col-md-6"> <!-- Set the column width to 6 out of 12 for medium devices -->
-            <div class="page-notfound text-center"> <!-- Center-align text inside the not found page -->
+      <div class="row justify-content-center"> 
+         <div class="col-md-6"> 
+            <div class="page-notfound text-center">
                <!-- Display the 404 error title -->
                <h1 class="page-title">
                   <?php esc_html_e('404', 'sportshub'); ?>
@@ -18,10 +18,10 @@
                <a href="<?php echo esc_url(home_url('')); ?>" class="themelazern_404_page">
                   <?php esc_html_e('Go To Home Page', 'sportshub'); ?>
                </a>
-            </div> <!-- End of page-notfound div -->
-         </div> <!-- End of col-md-6 div -->
-      </div> <!-- End of row div -->
-   </div> <!-- End of container div -->
+            </div>
+         </div> 
+      </div>
+   </div>
 </div> <!-- End of themelazer-blog-body div -->
 
-<?php get_footer(); // Include the footer template ?>
+<?php get_footer(); ?>

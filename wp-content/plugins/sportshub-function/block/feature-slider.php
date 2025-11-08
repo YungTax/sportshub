@@ -957,7 +957,7 @@ class sportshub_feature_slider extends Widget_Base {
                                                             foreach( $categories as $tag) {
                                                               $tag_link = get_category_link($tag->term_id);
                                                               $title_bg_Color = get_term_meta($tag->term_id, "category_color_options", true);
-                                                                echo '<a class="post-category-color-text" itemprop="articleSection" style="background:'.$title_bg_Color.'" href="'.esc_url($tag_link).'">'.$tag->name.'</a>';
+                                                                echo '<a class="post-category-color-text" itemprop="articleSection" style="background:'.$title_bg_Color.'!important" href="'.esc_url($tag_link).'">'.$tag->name.'</a>';
                                                             }
                                                             echo "</div>";
                                                         }

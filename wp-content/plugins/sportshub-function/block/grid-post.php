@@ -1101,7 +1101,7 @@ class sportshub_grid_post extends Widget_Base {
                                 <div class=" blog-style-one blog-small-grid">
                                     <div class="single-blog-style-one">
                                         <div class="img-box <?php if ( has_post_thumbnail()){echo 'ghave_img';}else{echo 'gnone_img';}?>">
-                                            <a href="<?php the_permalink(); ?>">
+                                            <a href="<?php the_permalink(); ?>" aria-label="Read more about <?php the_title(); ?>">
                                                 <?php  if($show_thumbnail=='yes'){ 
                                                     // if( has_post_thumbnail()) {the_post_thumbnail($thumbnail_size);}
                                                     // Check for the video_url custom field
@@ -1144,7 +1144,7 @@ class sportshub_grid_post extends Widget_Base {
                                                             foreach( $categories as $tag) {
                                                               $tag_link = get_category_link($tag->term_id);
                                                               $title_bg_Color = get_term_meta($tag->term_id, "category_color_options", true);
-                                                                echo '<a class="post-category-color-text" itemprop="articleSection" style="background:'.$title_bg_Color.'" href="'.esc_url($tag_link).'">'.$tag->name.'</a>';
+                                                                echo '<a class="post-category-color-text" itemprop="articleSection" style="background:'.$title_bg_Color.'!important" href="'.esc_url($tag_link).'">'.$tag->name.'</a>';
                                                             }
                                                             echo "</div>";
                                                         }
@@ -1184,7 +1184,7 @@ class sportshub_grid_post extends Widget_Base {
                                                 ?> 
                                             </p>
                                             <div class="footer-meta-info">                            
-                                                <a class="themelazer_more_themelazern" href="<?php the_permalink(); ?>">
+                                                <a class="themelazer_more_themelazern" href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>" aria-label="Read more about <?php the_title(); ?>" tabindex="-1">
                                                     <?php  if($show_readmore=='yes'){
                                                       echo $settings['read_more_text_input'];
                                                     }?>      
@@ -1217,7 +1217,7 @@ class sportshub_grid_post extends Widget_Base {
                                                   foreach( $categories as $tag) {
                                                       $tag_link = get_category_link($tag->term_id);
                                                       $title_bg_Color = get_term_meta($tag->term_id, "category_color_options", true);
-                                                        echo '<a class="post-category-color-text" itemprop="articleSection" style="background:'.$title_bg_Color.'" href="'.esc_url($tag_link).'">'.$tag->name.'</a>';
+                                                        echo '<a class="post-category-color-text" itemprop="articleSection" style="background:'.$title_bg_Color.'!important" href="'.esc_url($tag_link).'">'.$tag->name.'</a>';
                                                   }
                                                   echo "</div>";
                                                 }
@@ -1256,7 +1256,7 @@ class sportshub_grid_post extends Widget_Base {
                                             }?>
                                         </p>
                                         <span class="footer-meta-info">                            
-                                            <a class="themelazer_more_themelazern" href="<?php the_permalink(); ?>">
+                                            <a class="themelazer_more_themelazern" href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>" aria-label="Read more about <?php the_title(); ?>" tabindex="-1">
                                                 <?php  if($show_readmore=='yes'){
                                                   echo $settings['read_more_text_input'];
                                                 }?>      
@@ -1288,7 +1288,7 @@ class sportshub_grid_post extends Widget_Base {
                                                         foreach ($categories as $tag) {
                                                             $tag_link = get_category_link($tag->term_id);
                                                             $title_bg_Color = get_term_meta($tag->term_id, "category_color_options", true);
-                                                            echo '<a class="post-category-color-text" itemprop="articleSection" style="background:'.$title_bg_Color.'" href="'.esc_url($tag_link).'">'.$tag->name.'</a>';
+                                                            echo '<a class="post-category-color-text" itemprop="articleSection" style="background:'.$title_bg_Color.'!important" href="'.esc_url($tag_link).'">'.$tag->name.'</a>';
                                                         }
                                                         echo "</div>";
                                                     }
@@ -1377,7 +1377,7 @@ class sportshub_grid_post extends Widget_Base {
                                                   foreach( $categories as $tag) {
                                                       $tag_link = get_category_link($tag->term_id);
                                                       $title_bg_Color = get_term_meta($tag->term_id, "category_color_options", true);
-                                                        echo '<a class="post-category-color-text" itemprop="articleSection" style="background:'.$title_bg_Color.'" href="'.esc_url($tag_link).'">'.$tag->name.'</a>';
+                                                        echo '<a class="post-category-color-text" itemprop="articleSection" style="background:'.$title_bg_Color.'!important" href="'.esc_url($tag_link).'">'.$tag->name.'</a>';
                                                   }
                                                   echo "</div>";
                                                 }
@@ -1451,7 +1451,7 @@ class sportshub_grid_post extends Widget_Base {
                                                   foreach( $categories as $tag) {
                                                       $tag_link = get_category_link($tag->term_id);
                                                       $title_bg_Color = get_term_meta($tag->term_id, "category_color_options", true);
-                                                        echo '<a class="post-category-color-text" itemprop="articleSection" style="background:'.$title_bg_Color.'" href="'.esc_url($tag_link).'">'.$tag->name.'</a>';
+                                                        echo '<a class="post-category-color-text" itemprop="articleSection" style="background:'.$title_bg_Color.'!important" href="'.esc_url($tag_link).'">'.$tag->name.'</a>';
                                                   }
                                                   echo "</div>";
                                                 }
@@ -1555,7 +1555,7 @@ class sportshub_grid_post extends Widget_Base {
                                                   foreach( $categories as $tag) {
                                                       $tag_link = get_category_link($tag->term_id);
                                                       $title_bg_Color = get_term_meta($tag->term_id, "category_color_options", true);
-                                                        echo '<a class="post-category-color-text" itemprop="articleSection" style="background:'.$title_bg_Color.'" href="'.esc_url($tag_link).'">'.$tag->name.'</a>';
+                                                        echo '<a class="post-category-color-text" itemprop="articleSection" style="background:'.$title_bg_Color.'!important" href="'.esc_url($tag_link).'">'.$tag->name.'</a>';
                                                   }
                                                   echo "</div>";
                                                 }
@@ -1629,7 +1629,7 @@ class sportshub_grid_post extends Widget_Base {
                                                   foreach( $categories as $tag) {
                                                       $tag_link = get_category_link($tag->term_id);
                                                       $title_bg_Color = get_term_meta($tag->term_id, "category_color_options", true);
-                                                        echo '<a class="post-category-color-text" itemprop="articleSection" style="background:'.$title_bg_Color.'" href="'.esc_url($tag_link).'">'.$tag->name.'</a>';
+                                                        echo '<a class="post-category-color-text" itemprop="articleSection" style="background:'.$title_bg_Color.'!important" href="'.esc_url($tag_link).'">'.$tag->name.'</a>';
                                                   }
                                                   echo "</div>";
                                                 }
@@ -1702,7 +1702,7 @@ class sportshub_grid_post extends Widget_Base {
                                                   foreach( $categories as $tag) {
                                                       $tag_link = get_category_link($tag->term_id);
                                                       $title_bg_Color = get_term_meta($tag->term_id, "category_color_options", true);
-                                                        echo '<a class="post-category-color-text" itemprop="articleSection" style="background:'.$title_bg_Color.'" href="'.esc_url($tag_link).'">'.$tag->name.'</a>';
+                                                        echo '<a class="post-category-color-text" itemprop="articleSection" style="background:'.$title_bg_Color.'!important" href="'.esc_url($tag_link).'">'.$tag->name.'</a>';
                                                   }
                                                   echo "</div>";
                                                 }
@@ -1775,7 +1775,7 @@ class sportshub_grid_post extends Widget_Base {
                                                   foreach( $categories as $tag) {
                                                       $tag_link = get_category_link($tag->term_id);
                                                       $title_bg_Color = get_term_meta($tag->term_id, "category_color_options", true);
-                                                        echo '<a class="post-category-color-text" itemprop="articleSection" style="background:'.$title_bg_Color.'" href="'.esc_url($tag_link).'">'.$tag->name.'</a>';
+                                                        echo '<a class="post-category-color-text" itemprop="articleSection" style="background:'.$title_bg_Color.'!important" href="'.esc_url($tag_link).'">'.$tag->name.'</a>';
                                                   }
                                                   echo "</div>";
                                                 }
@@ -1849,7 +1849,7 @@ class sportshub_grid_post extends Widget_Base {
                                                     foreach( $categories as $tag) {
                                                         $tag_link = get_category_link($tag->term_id);
                                                         $title_bg_Color = get_term_meta($tag->term_id, "category_color_options", true);
-                                                            echo '<a class="post-category-color-text" itemprop="articleSection" style="background:'.$title_bg_Color.'" href="'.esc_url($tag_link).'">'.$tag->name.'</a>';
+                                                            echo '<a class="post-category-color-text" itemprop="articleSection" style="background:'.$title_bg_Color.'!important" href="'.esc_url($tag_link).'">'.$tag->name.'</a>';
                                                     }
                                                     echo "</div>";
                                                     }

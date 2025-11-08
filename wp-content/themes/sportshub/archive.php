@@ -55,7 +55,7 @@
                   wp_reset_postdata();
                   ?>
          </div>
-         <div class="col-12 col-md-12 col-sm-12 col-lg-4 themelazer_sidebar themelazer_sticky"> <!-- Sidebar area taking up 4 out of 12 columns on medium and larger screens -->
+         <div class="col-12 col-md-12 col-sm-12 col-lg-4 themelazer_sidebar themelazer_sticky"> 
             <?php 
             if (is_active_sidebar('general-sidebar')) : 
                dynamic_sidebar('general-sidebar'); // Display the 'general-sidebar' if active
@@ -65,4 +65,4 @@
       </div>
    </div>
 </div>
-<?php get_footer(); // Include the footer template ?>
+<?php get_footer(); ?>

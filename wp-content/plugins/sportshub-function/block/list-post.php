@@ -1025,7 +1025,7 @@ class sportshub_list_post extends Widget_Base {
                             <?php if ($show_thumbnail == 'yes') : ?>
                                 <div class="post-inner">
                                     <div class="post-thumbnail">
-                                        <a href="<?php the_permalink(); ?>"></a><?php if( has_post_thumbnail()) {the_post_thumbnail($thumbnail_size);} ?>
+                                        <a href="<?php the_permalink(); ?>"  aria-label="Read more about <?php the_title(); ?> "></a><?php if( has_post_thumbnail()) {the_post_thumbnail($thumbnail_size);} ?>
                                     </div>
                                 </div>    
                             <?php endif; ?>
@@ -1038,7 +1038,7 @@ class sportshub_list_post extends Widget_Base {
                                                     foreach( $categories as $tag) {
                                                         $tag_link = get_category_link($tag->term_id);
                                                         $title_bg_Color = get_term_meta($tag->term_id, "category_color_options", true);
-                                                            echo '<a class="post-category-color-text" itemprop="articleSection" style="background:'.$title_bg_Color.'" href="'.esc_url($tag_link).'">'.$tag->name.'</a>';
+                                                            echo '<a class="post-category-color-text" itemprop="articleSection" style="background:'.$title_bg_Color.'!important" href="'.esc_url($tag_link).'">'.$tag->name.'</a>';
                                                     }
                                                 echo "</div>";
                                             }
@@ -1091,7 +1091,7 @@ class sportshub_list_post extends Widget_Base {
                                                     foreach( $categories as $tag) {
                                                         $tag_link = get_category_link($tag->term_id);
                                                         $title_bg_Color = get_term_meta($tag->term_id, "category_color_options", true);
-                                                            echo '<a class="post-category-color-text" itemprop="articleSection" style="background:'.$title_bg_Color.'" href="'.esc_url($tag_link).'">'.$tag->name.'</a>';
+                                                            echo '<a class="post-category-color-text" itemprop="articleSection" style="background:'.$title_bg_Color.'!important" href="'.esc_url($tag_link).'">'.$tag->name.'</a>';
                                                     }
                                                 echo "</div>";
                                             }
@@ -1132,7 +1132,7 @@ class sportshub_list_post extends Widget_Base {
                             <?php if ($show_thumbnail == 'yes') : ?>
                                 <div class="post-inner">
                                     <div class="post-thumbnail">
-                                        <a href="<?php the_permalink(); ?>"></a><?php if( has_post_thumbnail()) {the_post_thumbnail($thumbnail_size);} ?>
+                                        <a href="<?php the_permalink(); ?>" aria-label="Read more about <?php the_title(); ?>"></a><?php if( has_post_thumbnail()) {the_post_thumbnail($thumbnail_size);} ?>
                                     </div>
                                 </div>    
                             <?php endif; ?>
@@ -1145,7 +1145,7 @@ class sportshub_list_post extends Widget_Base {
                                                     foreach( $categories as $tag) {
                                                         $tag_link = get_category_link($tag->term_id);
                                                         $title_bg_Color = get_term_meta($tag->term_id, "category_color_options", true);
-                                                            echo '<a class="post-category-color-text" itemprop="articleSection" style="background:'.$title_bg_Color.'" href="'.esc_url($tag_link).'">'.$tag->name.'</a>';
+                                                            echo '<a class="post-category-color-text" itemprop="articleSection" style="background:'.$title_bg_Color.'!important" href="'.esc_url($tag_link).'">'.$tag->name.'</a>';
                                                     }
                                                 echo "</div>";
                                             }

@@ -1,18 +1,18 @@
 <?php get_header(); // Include the header template ?>
 <div class="themelazer-blog-body">
-   <div class="container" id="wrapper_masonry"> <!-- Main container with an ID for potential JavaScript or CSS targeting -->
-      <div class="row"> <!-- Bootstrap row to create a grid layout -->
-         <div class="col-12 col-md-12 col-sm-12 col-lg-8 themelazer_content"> <!-- Main content area taking up 8 out of 12 columns on medium and larger screens -->
+   <div class="container" id="wrapper_masonry"> 
+      <div class="row"> 
+         <div class="col-12 col-md-12 col-sm-12 col-lg-8 themelazer_content"> 
             <?php echo sportshub_breadcrumb();?>
-            <div class="row"> <!-- Nested row for author info -->
-               <div class="col-md-12"> <!-- Full-width column -->
+            <div class="row"> 
+               <div class="col-md-12"> 
                   <div class="author_info author_info_page"> <!-- Author info section -->
                      <div class="author_avatar">
-                        <?php echo get_avatar(get_the_author_meta('user_email'), 500); // Display author's avatar with size 1000px ?>
+                        <?php echo get_avatar(get_the_author_meta('user_email'), 500); ?>
                      </div>
                      <div class="author_description">
                         <h2 class="author_title"><?php the_author_meta('display_name'); // Display author's display name ?></h2>
-                        <div class="themelazer-author-social-links"> <!-- Author social links section -->   
+                        <div class="themelazer-author-social-links"> 
                            <div class="themelazer-social-links-items">
                               <div class="themelazer-social-links-item">
                                  <?php 
@@ -53,7 +53,7 @@
             <button id="load-more" data-page="1" data-url="<?php echo admin_url('admin-ajax.php'); ?>" 
             data-author="<?php echo get_the_author_meta('ID'); ?>"> <?php echo esc_html_e('Load More ', 'sportshub');?></button>
          </div>
-         <div class="col-12 col-md-12 col-sm-12 col-lg-4 themelazer_sidebar themelazer_sticky"> <!-- Sidebar area taking up 4 out of 12 columns on medium and larger screens -->
+         <div class="col-12 col-md-12 col-sm-12 col-lg-4 themelazer_sidebar themelazer_sticky"> 
             <?php 
             if (is_active_sidebar('authors-sidebar')) : 
                dynamic_sidebar('authors-sidebar'); // Display the 'general-sidebar' if active

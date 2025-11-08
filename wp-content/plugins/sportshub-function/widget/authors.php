@@ -36,8 +36,8 @@ class sportshub_authors_list_widget_post_count extends WP_Widget {
 
         // Fetch authors based on limit
         $authors = get_users(array(
-            'role__author' => array('all_users'), // Fetch authors only
-            'number' => $limit, // Limit set by widget instance
+            'role__author' => array('all_users'),
+            'number' => $limit, 
             'orderby' => 'post_count',
             'order' => 'DESC',
             'has_published_posts' => true, // Show only authors with published posts
