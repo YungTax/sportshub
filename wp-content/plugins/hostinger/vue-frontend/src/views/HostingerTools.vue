@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import SectionCard from "@/components/HostingerTools/SectionCard.vue";
 import { useModal } from "@/composables";
-import { SectionItem, ModalName, ToggleableSettingsData } from "@/types";
+import {SectionItem, ModalName, ToggleableSettingsData, SettingsData, Header} from "@/types";
 import { useSettingsStore, useGeneralStoreData } from "@/stores";
 import {
   getAssetSource,
@@ -11,26 +11,30 @@ import {
 } from "@/utils/helpers";
 import ToolVersionCard from "@/components/HostingerTools/ToolVersionCard.vue";
 import { computed, ref } from "vue";
-import OverheadButton from "@/components/OverheadButton.vue";
 import { storeToRefs } from "pinia";
 import { kebabToCamel } from "@/utils/helpers";
+import http from "@/utils/services/httpService";
 
 const { fetchSettingsData, updateSettingsData, regenerateByPassCode } =
   useSettingsStore();
 
 const { settingsData } = storeToRefs(useSettingsStore());
-const { homeUrl, siteUrl } = useGeneralStoreData();
+const { siteUrl, llmstxtFileUrl, llmstxtFileUserGenerated, mcpChoice, aiPluginCompatibility, nonce, restBaseUrl } = useGeneralStoreData();
 
 const WORDPRESS_UPDATE_LINK = getBaseUrl(location.href) + "update-core.php";
 
 const isPageLoading = ref(false);
+
+const HOSTINGER_FREE_DOMAINS = /hostingersite\.com|hostinger\.dev/;
+
+const initialMcpChoice = ref(false);
 
 const maintenanceSection = computed(() => [
   {
     id: "maintenance-mode",
     title: translate("hostinger_tools_maintenance_mode"),
     description: translate("hostinger_tools_disable_public_access"),
-    isToggleDisplayed: true,
+    isVisible: true,
     toggleValue: settingsData.value?.maintenanceMode,
   },
   {
@@ -61,13 +65,20 @@ const maintenanceSection = computed(() => [
 ]);
 
 const securitySection = computed(() => [
-  {
-    id: "disable-xml-rpc",
-    title: translate("hostinger_tools_disable_xml_rpc"),
-    description: translate("hostinger_tools_xml_rpc_description"),
-    isToggleDisplayed: true,
-    toggleValue: settingsData.value?.disableXmlRpc,
-  },
+    {
+        id: "disable-xml-rpc",
+        title: translate("hostinger_tools_disable_xml_rpc"),
+        description: translate("hostinger_tools_xml_rpc_description"),
+        isVisible: true,
+        toggleValue: settingsData.value?.disableXmlRpc,
+    },
+    {
+        id: "disable-authentication-password",
+        title: translate("hostinger_tools_disable_authentication_password"),
+        description: translate("hostinger_tools_authentication_password_description"),
+        isVisible: true,
+        toggleValue: settingsData.value?.disableAuthenticationPassword,
+    },
 ]);
 
 const redirectsSection = computed(() => {
@@ -76,7 +87,7 @@ const redirectsSection = computed(() => {
       id: "force-https",
       title: translate("hostinger_tools_force_https"),
       description: translate("hostinger_tools_force_https_description"),
-      isToggleDisplayed: true,
+      isVisible: true,
       toggleValue: settingsData.value?.forceHttps,
     },
   ];
@@ -87,12 +98,56 @@ const redirectsSection = computed(() => {
     description: !settingsData.value?.isEligibleWwwRedirect
       ? translate("hostinger_tools_force_www_description_not_available")
       : translate("hostinger_tools_force_www_description"),
-    isToggleDisplayed: !!settingsData.value?.isEligibleWwwRedirect,
+    isVisible: !!settingsData.value?.isEligibleWwwRedirect,
     toggleValue: settingsData.value?.forceWww,
   });
 
-  return sections;
+  return sections.filter((section) => section.isVisible);
 });
+
+const llmsSection = computed(() => [
+	{
+		id: "enable-llms-txt",
+		title: translate("hostinger_tools_enable_llms_txt"),
+		description: translate("hostinger_tools_llms_txt_description"),
+		isVisible: true,
+		toggleValue: settingsData.value?.enableLlmsTxt,
+		learn_more_link: "https://llmstxt.org/",
+	},
+	{
+		id: "optin-mcp",
+		title: translate("hostinger_tools_optin_mcp"),
+		description: translate("hostinger_tools_optin_mcp_description"),
+		isVisible: isHostingerPlatform.value && ! isFreeDomain.value,
+		toggleValue: settingsData.value?.optinMcp,
+		learn_more_link: "https://support.hostinger.com/en/articles/11729400-ai-agent-access-smart-ai-discovery",
+	},
+]);
+
+const aiSection = computed(() => [
+	{
+		id: "switch-mcp-choice",
+		title: translate("hostinger_tools_mcp_choice"),
+		description: translate("hostinger_tools_mcp_description"),
+		isVisible: true,
+		toggleValue: initialMcpChoice.value,
+	},
+]);
+
+const llmsSectionHeaderButtons = computed(() => settingsData.value?.enableLlmsTxt ? [
+  {
+    id: 'hostinger_tools_llms_txt_llmstxt',
+    text: translate("hostinger_tools_llms_txt_llmstxt"),
+    to: llmstxtFileUrl,
+    variant: 'text'
+  },
+  {
+    id: 'hostinger_tools_llms_txt_check_validity',
+    text: translate("hostinger_tools_llms_txt_check_validity"),
+    to: `https://llmstxtvalidator.org/?url=${llmstxtFileUrl}`,
+    variant: 'outline'
+  }
+] : [] );
 
 const { openModal } = useModal();
 
@@ -122,28 +177,20 @@ const isHostingerPlatform = computed(() => {
     return parseInt(hostinger_tools_data.hplatform) > 0;
 });
 
-const phpVersionCardText = computed(() => {
-    if( !isHostingerPlatform.value ) {
-        return `${translate("hostinger_tools_update_to")} 8.2 ${translate("hostinger_tools_update_to_recommended")}`;
-    }
-
-    return `${translate("hostinger_tools_update_to")} 8.2`;
+const isFreeDomain = computed(() => {
+	return HOSTINGER_FREE_DOMAINS.test(String(siteUrl));
 });
+
 
 const phpVersionCard = computed(() => ({
   title: translate("hostinger_tools_php_version"),
-  description: isPhpUpdateDisplayed.value
-    ? translate("hostinger_tools_php_version_description")
-    : translate("hostinger_tools_running_latest_version"),
   toolImageSrc: getAssetSource("images/icons/icon-php.svg"),
   version: settingsData.value?.phpVersion,
-  buttonShown: isHostingerPlatform.value,
-  actionButton: isPhpUpdateDisplayed.value
+  actionButton: isHostingerPlatform.value && isPhpUpdateDisplayed.value
     ? {
-        text: phpVersionCardText.value,
         onClick: () => {
           window.open(
-            `https://auth.hostinger.com/login?r=/section/php-configuration/domain/${location.host}`,
+            `https://auth.${resellerLocale.value}/login?r=/section/php-configuration/domain/${location.host}`,
             "_blank"
           );
         },
@@ -151,17 +198,21 @@ const phpVersionCard = computed(() => ({
     : undefined,
 }));
 
+
+const resellerLocale = computed(() => {
+  {
+    const { pluginUrl } = useGeneralStoreData();
+
+    return pluginUrl.match(/^[^/]+/)![0] || "hostinger.com";
+  }
+});
+
 const wordPressVersionCard = computed(() => ({
   title: translate("hostinger_tools_wordpress_version"),
-  description: isWordPressUpdateDisplayed.value
-    ? translate("hostinger_tools_update_to_wordpress_version_description")
-    : translate("hostinger_tools_running_latest_version"),
   toolImageSrc: getAssetSource("images/icons/icon-wordpress-light.svg"),
   version: settingsData.value?.currentWpVersion,
-  buttonShown: true,
   actionButton: isWordPressUpdateDisplayed.value
     ? {
-        text: `${translate("hostinger_tools_update_to")} ${settingsData.value?.newestWpVersion}`,
         onClick: () => {
           window.location.href = WORDPRESS_UPDATE_LINK; // redirects to wp update page in wp admin
         },
@@ -193,33 +244,83 @@ const onSaveSection = (value: boolean, item: SectionItem) => {
   onUpdateSettings(value, item);
 };
 
-const onUpdateSettings = (value: boolean, item: SectionItem) => {
+const onSaveLLmsSection = (isEnabled: boolean, item: SectionItem) => {
+
+  if ( llmstxtFileUserGenerated && isEnabled ) {
+    openModal(
+        ModalName.EnableLlmsTxtModal,
+        {
+          data: {
+            onConfirm: () => {
+              onUpdateSettings(isEnabled, item);
+            },
+          },
+        },
+        { isLG: true }
+    );
+
+    return;
+  }
+
+  onUpdateSettings(isEnabled, item);
+};
+
+const onSaveAiSection = async (isEnabled: boolean, item: SectionItem) => {
+	try {
+		await http.post<SettingsData>(
+			`${restBaseUrl}hostinger-ai-assistant/v1/toggle-mcp-plugin`,
+			{ 'action': isEnabled ? 'setup' : 'deny' },
+			{
+				headers: { [Header.WP_NONCE]: nonce },
+			}
+		);
+
+		initialMcpChoice.value = isEnabled;
+
+		window.dispatchEvent(
+			new CustomEvent('mcp-choice-changed', { detail: {
+				choice: initialMcpChoice.value
+				} })
+		);
+
+	} catch (error) {
+		console.error('Failed to save MCP choice: ', error);
+	}
+
+	initialMcpChoice.value = isEnabled;
+}
+
+const onUpdateSettings = async (value: boolean, item: SectionItem) => {
   if (!settingsData.value) return;
 
   const id = kebabToCamel(item.id) as keyof ToggleableSettingsData;
 
-  settingsData.value[id] = value;
+  const updatedSettings = {
+    ...settingsData.value,
+    [id]: value,
+  };
 
-  updateSettingsData(settingsData.value);
+  const success = await updateSettingsData(updatedSettings);
+
+  if (success && settingsData.value) {
+    settingsData.value[id] = value;
+  }
 };
 
-const goToPreviewWebsite = () => {
-  window.open(homeUrl, "_blank");
-};
 
 (async () => {
   isPageLoading.value = true;
   await fetchSettingsData();
   isPageLoading.value = false;
+
+  if(parseInt(mcpChoice) === 1) {
+	  initialMcpChoice.value = true;
+  }
 })();
 </script>
 
 <template>
   <div v-if="settingsData">
-    <OverheadButton
-      :text="translate('hostinger_tools_preview_my_website')"
-      :action="goToPreviewWebsite"
-    />
     <div class="hostinger-tools__tool-version-cards">
       <ToolVersionCard
         :is-loading="isPageLoading"
@@ -250,6 +351,21 @@ const goToPreviewWebsite = () => {
         :title="translate('hostinger_tools_redirects')"
         :section-items="redirectsSection"
       />
+      <SectionCard
+        :is-loading="isPageLoading"
+        @save-section="onSaveLLmsSection"
+        :title="translate('hostinger_tools_llms')"
+        :section-items="llmsSection.filter((section) => section.isVisible)"
+        :header-buttons="llmsSectionHeaderButtons"
+        :warning="llmstxtFileUserGenerated ? translate('hostinger_tools_llms_txt_external_file_found') : ''"
+      />
+		<SectionCard
+			v-if="aiPluginCompatibility"
+			:is-loading="isPageLoading"
+			@save-section="onSaveAiSection"
+			:title="translate('hostinger_tools_ai')"
+			:section-items="aiSection"
+		/>
     </div>
   </div>
 </template>

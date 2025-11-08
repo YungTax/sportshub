@@ -18,7 +18,6 @@ if (!function_exists('sportshub_register_required_plugins')) {
                 'slug'                  => 'sportshub-function',
                 'source'                => get_template_directory() . '/inc/plugins/sportshub-function.zip',
                 'required'              => true,
-                'version'               => '1.1.0',
                 'force_activation'      => false,
                 'force_deactivation'    => false
             ),

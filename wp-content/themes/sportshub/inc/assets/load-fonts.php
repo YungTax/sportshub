@@ -1,10 +1,10 @@
 <?php
     function sportshub_fonts() {
-        $title_style_text = get_theme_mod('sportshub_title_font_family', 'Work Sans');
+        $title_style_text = get_theme_mod('sportshub_title_font_family', 'barlow semi condensed');
         $sportshub_title_font_weight = get_theme_mod('sportshub_title_font_weight', '700');
         $paragrap_style_text = get_theme_mod('sportshub_p_font_family', 'Roboto');
         $sportshub_p_font_weight = get_theme_mod('sportshub_p_font_weight', '400');
-        $menu_font_style = get_theme_mod('sportshub_menu_font_family', 'Roboto');
+        $menu_font_style = get_theme_mod('sportshub_menu_font_family', 'jost , sans-serif');
         $sportshub_menu_font_weight = get_theme_mod('sportshub_menu_font_weight', '600');
         $sportshub_sub_menu_font_weight = ',' . get_theme_mod('sportshub_sub_menu_font_weight', '600');
         $subsets  = 'latin,latin-ext,cyrillic,cyrillic-ext,greek,greek-ext,vietnamese';

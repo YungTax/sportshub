@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: sportshub-Function
+Plugin Name: Sportshub-Function
 Description: Theme function for sportshub personal blog & megazine WordPress theme 
 Plugin URI: https://themelazer.com
 Author: Themelazer
@@ -136,9 +136,9 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 				<a class="reddit-bg" href="https://reddit.com/submit?url=<?php echo esc_url(get_permalink()); ?>&title=<?php echo urlencode(get_the_title()); ?>" target="_blank">
 					<i class="fa-brands fa-reddit"></i>
 				</a>
-				<a class="mail-bg" rel="nofollow" href="mailto:?subject=<?php echo esc_url(get_permalink()); ?>" target="_blank">
+				<!-- <a class="mail-bg" rel="nofollow" href="mailto:?subject=<?php echo esc_url(get_permalink()); ?>" target="_blank">
 					<i class="fa fa-envelope"></i>
-				</a>
+				</a> -->
 				<a class="x-bg" href="https://twitter.com/intent/tweet?text=<?php echo urlencode(get_the_title()); ?>&url=<?php echo esc_url(get_permalink()); ?>" target="_blank">
 					<i class="fa-brands fa-x-twitter"></i>
 				</a>

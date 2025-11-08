@@ -21,7 +21,7 @@
                     <div class="mc4wp-margin-s">
                         <h3>
                             <label>
-                                <?php echo esc_html__('To which Mailchimp lists should this form subscribe?', 'mailchimp-for-wp'); ?>
+                                <?php echo esc_html__('To which Mailchimp audience should this form subscribe?', 'mailchimp-for-wp'); ?>
                             </label>
                         </h3>
 
@@ -46,7 +46,7 @@
                         } else {
                             ?>
                         <p class="mc4wp-notice">
-                            <?php echo sprintf(wp_kses(__('No lists found. Did you <a href="%s">connect with Mailchimp</a>?', 'mailchimp-for-wp'), array( 'a' => array( 'href' => array() ) )), admin_url('admin.php?page=mailchimp-for-wp')); ?>
+                            <?php echo sprintf(wp_kses(__('No Mailchimp audiences found. Did you <a href="%s">connect with Mailchimp</a>?', 'mailchimp-for-wp'), [ 'a' => [ 'href' => [] ] ]), admin_url('admin.php?page=mailchimp-for-wp')); ?>
                         </p>
                             <?php
                         }

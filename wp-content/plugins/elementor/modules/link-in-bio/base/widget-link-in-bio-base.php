@@ -22,10 +22,19 @@ abstract class Widget_Link_In_Bio_Base extends Widget_Base {
 	}
 
 	public function get_style_depends(): array {
-		if ( Plugin::$instance->experiments->is_feature_active( 'e_font_icon_svg' ) ) {
-			return parent::get_style_depends();
+		$widget_name = $this->get_name();
+
+		$style_depends = Plugin::$instance->experiments->is_feature_active( 'e_font_icon_svg' )
+			? parent::get_style_depends()
+			: [ 'elementor-icons-fa-solid', 'elementor-icons-fa-brands', 'elementor-icons-fa-regular' ];
+
+		$style_depends[] = 'widget-link-in-bio-base';
+
+		if ( 'link-in-bio' !== $widget_name ) {
+			$style_depends[] = "widget-{$widget_name}";
 		}
-		return [ 'elementor-icons-fa-solid', 'elementor-icons-fa-brands', 'elementor-icons-fa-regular' ];
+
+		return $style_depends;
 	}
 
 	public static function get_configuration() {
@@ -215,8 +224,9 @@ abstract class Widget_Link_In_Bio_Base extends Widget_Base {
 					'type' => Controls_Manager::ALERT,
 					'alert_type' => 'info',
 					'content' => sprintf(
-						__( 'Add up to <b>%d</b> Images', 'elementor' ),
-						$config['content']['image_links_section']['images_max']
+						/* translators: %s: Maximum number of images allowed. */
+						esc_html__( 'Add up to %s Images', 'elementor' ),
+						'<b>' . $config['content']['image_links_section']['images_max'] . '</b>'
 					),
 				]
 			);
@@ -302,8 +312,9 @@ abstract class Widget_Link_In_Bio_Base extends Widget_Base {
 					'type' => Controls_Manager::ALERT,
 					'alert_type' => 'info',
 					'content' => sprintf(
-						__( 'Add up to <b>%d</b> CTA links', 'elementor' ),
-						$config['content']['cta_section']['cta_max']
+						/* translators: %s: Maximum number of CTA links allowed. */
+						esc_html__( 'Add up to %s CTA links', 'elementor' ),
+						'<b>' . $config['content']['cta_section']['cta_max'] . '</b>'
 					),
 				]
 			);
@@ -557,8 +568,9 @@ abstract class Widget_Link_In_Bio_Base extends Widget_Base {
 					'type' => Controls_Manager::ALERT,
 					'alert_type' => 'info',
 					'content' => sprintf(
-						__( 'Add up to <b>%d</b> icons', 'elementor' ),
-						$config['content']['icon_section']['platform']['limit']
+						/* translators: %s: Maximum number of icons allowed. */
+						esc_html__( 'Add up to %s icons', 'elementor' ),
+						'<b>' . $config['content']['icon_section']['platform']['limit'] . '</b>'
 					),
 				]
 			);

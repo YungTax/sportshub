@@ -12,7 +12,6 @@
     <meta name="robots" content="index, follow">
     <meta name="Googlebot" content="index"/>
     <!-- Open Graph / Facebook -->
-      
     <meta property="og:type" content="<?php echo is_single() ? 'article' : 'website'; ?>">
     <meta property="og:site_name" content="<?php bloginfo('name'); ?>">
     <meta property="og:title" content="<?php echo esc_attr(get_the_title()); ?>">
@@ -60,5 +59,5 @@
             ?>
       ">
 
-      <?php wp_body_open(); ?> <!-- WordPress hook for adding elements right after the opening body tag -->
-      <?php get_template_part('header-layout'); ?> <!-- Includes the header layout template part -->
+      <?php wp_body_open(); ?> 
+      <?php get_template_part('header-layout'); ?> 

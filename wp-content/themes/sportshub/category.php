@@ -1,19 +1,19 @@
 <?php
-get_header(); // Include the header template
+get_header(); 
 
-$cur_cat_id = get_query_var('cat'); // Get the current category ID from the query variables
-$lazer_header_id = absint(get_term_meta($cur_cat_id, 'lazer_header_id', true)); // Get the header ID associated with the category
-$current_category = get_category($cur_cat_id); // Get the current category object
-$post_count = $current_category->count; // Get the post count for the current category
-$categories = get_the_category(get_the_ID()); // Get the categories associated with the current post
+$cur_cat_id = get_query_var('cat'); 
+$lazer_header_id = absint(get_term_meta($cur_cat_id, 'lazer_header_id', true)); 
+$current_category = get_category($cur_cat_id); 
+$post_count = $current_category->count; 
+$categories = get_the_category(get_the_ID()); 
 // ?>
 
 <!-- Rest of the code remains the same -->
 <div class="themelazer-blog-body">
     <div class="container" id="wrapper_masonry"> <!-- Main container with an ID for potential JavaScript or CSS targeting -->
     
-        <div class="row"> <!-- Bootstrap row for creating a grid layout -->
-            <div class="col-12 col-md-12 col-sm-12 col-lg-8"> <!-- Main content area taking up 8 out of 12 columns on medium and larger screens -->
+        <div class="row">
+            <div class="col-12 col-md-12 col-sm-12 col-lg-8"> 
             <?php echo sportshub_breadcrumb();?>
             <section class="themelazer_page_category_wrapper">
                 <div class="themelazer_page_category">
@@ -49,7 +49,7 @@ $categories = get_the_category(get_the_ID()); // Get the categories associated w
            <button id="load-more" data-page="1" data-url="<?php echo admin_url('admin-ajax.php'); ?>" 
            data-category="<?php echo get_queried_object_id(); ?>"><?php echo esc_html_e('Load More ', 'sportshub');?></button>
             </div>
-            <div class="col-12 col-md-12 col-sm-12 col-lg-4 themelazer_sidebar themelazer_sticky"> <!-- Sidebar area taking up 4 out of 12 columns on medium and larger screens -->
+            <div class="col-12 col-md-12 col-sm-12 col-lg-4 themelazer_sidebar themelazer_sticky"> 
                 <?php 
                 if (is_active_sidebar('general-sidebar')) : 
                     dynamic_sidebar('general-sidebar'); // Display the 'general-sidebar' if active
@@ -60,4 +60,4 @@ $categories = get_the_category(get_the_ID()); // Get the categories associated w
     </div>
 </div>
 <!-- end content -->
-<?php get_footer(); // Include the footer template ?>
+<?php get_footer(); ?>

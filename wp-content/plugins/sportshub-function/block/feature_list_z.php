@@ -841,38 +841,6 @@ class sportshub_feature_list_z extends Widget_Base {
             ]
         );                
 
-        // $this->add_control(
-        //     'title_color',
-        //     [
-
-        //         'label'    => esc_html__( 'Title color', 'sportshub' ),
-        //         'type'     => Controls_Manager::COLOR,
-        //         'selectors'  => [
-
-        //             '{{WRAPPER}} .blog-style-one .single-blog-style-one .text-box h3 a' => 'color: {{VALUE}};',
-        //         ],
-        //     ]
-        // );
-
-        // $this->add_control(
-        //     'title_color_h', [
-        //         'label'    => esc_html__( 'Title color hover', 'sportshub' ),
-        //         'type'     => Controls_Manager::COLOR,
-        //         'selectors'  => [
-
-        //             '{{WRAPPER}} .blog-style-one .single-blog-style-one .text-box h3 a:hover' => 'color: {{VALUE}};',
-        //         ],
-        //     ]
-        // );
-
-        // $this->add_group_control(
-        //     Group_Control_Typography::get_type(),
-        //     [
-        //         'name' => 'title_typography',
-        //         'label' => esc_html__( 'Title Main Typography', 'sportshub' ),
-        //             'selector' => '{{WRAPPER}} .blog-style-one .single-blog-style-one .text-box h3 a',
-        //     ]
-        // );      
         $this->end_controls_section();
     }
 
@@ -1097,7 +1065,7 @@ class sportshub_feature_list_z extends Widget_Base {
                                                   foreach( $categories as $tag) {
                                                       $tag_link = get_category_link($tag->term_id);
                                                       $title_bg_Color = get_term_meta($tag->term_id, "category_color_options", true);
-                                                        echo '<a class="post-category-color-text" itemprop="articleSection" style="background:'.$title_bg_Color.'" href="'.esc_url($tag_link).'">'.$tag->name.'</a>';
+                                                        echo '<a class="post-category-color-text" itemprop="articleSection" style="background:'.$title_bg_Color.'!important" href="'.esc_url($tag_link).'">'.$tag->name.'</a>';
                                                   }
                                                   echo "</div>";
                                                 }
@@ -1143,7 +1111,7 @@ class sportshub_feature_list_z extends Widget_Base {
                                                   foreach( $categories as $tag) {
                                                       $tag_link = get_category_link($tag->term_id);
                                                       $title_bg_Color = get_term_meta($tag->term_id, "category_color_options", true);
-                                                        echo '<a class="post-category-color-text" itemprop="articleSection" style="background:'.$title_bg_Color.'" href="'.esc_url($tag_link).'">'.$tag->name.'</a>';
+                                                        echo '<a class="post-category-color-text" itemprop="articleSection" style="background:'.$title_bg_Color.'!important" href="'.esc_url($tag_link).'">'.$tag->name.'</a>';
                                                   }
                                                   echo "</div>";
                                                 }

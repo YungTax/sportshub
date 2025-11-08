@@ -873,7 +873,7 @@ class sportshub_carousel extends Widget_Base {
                                   foreach( $categories as $tag) {
                                       $tag_link = get_category_link($tag->term_id);
                                       $title_bg_Color = get_term_meta($tag->term_id, "category_color_options", true);
-                                        echo '<a class="post-category-color-text" itemprop="articleSection" style="background:'.$title_bg_Color.'" href="'.esc_url($tag_link).'">'.$tag->name.'</a>';
+                                        echo '<a class="post-category-color-text" itemprop="articleSection" style="background:'.$title_bg_Color.'!important" href="'.esc_url($tag_link).'">'.$tag->name.'</a>';
                                   }
                                   echo "</div>";
                                 }
@@ -927,7 +927,7 @@ class sportshub_carousel extends Widget_Base {
                                 }
                     ?>            
 
-                    <a href="<?php the_permalink(); ?>" class="themelazer_item_link_layout2" tabindex="-1" style="background: <?php echo $title_bg_Color; ?>"></a>
+                    <a href="<?php the_permalink(); ?>" class="themelazer_item_link_layout2" tabindex="-1" style="background: <?php echo $title_bg_Color; ?> !important"></a>
                    
                     <div class="car_text_box">
                         
@@ -950,7 +950,7 @@ class sportshub_carousel extends Widget_Base {
                                   foreach( $categories as $tag) {
                                       $tag_link = get_category_link($tag->term_id);
                                       $title_bg_Color = get_term_meta($tag->term_id, "category_color_options", true);
-                                        echo '<a class="post-category-color-text" itemprop="articleSection" style="background:'.$title_bg_Color.'" href="'.esc_url($tag_link).'">'.$tag->name.'</a>';
+                                        echo '<a class="post-category-color-text" itemprop="articleSection" style="background:'.$title_bg_Color.'!important" href="'.esc_url($tag_link).'">'.$tag->name.'</a>';
                                   }
                                   echo "</div>";
                                 }
@@ -1002,8 +1002,8 @@ class sportshub_carousel extends Widget_Base {
                                                 }
                                                 }
                                     ?>            
-                                    <a href="<?php the_permalink(); ?>" class="themelazer_item_link_layout3" tabindex="-1" style="background: <?php echo $title_bg_Color; ?>"></a>
-                                    <div class="car_text_box layout3" style="background: <?php echo $title_bg_Color; ?>">
+                                    <a href="<?php the_permalink(); ?>" class="themelazer_item_link_layout3" tabindex="-1" style="background: <?php echo $title_bg_Color; ?>!important"></a>
+                                    <div class="car_text_box layout3" style="background: <?php echo $title_bg_Color; ?> !important">
                                         <!-- <?php  
                                         if(get_theme_mod('disable_post_category') !=1){
                                                 $categories = get_the_category(get_the_ID());          
@@ -1012,7 +1012,7 @@ class sportshub_carousel extends Widget_Base {
                                                 foreach( $categories as $tag) {
                                                     $tag_link = get_category_link($tag->term_id);
                                                     $title_bg_Color = get_term_meta($tag->term_id, "category_color_options", true);
-                                                        echo '<a class="post-category-color-text" itemprop="articleSection" style="background:'.$title_bg_Color.'" href="'.esc_url($tag_link).'">'.$tag->name.'</a>';
+                                                        echo '<a class="post-category-color-text" itemprop="articleSection" style="background:'.$title_bg_Color.'!important" href="'.esc_url($tag_link).'">'.$tag->name.'</a>';
                                                 }
                                                 echo "</div>";
                                                 }

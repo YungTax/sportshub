@@ -7,9 +7,8 @@
     function sportshub_load_css() {
         wp_enqueue_style( 'bootstrap', get_template_directory_uri().'/css/bootstrap.min.css', true, '5.0.2' ); 
         wp_enqueue_style( 'theme-block-editor-styles', get_template_directory_uri() . '/css/editor-style.css' );
-        // wp_enqueue_style( 'all_style', get_template_directory_uri().'/css/fonts.css', false, '1.0' );
         wp_enqueue_style( 'sportshub_style', get_template_directory_uri().'/style.css', false, '1.0' );
-        wp_enqueue_style( 'sportshub_style_min', get_template_directory_uri().'/css/main.min.css',true,'1.0');
+        wp_enqueue_style( 'sportshub_style_min', get_template_directory_uri().'/css/main.css',true,'1.0');
         wp_enqueue_style( 'sportshub_icons', get_template_directory_uri().'/css/webfonts/all.min.css',true,'1.0');
         wp_add_inline_style( 'sportshub_style', sportshub_generate_dynamic_css() );
     }
@@ -32,7 +31,7 @@
         wp_enqueue_script( 'slick', get_template_directory_uri().'/js/slick.js', array('jquery'), '1.0.10', true );
         wp_enqueue_script( 'theia-sticky-sidebar', get_template_directory_uri().'/js/theia-sticky-sidebar.js', array('jquery'), '1.0.4', true );
         wp_enqueue_script( 'sticky', get_template_directory_uri().'/js/jquery.sticky.js', array('jquery'), '1.0.4', true );      
-        wp_enqueue_script( 'sportshub-main', get_template_directory_uri().'/js/main.min.js', array('jquery'), '1.0', true );
+        wp_enqueue_script( 'sportshub-main', get_template_directory_uri().'/js/main.js', array('jquery'), '1.0', true );
     }
     add_action( 'wp_enqueue_scripts', 'sportshub_enqueue_script' );
     

@@ -2,14 +2,18 @@
 import Card from "@/components/Card.vue";
 import Toggle from "@/components/Toggle.vue";
 import CopyField from "@/components/CopyField.vue";
-import { SectionItem } from "@/types";
+import {SectionHeaderButton, SectionItem} from "@/types";
 import Button from "@/components/Button/Button.vue";
 import SkeletonLoader from "@/components/Loaders/SkeletonLoader.vue";
+import Notice from "@/components/Notice.vue";
+import { translate } from "@/utils/helpers";
 
 type Props = {
   title: string;
   isLoading?: boolean;
   sectionItems: SectionItem[];
+  headerButtons?: SectionHeaderButton[];
+  warning?: string
 };
 
 type Emits = {
@@ -32,7 +36,29 @@ const emit = defineEmits<Emits>();
         rounded
       />
     </Card>
-    <Card v-else :header="props.title">
+    <Card v-else>
+      <template #header>
+        <div class="w-100">
+          <div class="d-flex align-items-center justify-content-between w-100">
+            <h2 class="h-m-0">{{ props.title }}</h2>
+            <div
+                v-if="headerButtons?.length > 0"
+                class="d-flex align-items-center"
+            >
+              <Button
+                  size="small"
+                  v-for="button in headerButtons"
+                  :key="button.id"
+                  :to="button.to"
+                  :variant="button.variant"
+                  :target="button.to ? '_blank' : undefined"
+                  :icon-append="button.to ? 'icon-launch' : undefined"
+              >{{ button.text }}</Button>
+            </div>
+          </div>
+          <Notice :text="warning" v-if="warning" />
+        </div>
+      </template>
       <div
         class="home-section__section-item"
         v-for="item in sectionItems"
@@ -41,9 +67,15 @@ const emit = defineEmits<Emits>();
         <div class="d-flex flex-direction-column">
           <div class="d-flex align-items-center justify-content-between w-100">
             <div class="d-flex flex-column">
-              <h3 class="h-m-0" item.title>{{ item.title }}</h3>
+              <h3 class="h-m-0">{{ item.title }}</h3>
               <p class="h-m-0 text-body-2">
                 {{ item.description }}
+                <template v-if="item.learn_more_link">
+                  <a :href="item.learn_more_link" target="_blank" rel="noopener" class="text-link-2 additional-link">
+					  {{ translate('hostinger_tools_llms_txt_learn_more') }}
+                  </a>
+                </template>
+
               </p>
             </div>
             <Button
@@ -54,7 +86,7 @@ const emit = defineEmits<Emits>();
             >
 
             <Toggle
-              v-else-if="item.isToggleDisplayed"
+              v-else-if="item.toggleValue !== undefined"
               class="h-pl-16"
               :model-value="Boolean(item.toggleValue)"
               :bind="false"
@@ -82,6 +114,10 @@ const emit = defineEmits<Emits>();
       border-bottom: none;
       padding-bottom: 0;
     }
+
+	.additional-link {
+		text-decoration: none!important;
+	}
   }
 }
 </style>

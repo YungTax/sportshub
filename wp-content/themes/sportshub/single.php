@@ -20,6 +20,15 @@
             $full= get_post_custom_values('single_post_full_single_post_full', get_the_ID());
             $cus_sidebar= get_post_custom_values('post_left_sidebar', get_the_ID());
         ?>
+
+<?php
+$post_id = get_the_ID();
+?>
+
+<button class="bookmark-btn" data-post-id="<?php echo $post_id; ?>">
+    Add to Bookmark
+</button>
+<div id="bookmark-counter">Total Bookmarked Posts: 0</div>
 <div class="themelazer_scroll">
    <p class="themelazer_scroll_body">
       <span class="themelazer_scroll_text"><?php esc_html_e('SCROLL' , 'sportshub'); ?></span> 
@@ -124,7 +133,7 @@
                                                         foreach( $categories as $tag) {
                                                             $tag_link = get_category_link($tag->term_id);
                                                             $title_bg_Color = get_term_meta($tag->term_id, "category_color_options", true);
-                                                                echo '<a class="post-category-color-text" itemprop="articleSection" style="background:'.$title_bg_Color.'" href="'.esc_url($tag_link).'">'.$tag->name.'</a>';
+                                                                echo '<a class="post-category-color-text" itemprop="articleSection" style="background:'.$title_bg_Color.'!important" href="'.esc_url($tag_link).'">'.$tag->name.'</a>';
                                                         }
                                                         echo "</div>";
                                                         }?>
@@ -167,7 +176,7 @@
                                                                         foreach( $categories as $tag) {
                                                                             $tag_link = get_category_link($tag->term_id);
                                                                             $title_bg_Color = get_term_meta($tag->term_id, "category_color_options", true);
-                                                                                echo '<a class="post-category-color-text" itemprop="articleSection" style="background:'.$title_bg_Color.'" href="'.esc_url($tag_link).'">'.$tag->name.'</a>';
+                                                                                echo '<a class="post-category-color-text" itemprop="articleSection" style="background:'.$title_bg_Color.'!important" href="'.esc_url($tag_link).'">'.$tag->name.'</a>';
                                                                         }
                                                                         echo "</div>";
                                                                     }?>
@@ -244,7 +253,7 @@
                                     foreach ($categories as $tag) {
                                         $tag_link = get_category_link($tag->term_id);
                                         $title_bg_Color = get_term_meta($tag->term_id, "category_color_options", true);
-                                        echo '<a class="post-category-color-text" itemprop="articleSection" style="background:'.$title_bg_Color.'" href="'.esc_url($tag_link).'">'.$tag->name.'</a>';
+                                        echo '<a class="post-category-color-text" itemprop="articleSection" style="background:'.$title_bg_Color.'!important" href="'.esc_url($tag_link).'">'.$tag->name.'</a>';
                                     }
                                     echo "</div>";
                                 }

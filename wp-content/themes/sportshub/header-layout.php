@@ -83,9 +83,9 @@
                         <a href="<?php echo esc_url(home_url('/')); ?>">
                         <?php $logo = get_theme_mod('sportshub_logo_white'); ?>
                         <?php if (!empty($logo)): ?>
-                        <img src="<?php echo esc_url($logo); ?>" alt="<?php bloginfo('description'); ?>" />
+                        <img src="<?php echo esc_url($logo); ?>" alt="<?php bloginfo('description'); ?>"  aria-label="Visit Home Page" />
                         <?php else: ?>
-                        <img src="<?php echo esc_url(get_template_directory_uri().'/img/sportshub_white.png'); ?>" alt="<?php bloginfo('description'); ?>" />
+                        <img src="<?php echo esc_url(get_template_directory_uri().'/img/sportshub_white.png'); ?>" alt="<?php bloginfo('description'); ?>"  aria-label="Visit Home Page" />
                         <?php endif; ?></a>
                      </div>
                      <div class="themelazer-nav">
@@ -121,14 +121,14 @@
                         </li>
                         <li class="themelazer_mb_themelazern sidemenuoption-open is-active"><i class="ti-menu"></i></li>
                      </ul>
-                     
-                  
                   </div>
                </div>
             </div>
          </div>
          <div id="themelazer_search_wrapper">
-            <i class="ti-close"></i>
+            <svg class="close" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 4L4 20M20 20L4 4" stroke="black" stroke-width="2" stroke-linecap="round"/>
+            </svg>
             <form class="form-search" method="get" id="s" action="<?php echo esc_url( home_url( '/' ) ); ?>" >
                <input spellcheck="false" autocomplete="off" type="text" value="" name="s" placeholder="<?php esc_attr_e('Search...', 'sportshub'); ?>" />
             </form>
@@ -139,7 +139,7 @@
                   echo '<div class="category_header_search" ><div class="themelazer_post_categories_search_form">';
                      foreach($categories as $category) {
                            $title_bg_Color = get_term_meta($category->term_id, "category_color_options", true); 
-                           echo '<a '.'style="background:'.$title_bg_Color. '"'.' href="'. get_category_link($category->term_id) . '">' . $category->name .' '.$category->category_count.''. '</a>';
+                           echo '<a '.'style="background:'.$title_bg_Color. '!important"'.' href="'. get_category_link($category->term_id) . '">' . $category->name .' '.$category->category_count.''. '</a>';
                      }
                   echo '</div></div>';
                ?>
@@ -164,9 +164,9 @@
                      <a href="<?php echo esc_url(home_url('/')); ?>">
                         <?php $logo = get_theme_mod('sportshub_logo_white'); ?>
                         <?php if (!empty($logo)): ?>
-                        <img src="<?php echo esc_url($logo); ?>" alt="<?php bloginfo('description'); ?>" />
+                        <img src="<?php echo esc_url($logo); ?>" alt="<?php bloginfo('description'); ?>"  aria-label="Visit Home Page" />
                         <?php else: ?>
-                        <img src="<?php echo esc_url(get_template_directory_uri().'/img/sportshub_white.png'); ?>" alt="<?php bloginfo('description'); ?>" />
+                        <img src="<?php echo esc_url(get_template_directory_uri().'/img/sportshub_white.png'); ?>" alt="<?php bloginfo('description'); ?>"  aria-label="Visit Home Page" />
                         <?php endif; ?>
                      </a>
                   </div>
@@ -187,9 +187,9 @@
                      <a href="<?php echo esc_url(home_url('/')); ?>">
                <?php $logo = get_theme_mod('sportshub_logo_white'); ?>
                <?php if (!empty($logo)): ?>
-               <img src="<?php echo esc_url($logo); ?>" alt="<?php bloginfo('description'); ?>" />
+               <img src="<?php echo esc_url($logo); ?>" alt="<?php bloginfo('description'); ?>"  aria-label="Visit Home Page" />
                <?php else: ?>
-               <img src="<?php echo esc_url(get_template_directory_uri().'/img/sportshub_white.png'); ?>" alt="<?php bloginfo('description'); ?>" />
+               <img src="<?php echo esc_url(get_template_directory_uri().'/img/sportshub_white.png'); ?>" alt="<?php bloginfo('description'); ?>"  aria-label="Visit Home Page" />
                <?php endif; ?></a>
                   </div>
                </div>
@@ -285,9 +285,9 @@
                      <a href="<?php echo esc_url(home_url('/')); ?>">
                      <?php $logo = get_theme_mod('sportshub_logo_white'); ?>
                      <?php if (!empty($logo)): ?>
-                     <img src="<?php echo esc_url($logo); ?>" alt="<?php bloginfo('description'); ?>" />
+                     <img src="<?php echo esc_url($logo); ?>" alt="<?php bloginfo('description'); ?>"  aria-label="Visit Home Page" />
                      <?php else: ?>
-                     <img src="<?php echo esc_url(get_template_directory_uri().'/img/sportshub_white.png'); ?>" alt="<?php bloginfo('description'); ?>" />
+                     <img src="<?php echo esc_url(get_template_directory_uri().'/img/sportshub_white.png'); ?>" alt="<?php bloginfo('description'); ?>"  aria-label="Visit Home Page" />
                      <?php endif; ?></a>
                   </div>
                   <div class="themelazer-nav clearfix">
@@ -319,7 +319,9 @@
          </div>
       </div>
       <div id="themelazer_search_wrapper">
-         <i class="ti-close"></i>
+         <svg class="close" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+         <path d="M20 4L4 20M20 20L4 4" stroke="black" stroke-width="2" stroke-linecap="round"/>
+         </svg>
          <form class="form-search" method="get" id="s" action="<?php echo esc_url( home_url( '/' ) ); ?>" >
             <input spellcheck="false" autocomplete="off" type="text" value="" name="s" placeholder="<?php esc_attr_e('Search...', 'sportshub'); ?>" />
          </form>
@@ -330,7 +332,7 @@
                echo '<div class="category_header_search" ><div class="themelazer_post_categories_search_form">';
                   foreach($categories as $category) {
                         $title_bg_Color = get_term_meta($category->term_id, "category_color_options", true); 
-                        echo '<a '.'style="background:'.$title_bg_Color. '"'.' href="'. get_category_link($category->term_id) . '">' . $category->name .' '.$category->category_count.''. '</a>';
+                        echo '<a '.'style="background:'.$title_bg_Color. '!important"'.' href="'. get_category_link($category->term_id) . '">' . $category->name .' '.$category->category_count.''. '</a>';
                   }
                echo '</div></div>';
             ?>
@@ -442,9 +444,9 @@
                <a href="<?php echo esc_url(home_url('/')); ?>" aria-label="<?php bloginfo('name'); ?>">
                   <?php $logo = get_theme_mod('sportshub_logo'); ?>
                   <?php if (!empty($logo)): ?>
-                     <img src="<?php echo esc_url($logo); ?>" alt="<?php bloginfo('name'); ?>" />
+                     <img src="<?php echo esc_url($logo); ?>" alt="<?php bloginfo('name'); ?>"  aria-label="Visit Home Page" />
                   <?php else: ?>
-                     <img src="<?php echo esc_url(get_template_directory_uri().'/img/sportshub-black.png'); ?>" alt="<?php bloginfo('name'); ?>" />
+                     <img src="<?php echo esc_url(get_template_directory_uri().'/img/sportshub-black.png'); ?>" alt="<?php bloginfo('name'); ?>"  aria-label="Visit Home Page" />
                   <?php endif; ?>
                </a>
                </div>
@@ -452,9 +454,9 @@
                   <a href="<?php echo esc_url(home_url('/')); ?>">
                      <?php $logo = get_theme_mod('sportshub_logo_white'); ?>
                      <?php if (!empty($logo)): ?>
-                     <img src="<?php echo esc_url($logo); ?>" aria-label="<?php bloginfo('description'); ?>" />
+                     <img src="<?php echo esc_url($logo); ?>" aria-label="<?php bloginfo('description'); ?>"  aria-label="Visit Home Page" />
                      <?php else: ?>
-                     <img src="<?php echo esc_url(get_template_directory_uri().'/img/sportshub-whtie.png'); ?>" alt="<?php bloginfo('description'); ?>" />
+                     <img src="<?php echo esc_url(get_template_directory_uri().'/img/sportshub-whtie.png'); ?>" alt="<?php bloginfo('description'); ?>"   aria-label="Visit Home Page" />
                      <?php endif; ?>
                   </a>
                </div>
@@ -522,13 +524,13 @@
                               <div class="post-inner">
                                     <div class="post-thumbnail">
                                        <?php if ( has_post_thumbnail()) {the_post_thumbnail('sportshub_small_breaking_news');} ?> 
-                                       <a href="<?php the_permalink(); ?>"></a>
+                                       <a href="<?php the_permalink(); ?>" aria-label="Read more about <?php the_title(); ?>"></a>
                                     </div>
                               </div>
                               <div class="post-inner">
                                     <div class="entry-header">                    
                                        <h2 class="entry-title">
-                                          <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>" tabindex="-1">
+                                          <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>" aria-label="Read more about <?php the_title(); ?>" tabindex="-1">
                                                 <?php the_title(); ?>
                                           </a>
                                        </h2>
@@ -543,7 +545,9 @@
    </header> 
                            
    <div id="themelazer_search_wrapper">
-            <i class="ti-close"></i>
+            <svg class="close" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 4L4 20M20 20L4 4" stroke="black" stroke-width="2" stroke-linecap="round"/>
+            </svg>
             <form  class="form-search" method="get" id="s" action="<?php echo esc_url( home_url( '/' ) ); ?>" >
                <input spellcheck="false" autocomplete="off" type="text" value="" name="s" placeholder="<?php esc_attr_e('Search...', 'sportshub'); ?>" />
             </form>
@@ -554,7 +558,7 @@
                   echo '<div class="category_header_search" ><div class="themelazer_post_categories_search_form">';
                      foreach($categories as $category) {
                            $title_bg_Color = get_term_meta($category->term_id, "category_color_options", true); 
-                           echo '<a '.'style="background:'.$title_bg_Color. '"'.' href="'. get_category_link($category->term_id) . '">' . $category->name .' '.$category->category_count.''. '</a>';
+                           echo '<a '.'style="background:'.$title_bg_Color. '!important"'.' href="'. get_category_link($category->term_id) . '">' . $category->name .' '.$category->category_count.''. '</a>';
                      }
                   echo '</div></div>';
                ?>
@@ -587,9 +591,9 @@
                         <a href="<?php echo esc_url(home_url('/')); ?>">
                            <?php $logo = get_theme_mod('sportshub_logo'); ?>
                            <?php if (!empty($logo)): ?>
-                                    <img src="<?php echo esc_url($logo); ?>" alt="<?php bloginfo('description'); ?>" />
+                                    <img src="<?php echo esc_url($logo); ?>" alt="<?php bloginfo('description'); ?>"  aria-label="Visit Home Page" />
                            <?php else: ?>
-                                    <img src="<?php echo esc_url(get_template_directory_uri().'/img/sportshub.png'); ?>" alt="<?php bloginfo('description'); ?>" />
+                                    <img src="<?php echo esc_url(get_template_directory_uri().'/img/sportshub.png'); ?>" alt="<?php bloginfo('description'); ?>"  aria-label="Visit Home Page" />
                            <?php endif; ?>
                         </a>
                      </div>
@@ -631,7 +635,9 @@
             </div>
          </div>
          <div id="themelazer_search_wrapper">
-            <i class="ti-close"></i>
+            <svg class="close" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 4L4 20M20 20L4 4" stroke="black" stroke-width="2" stroke-linecap="round"/>
+            </svg>
             <form class="form-search" method="get" id="s" action="<?php echo esc_url( home_url( '/' ) ); ?>" >
                <input spellcheck="false" autocomplete="off" type="text" value="" name="s" placeholder="<?php esc_attr_e('Search...', 'sportshub'); ?>" />
             </form>
@@ -642,7 +648,7 @@
                   echo '<div class="category_header_search" ><div class="themelazer_post_categories_search_form">';
                      foreach($categories as $category) {
                            $title_bg_Color = get_term_meta($category->term_id, "category_color_options", true); 
-                           echo '<a '.'style="background:'.$title_bg_Color. '"'.' href="'. get_category_link($category->term_id) . '">' . $category->name .' '.$category->category_count.''. '</a>';
+                           echo '<a '.'style="background:'.$title_bg_Color. '!important"'.' href="'. get_category_link($category->term_id) . '">' . $category->name .' '.$category->category_count.''. '</a>';
                      }
                   echo '</div></div>';
                ?>
@@ -753,9 +759,9 @@
                <a href="<?php echo esc_url(home_url('/')); ?>" aria-label="<?php bloginfo('name'); ?>">
                   <?php $logo = get_theme_mod('sportshub_logo'); ?>
                   <?php if (!empty($logo)): ?>
-                     <img src="<?php echo esc_url($logo); ?>" alt="<?php bloginfo('name'); ?>" />
+                     <img src="<?php echo esc_url($logo); ?>" alt="<?php bloginfo('name'); ?>"  aria-label="Visit Home Page" />
                   <?php else: ?>
-                     <img src="<?php echo esc_url(get_template_directory_uri().'/img/sportshub-black.png'); ?>" alt="<?php bloginfo('name'); ?>" />
+                     <img src="<?php echo esc_url(get_template_directory_uri().'/img/sportshub-black.png'); ?>" alt="<?php bloginfo('name'); ?>"  aria-label="Visit Home Page" />
                   <?php endif; ?>
                </a>
                </div>
@@ -763,9 +769,9 @@
                   <a href="<?php echo esc_url(home_url('/')); ?>">
                      <?php $logo = get_theme_mod('sportshub_logo_white'); ?>
                      <?php if (!empty($logo)): ?>
-                     <img src="<?php echo esc_url($logo); ?>" aria-label="<?php bloginfo('description'); ?>" />
+                     <img src="<?php echo esc_url($logo); ?>" aria-label="<?php bloginfo('description'); ?>"  aria-label="Visit Home Page" />
                      <?php else: ?>
-                     <img src="<?php echo esc_url(get_template_directory_uri().'/img/sportshub-whtie.png'); ?>" alt="<?php bloginfo('description'); ?>" />
+                     <img src="<?php echo esc_url(get_template_directory_uri().'/img/sportshub-whtie.png'); ?>" alt="<?php bloginfo('description'); ?>"  aria-label="Visit Home Page" />
                      <?php endif; ?>
                   </a>
                </div>
@@ -833,13 +839,13 @@
                               <div class="post-inner">
                                     <div class="post-thumbnail">
                                        <?php if ( has_post_thumbnail()) {the_post_thumbnail('sportshub_small_breaking_news');} ?> 
-                                       <a href="<?php the_permalink(); ?>"></a>
+                                       <a href="<?php the_permalink(); ?>" aria-label="Read more about <?php the_title(); ?>"></a>
                                     </div>
                               </div>
                               <div class="post-inner">
                                     <div class="entry-header">                    
                                        <h2 class="entry-title">
-                                          <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>" tabindex="-1">
+                                          <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>" aria-label="Read more about <?php the_title(); ?>" tabindex="-1">
                                                 <?php the_title(); ?>
                                           </a>
                                        </h2>
@@ -854,7 +860,9 @@
    </header> 
                            
    <div id="themelazer_search_wrapper">
-            <i class="ti-close"></i>
+            <svg class="close" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+               <path d="M20 4L4 20M20 20L4 4" stroke="black" stroke-width="2" stroke-linecap="round"/>
+            </svg>
             <form  class="form-search" method="get" id="s" action="<?php echo esc_url( home_url( '/' ) ); ?>" >
                <input spellcheck="false" autocomplete="off" type="text" value="" name="s" placeholder="<?php esc_attr_e('Search...', 'sportshub'); ?>" />
             </form>
@@ -865,7 +873,7 @@
                   echo '<div class="category_header_search" ><div class="themelazer_post_categories_search_form">';
                      foreach($categories as $category) {
                            $title_bg_Color = get_term_meta($category->term_id, "category_color_options", true); 
-                           echo '<a '.'style="background:'.$title_bg_Color. '"'.' href="'. get_category_link($category->term_id) . '">' . $category->name .' '.$category->category_count.''. '</a>';
+                           echo '<a '.'style="background:'.$title_bg_Color. '!important"'.' href="'. get_category_link($category->term_id) . '">' . $category->name .' '.$category->category_count.''. '</a>';
                      }
                   echo '</div></div>';
                ?>

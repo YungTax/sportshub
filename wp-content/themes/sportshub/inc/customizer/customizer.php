@@ -2498,8 +2498,6 @@ function sportshub_register_theme_customizer( $sportshub_customize ) {
 	    )
 	);
 
-
-
 	/*Blog & single post*/
 	$sportshub_customize->add_section(
 		    'sportshub_blog_single_setting',

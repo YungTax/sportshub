@@ -136,9 +136,9 @@
                      <a href="<?php echo esc_url(home_url('/')); ?>">
                         <?php $logo = get_theme_mod('sportshub_logo'); ?>
                         <?php if (!empty($logo)): ?>
-                        <img src="<?php echo esc_url($logo); ?>" alt="<?php bloginfo('description'); ?>" />
+                        <img src="<?php echo esc_url($logo); ?>" alt="<?php bloginfo('description'); ?>"  aria-label="Visit Home Page" />
                         <?php else: ?>
-                        <img src="<?php echo esc_url(get_template_directory_uri().'/img/sportshub-black.png'); ?>" alt="<?php bloginfo('description'); ?>" />
+                        <img src="<?php echo esc_url(get_template_directory_uri().'/img/sportshub-black.png'); ?>" alt="<?php bloginfo('description'); ?>"  aria-label="Visit Home Page" />
                         <?php endif; ?>
                      </a>
                   </div>
@@ -146,9 +146,9 @@
                      <a href="<?php echo esc_url(home_url('/')); ?>">
                         <?php $logo = get_theme_mod('sportshub_logo_white'); ?>
                         <?php if (!empty($logo)): ?>
-                        <img src="<?php echo esc_url($logo); ?>" alt="<?php bloginfo('description'); ?>" />
+                        <img src="<?php echo esc_url($logo); ?>" alt="<?php bloginfo('description'); ?>"  aria-label="Visit Home Page" />
                         <?php else: ?>
-                        <img src="<?php echo esc_url(get_template_directory_uri().'/img/sportshub-whtie.png'); ?>" alt="<?php bloginfo('description'); ?>" />
+                        <img src="<?php echo esc_url(get_template_directory_uri().'/img/sportshub-whtie.png'); ?>" alt="<?php bloginfo('description'); ?>"  aria-label="Visit Home Page" />
                         <?php endif; ?>
                      </a>
                   </div>
@@ -238,26 +238,29 @@
    <!-- End footer -->
    <aside class="sidemenuoption">
       <div class="sidemenuoption-inner">
-         <span class="menuoption-close"><i class="ti-close"></i></span>
+         <span class="menuoption-close"><svg class="close" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 4L4 20M20 20L4 4" stroke="black" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+         </span>
             <div class="site-name-logo">
                <div class="site-name">
-                  <a href="<?php echo esc_url(home_url('/')); ?>">
+                  <a href="<?php echo esc_url(home_url('/')); ?>" alt="Visit Home Page"  aria-label="Visit Home Page">
                   <?php $logo = get_theme_mod('sportshub_logo'); ?>
                         <?php if (!empty($logo)): ?>
-                        <img src="<?php echo esc_url($logo); ?>" alt="<?php bloginfo('description'); ?>" />
+                        <img src="<?php echo esc_url($logo); ?>" alt="Visit Home Page"  aria-label="Visit Home Page"  />
                         <?php else: ?>
-                        <img src="<?php echo esc_url(get_template_directory_uri().'/img/sportshub-black.png'); ?>" alt="<?php bloginfo('description'); ?>" />
+                        <img src="<?php echo esc_url(get_template_directory_uri().'/img/sportshub-black.png'); ?>" alt="Visit Home Page"  aria-label="Visit Home Page"/>
                         <?php endif; ?></a>
                </div>
             </div>
             <div class="site-name-logo darkmode">
                <div class="site-name">
-                  <a href="<?php echo esc_url(home_url('/')); ?>">
+                  <a href="<?php echo esc_url(home_url('/')); ?>" alt="Visit Home Page"  aria-label="Visit Home Page">
                   <?php $logo = get_theme_mod('sportshub_logo_white'); ?>
                         <?php if (!empty($logo)): ?>
-                        <img src="<?php echo esc_url($logo); ?>" alt="<?php bloginfo('description'); ?>" />
+                        <img src="<?php echo esc_url($logo); ?>" alt="Visit Home Page"  aria-label="Visit Home Page" />
                         <?php else: ?>
-                        <img src="<?php echo esc_url(get_template_directory_uri().'/img/sportshub-whtie.png'); ?>" alt="<?php bloginfo('description'); ?>" />
+                        <img src="<?php echo esc_url(get_template_directory_uri().'/img/sportshub-whtie.png'); ?>" alt="Visit Home Page"  aria-label="Visit Home Page" />
                         <?php endif; ?></a>
                </div>
             </div>
@@ -267,7 +270,7 @@
             <?php }else{ ?>
             <?php if ( current_user_can( 'manage_options' ) ){ ?>
             <ul class="menu">
-               <li><a href="<?php echo esc_url(admin_url( 'nav-menus.php' )); ?>">
+               <li><a href="<?php echo esc_url(admin_url( 'nav-menus.php' )); ?>" aria-label=" Home Menu" alt="Visit Home Page">
                   <?php esc_html_e( 'Click here to add navigation menu', 'sportshub' ); ?></a>
                </li> 
             </ul>
@@ -282,7 +285,6 @@
          ?>      
          </div>   
          <div class="container">
-           
             <div class="copyright-area">   
                <div class="copyright-area-inner-sidebar">
                   <?php echo esc_html(get_theme_mod('themelazer_copyright', __('© Copyright 2024 Themelazer. All Rights Reserved', 'sportshub'))); ?>

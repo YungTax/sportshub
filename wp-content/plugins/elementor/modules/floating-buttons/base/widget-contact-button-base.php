@@ -29,10 +29,23 @@ abstract class Widget_Contact_Button_Base extends Widget_Base {
 	}
 
 	public function get_style_depends(): array {
-		if ( Plugin::$instance->experiments->is_feature_active( 'e_font_icon_svg' ) ) {
-			return parent::get_style_depends();
+		$widget_name = $this->get_name();
+
+		$style_depends = Plugin::$instance->experiments->is_feature_active( 'e_font_icon_svg' )
+			? parent::get_style_depends()
+			: [ 'elementor-icons-fa-solid', 'elementor-icons-fa-brands', 'elementor-icons-fa-regular' ];
+
+		$style_depends[] = 'widget-contact-buttons-base';
+
+		if ( 'contact-buttons' !== $widget_name ) {
+			$style_depends[] = "widget-{$widget_name}";
 		}
-		return [ 'elementor-icons-fa-solid', 'elementor-icons-fa-brands', 'elementor-icons-fa-regular' ];
+
+		return $style_depends;
+	}
+
+	public function has_widget_inner_wrapper(): bool {
+		return ! Plugin::$instance->experiments->is_feature_active( 'e_optimized_markup' );
 	}
 
 	public function hide_on_search(): bool {
@@ -404,9 +417,6 @@ abstract class Widget_Contact_Button_Base extends Widget_Base {
 			[
 				'label' => esc_html__( 'Link', 'elementor' ),
 				'type' => Controls_Manager::URL,
-				'default' => [
-					'is_external' => true,
-				],
 				'dynamic' => [
 					'active' => true,
 				],
@@ -738,9 +748,10 @@ abstract class Widget_Contact_Button_Base extends Widget_Base {
 						'type' => Controls_Manager::ALERT,
 						'alert_type' => 'info',
 						'content' => sprintf(
-							__( 'Add between <b>%1$d</b> to <b>%2$d</b> contact buttons', 'elementor' ),
-							$config['content']['contact_section']['platform']['min_items'],
-							$config['content']['contact_section']['platform']['limit']
+							/* translators: 1: Minimum items, 2: Items limit. */
+							esc_html__( 'Add between %1$s to %2$s contact buttons', 'elementor' ),
+							'<b>' . $config['content']['contact_section']['platform']['min_items'] . '</b>',
+							'<b>' . $config['content']['contact_section']['platform']['limit'] . '</b>'
 						),
 					]
 				);
@@ -751,8 +762,9 @@ abstract class Widget_Contact_Button_Base extends Widget_Base {
 						'type' => Controls_Manager::ALERT,
 						'alert_type' => 'info',
 						'content' => sprintf(
-							__( 'Add up to <b>%d</b> contact buttons', 'elementor' ),
-							$config['content']['contact_section']['platform']['limit']
+							/* translators: %s: Items limit. */
+							esc_html__( 'Add up to %s contact buttons', 'elementor' ),
+							'<b>' . $config['content']['contact_section']['platform']['limit'] . '</b>'
 						),
 					]
 				);
@@ -3110,7 +3122,6 @@ JS;
 		Plugin::$instance->controls_manager->add_custom_css_controls( $this, static::TAB_ADVANCED );
 
 		Plugin::$instance->controls_manager->add_custom_attributes_controls( $this, static::TAB_ADVANCED );
-
 	}
 
 	protected function render(): void {
