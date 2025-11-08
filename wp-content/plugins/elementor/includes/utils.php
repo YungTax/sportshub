@@ -907,8 +907,8 @@ class Utils {
 	}
 
 	public static function is_sale_time(): bool {
-		$sale_start_time = gmmktime( 12, 0, 0, 6, 10, 2025 );
-		$sale_end_time = gmmktime( 3, 59, 0, 6, 17, 2025 );
+		$sale_start_time = gmmktime( 12, 0, 0, 11, 25, 2025 );
+		$sale_end_time = gmmktime( 3, 59, 0, 12, 3, 2025 );
 
 		$now_time = gmdate( 'U' );
 
@@ -944,5 +944,17 @@ class Utils {
 
 	public static function is_custom_kit_applied() {
 		return (bool) Plugin::$instance->kits_manager->get_previous_id();
+	}
+
+	public static function decode_string( string $string, ?string $fallback = '' ) {
+		try {
+			return base64_decode( $string, true ) ?? $fallback;
+		} catch ( \Exception $e ) {
+			return $fallback;
+		}
+	}
+
+	public static function encode_string( string $string ): string {
+		return base64_encode( $string );
 	}
 }
